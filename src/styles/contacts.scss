@@ -1,0 +1,278 @@
+@use '../common'; // Bug?
+@use '../components';
+@use '../partials';
+
+@mixin fluid-label($shift-size, $selectors...) {
+  @each $selector in $selectors {
+    #{$selector} {
+      + label {
+        top: if($selector == textarea, 1.45em, 50%);
+        transform: translate(#{$shift-size}, if($selector == textarea, 0, -50%));
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        + label {
+          transform: translate(0, if($selector == textarea, -70%, -120%));
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+main {
+  --elements-gap: 2em;
+
+  max-width: 840px;
+  margin: 0 1em;
+
+  @media (min-width: partials.$media-small) {
+    margin: 0 2em;
+  }
+
+  @media (min-width: partials.$media-large) {
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    font: {
+      size: 3rem;
+      family: 'Gramatika';
+      weight: 900;
+    }
+    line-height: 100%;
+    letter-spacing: -2px;
+    background: partials.$color-text-gradient;
+    background-clip: text;
+    color: transparent;
+    margin: 1em auto;
+    width: min-content;
+
+    @media (min-width: partials.$media-small) {
+      font-size: 5rem;
+    }
+  }
+}
+
+.info-section {
+  .left-column {
+    margin-bottom: 1.7em;
+
+    font: {
+      family: 'Gramatika';
+      weight: 900;
+      size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 0.4em;
+    }
+
+    a {
+      color: transparent;
+      background-clip: text;
+      background-image: partials.$color-text-gradient;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -0.3em;
+        left: 0;
+        display: block;
+        height: 1px;
+        width: 45%;
+        background-image: partials.$color-text-gradient;
+
+        @include partials.mixin-smooth(width);
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .right-column {
+    margin: 0;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+  }
+
+  @media (min-width: partials.$media-medium) {
+    display: flex;
+
+    @include partials.mixin-columns(
+      ('.left-column', '.right-column'),
+      $gap: var(--elements-gap)
+    );
+
+    .left-column {
+      margin-bottom: 0;
+
+      p {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.contact-form {
+  --form-margin: 5em;
+  --inset-margin: 1em;
+
+  margin: var(--form-margin) 0;
+
+  fieldset {
+    &:first-child {
+      margin-bottom: 3em;
+    }
+
+    legend {
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 1.1em;
+    }
+
+    .input-wrapper:not(:last-child) {
+      margin-bottom: 1em;
+
+      @media (min-width: partials.$media-medium) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .input-wrapper {
+    position: relative;
+    font-weight: 300;
+
+    &.message-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      @include partials.mixin-smooth();
+
+      .message-section-footer {
+        @include partials.mixin-smooth();
+      }
+    }
+
+    label {
+      transform-origin: left top;
+      position: absolute;
+      left: var(--inset-margin);
+      color: partials.$color-roman-silver;
+      letter-spacing: 0.5px;
+
+      @include partials.mixin-smooth(transform 0.5s, font-size 0.5s);
+    }
+
+    textarea,
+    input:not([type='submit'], [type='file']) {
+      padding: 2em var(--inset-margin) var(--inset-margin) var(--inset-margin);
+      background: transparent;
+      width: 100%;
+      outline: none;
+
+      @extend %inherit-font;
+      @include partials.mixin-smooth();
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        background: partials.$color-white;
+
+        ~ .message-section-footer {
+          @include partials.mixin-smooth();
+          background: partials.$color-white;
+        }
+      }
+    }
+
+    &.message-wrapper,
+    input:not([type='submit'], [type='file']) {
+      @extend %outlined;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+      min-height: 14em;
+    }
+
+    @include fluid-label(
+      var(--inset-margin),
+      textarea,
+      "input:not([type='submit'], [type='file'])"
+    );
+  }
+
+  @media (min-width: partials.$media-medium) {
+    @include partials.mixin-columns(
+      ('.name-input-wrapper', '.company-input-wrapper'),
+      $gap: var(--elements-gap)
+    );
+
+    .email-input-wrapper {
+      margin-top: var(--elements-gap);
+    }
+  }
+
+  .message-section {
+    &-footer {
+      .attach-button {
+        display: none;
+
+        @media (min-width: partials.$media-medium) {
+          display: block;
+          margin: 0 0 var(--inset-margin) calc(var(--inset-margin) * 2);
+          background: partials.$color-space-cadet;
+
+          @include partials.mixin-smooth();
+          @include partials.mixin-rounded(3em) {
+            svg {
+              height: 100%;
+            }
+          }
+
+          &:hover {
+            background-color: partials.$color-medium-blue;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+.send-message-button {
+  display: block;
+  margin: var(--form-margin) auto 0;
+  color: partials.$color-white;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-size: 0.8rem;
+  position: relative;
+  padding: 0.5em 1em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    right: -20px;
+    transition: height 0.2s;
+    display: block;
+    height: 50%;
+    background: partials.$color-medium-blue;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    height: 100%;
+  }
+}

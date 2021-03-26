@@ -1,0 +1,25 @@
+:root {
+  --white-color: #ffffff;
+  --xiketic-color: #02021e;
+  --medium-blue-color: #3719ca;
+  --space-cadet-color: #32344d;
+  --dark-salmon-color: #e7a28f;
+  --deep-shampagne-color: #f9d6ac;
+  --baby-powder-color: #fbfefc;
+  --roman-silver-color: #80808E;
+
+  --text-gradient: linear-gradient(
+    97.54deg,
+    var(--dark-salmon-color) 3.52%,
+    var(--deep-shampagne-color) 41.89%,
+    var(--baby-powder-color) 96.77%
+  );
+}
+
+$white: var(--white-color);
+$xiketic: var(--xiketic-color);
+$medium-blue: var(--medium-blue-color);
+$space-cadet: var(--space-cadet-color);
+$roman-silver: var(--roman-silver-color);
+
+$text-gradient: var(--text-gradient);

@@ -1,0 +1,48 @@
+@use 'sass:list';
+
+/// Make equally rounded element.
+@mixin rounded($size, $max-size: 60px, $radius: 50%) {
+  padding: calc(min(#{$size}, #{$max-size}) / 4);
+  border-radius: $radius;
+  width: min(#{$size}, #{$max-size});
+  height: min(#{$size}, #{$max-size});
+
+  @content;
+}
+
+/// Add transition rule for element.
+/// Rules must be declared as list of declarations.
+@mixin smooth($transitions...) {
+  $transition: null;
+
+  @each $transition-per-property in $transitions {
+    $transition: if(
+      $transition,
+      (#{$transition}, #{$transition-per-property}),
+      $transition-per-property
+    );
+  }
+
+  transition: if($transition, $transition, all 0.3s);
+}
+
+/// Place elements that are described by selectors in one
+/// row with $gap between them.
+@mixin columns($selectors, $gap: 1em) {
+  $selectors-length: list.length($selectors);
+
+  @each $selector in $selectors {
+    #{$selector} {
+      display: inline-block;
+      width: calc(100% / #{list.length($selectors)} - #{$gap} / 2);
+      margin: 0
+        if(
+          list.index($selectors, $selector) == $selectors-length,
+          0,
+          calc(#{$gap} / 2)
+        )
+        0
+        if(list.index($selectors, $selector) == 1, 0, calc(#{$gap} / 2));
+    }
+  }
+}

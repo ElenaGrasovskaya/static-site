@@ -1,0 +1,91 @@
+@use '../partials';
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 2em 0;
+
+  @media (min-width: partials.$media-medium) {
+    margin: 1.5em 4em 0;
+  }
+
+  @media (min-width: partials.$media-xl) {
+    margin: 1.875em 5em 0;
+  }
+
+  .logo-button {
+    width: 45%;
+    min-width: 140px;
+    max-width: 170px;
+
+    @extend %hide-text;
+  }
+
+  .right-column {
+    display: flex;
+    align-items: center;
+
+    .contact-button {
+      display: none;
+      padding: 0.88em 3.11em;
+        font-size: 1.1rem;
+        font-weight: 300;
+        line-height: 160%;
+        letter-spacing: 0.5px;
+        color: partials.$color-white;
+        margin-right: 1.1em;
+        border-radius: 100px;
+
+      @extend %outlined;
+      @include partials.mixin-smooth();
+
+      &:hover {
+        background: partials.$color-medium-blue;
+        border-color: partials.$color-medium-blue;
+      }
+
+      @media (min-width: partials.$media-medium) {
+        display: block;
+      }
+    }
+
+    .menu-button {
+      --size: 2.45em;
+
+      @extend %outlined;
+      @include partials.mixin-smooth();
+      @include partials.mixin-rounded(var(--size)) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:hover {
+        background: partials.$color-medium-blue;
+        border-color: partials.$color-medium-blue;
+      }
+
+      @media (min-width: partials.$media-medium) {
+        --size: 3.75em;
+      }
+
+      & span {
+        height: 2px;
+        border-radius: 100px;
+        background: partials.$color-white;
+        width: 14px;
+        display: block;
+
+        &:nth-child(2) {
+          width: 20px;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
