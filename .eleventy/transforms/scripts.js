@@ -1,5 +1,5 @@
-const fs = require('fs/promises');
 const path = require('path');
+const { readFile, writeFile } = require('fs').promises;
 
 const esbuild = require('esbuild');
 
@@ -48,10 +48,9 @@ const bundle = async (scriptPath) => {
 const compress = async (publicUrl) => {
   const outputFilePath = reachFromBuild(publicUrl);
 
-  await fs
-    .readFile(outputFilePath, { encoding: 'utf8' })
+  await readFile(outputFilePath, { encoding: 'utf8' })
     .then((content) => brotli(content, outputFilePath))
-    .then(({ data, url }) => fs.writeFile(url, data));
+    .then(({ data, url }) => writeFile(url, data));
 
   return publicUrl;
 };

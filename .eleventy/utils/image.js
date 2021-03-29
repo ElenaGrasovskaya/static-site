@@ -1,5 +1,5 @@
 const path = require('path');
-const { readFile } = require('fs/promises');
+const { readFile } = require('fs').promises;
 
 const Image = require('@11ty/eleventy-img');
 const { optimize, extendDefaultPlugins } = require('svgo');

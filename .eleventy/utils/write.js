@@ -1,5 +1,5 @@
-const fs = require('fs/promises');
 const path = require('path');
+const { writeFile } = require('fs').promises;
 
 const toPublicUrl = require('./to_public_url');
 const makeDirectories = require('./mkdir');
@@ -18,7 +18,7 @@ module.exports = async (content, ...parts) => {
   const outputFilePath = reachFromBuild(publicUrl);
 
   await makeDirectories(path.dirname(outputFilePath)).then(() =>
-    fs.writeFile(outputFilePath, content),
+    writeFile(outputFilePath, content),
   );
 
   return publicUrl;

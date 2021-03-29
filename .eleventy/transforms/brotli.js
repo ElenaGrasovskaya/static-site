@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const { writeFile } = require('fs').promises;
 
 const brotli = require('../utils/brotli');
 
@@ -9,7 +9,7 @@ const brotli = require('../utils/brotli');
  * @param {string} outputPath
  */
 module.exports = async (html, outputPath) => {
-  await brotli(html, outputPath).then(({ data, url }) => fs.writeFile(url, data));
+  await brotli(html, outputPath).then(({ data, url }) => writeFile(url, data));
 
   return html;
 };

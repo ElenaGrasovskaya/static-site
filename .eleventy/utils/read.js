@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const { readFile } = require('fs').promises;
 
 const { reachFromSource } = require('./reach');
 
@@ -13,7 +13,7 @@ module.exports = async (...parts) => {
   const pathToSource = reachFromSource(...parts);
 
   return {
-    source: await fs.readFile(pathToSource, { encoding: 'utf8' }),
+    source: await readFile(pathToSource, { encoding: 'utf8' }),
     url: pathToSource,
   };
 };
