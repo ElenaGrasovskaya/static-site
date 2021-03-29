@@ -87,7 +87,7 @@ main {
         width: 45%;
         background-image: partials.$color-text-gradient;
 
-        @include partials.mixin-smooth(width);
+        @include partials.mixin-smooth(width, 0.25s);
       }
 
       &:hover::after {

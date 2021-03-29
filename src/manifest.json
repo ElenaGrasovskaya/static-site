@@ -1,3 +1,10 @@
 {
-  "name": "Site name"
+  "lang": "en-US",
+  "name": "Halo Lab",
+  "scope": "/",
+  "display": "minimal-ui",
+  "start_url": "/",
+  "theme_color": "#02021e",
+  "description": "Creative Studio - Halo Lab",
+  "background_color": "#02021e"
 }

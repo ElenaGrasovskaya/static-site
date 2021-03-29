@@ -5,7 +5,8 @@
   "scripts": {
     "start": "rimraf build; eleventy --serve --port=3000",
     "build": "rimraf build; NODE_ENV=production eleventy build",
-    "serve": "http-server build --port 3000 -b"
+    "serve": "http-server build --port 3000 -b --ssl --key certs/key.pem --cert certs/cert.pem",
+    "certs": "mkdir -p certs; mkcert -key-file certs/key.pem -cert-file certs/cert.pem localhost 127.0.0.1"
   },
   "author": "Halo Lab team",
   "license": "UNLICENSED",

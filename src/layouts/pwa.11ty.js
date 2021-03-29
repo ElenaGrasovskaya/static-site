@@ -26,10 +26,10 @@ module.exports.render = async function pwa({
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=5"
       />
-      <meta name="theme-color" content="#fff" />
+      <meta name="theme-color" content="#02021e" />
   
-      <meta name="apple-mobile-web-app-status-bar-style" content="#fff" />
-      <meta name="theme-color" content="#fff" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="#02021e" />
+      <meta name="theme-color" content="#02021e" />
       <meta property="og:title" content="${keywords}" />
       <meta property="og:description" content="${description}" />
       <meta property="og:type" content="website" />

@@ -112,6 +112,7 @@ module.exports = (config) => {
       AUDIO_DIRECTORY,
     )]: AUDIO_DIRECTORY,
   });
+  config.addPassthroughCopy(path.join(SOURCE_DIRECTORY, 'robots.txt'));
 
   // Определяем папки [pages / includes / layouts / data / scss / js] для 11ty-watch наблюдения
   config.addWatchTarget(path.join(SOURCE_DIRECTORY, STYLES_DIRECTORY));
