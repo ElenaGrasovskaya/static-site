@@ -46,15 +46,9 @@ module.exports.render = async function pwa({
         .reduce((text, link) => text + link, '')}
     </head>
     <body>
-      ${header(await this.image('svg/logo.svg'))}
+      ${await header.call(this)}
       ${content}
-			${footer({
-        npm: await this.image('svg/npm.svg'),
-        github: await this.image('svg/github.svg'),
-        behance: await this.image('svg/behance.svg'),
-        dribbble: await this.image('svg/dribbble.svg'),
-        instagram: await this.image('svg/instagram.svg'),
-      })}	
+			${await footer.call(this)}	
 
       <!--  Here scripts are inserted. -->
 			${(Array.isArray(scripts) ? scripts : Array.of(scripts))

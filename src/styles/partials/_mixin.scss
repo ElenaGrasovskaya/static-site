@@ -1,4 +1,19 @@
+@use 'sass:map';
 @use 'sass:list';
+
+@use 'function';
+@use 'breakpoint';
+
+// Keys declaration must be in strict order:
+//  => property name | duration | easing function | delay
+//
+// Taken from [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transition).
+$_transition-default: (
+  'property': all,
+  'duration': 0.3s,
+  'timing-function': ease-in-out,
+  'delay': 0s,
+);
 
 /// Make equally rounded element.
 @mixin rounded($size, $max-size: 60px, $radius: 50%) {
@@ -11,19 +26,37 @@
 }
 
 /// Add transition rule for element.
-/// Rules must be declared as list of declarations.
+/// Mixin can have not rules at all. In
+/// that case default one will be used.
+/// @example
+///   @include smooth(); // -> transition: all .3s ease-in-out 0s;
+///
+/// Rules must be declared as list of maps, where
+/// one list is responsible for one property.
+/// @example
+///   @include smooth((duration: .4s)); // -> transition: all .4s ease-in-out 0s;
+///   @include smooth(
+///     (property: width, duration: .4s),
+///     (property: transform)
+///   ); // -> transition: width .4s ease-in-out 0s, transform .3s ease-in-out 0s;
 @mixin smooth($transitions...) {
   $transition: null;
 
-  @each $transition-per-property in $transitions {
+  @each $map in $transitions {
+    $property-transition: function.toString(map.merge($_transition-default, $map));
+
     $transition: if(
       $transition,
-      (#{$transition}, #{$transition-per-property}),
-      $transition-per-property
+      (#{$transition}, #{$property-transition}),
+      $property-transition
     );
   }
 
-  transition: if($transition, $transition, all 0.3s);
+  transition: if(
+    $transition == null,
+    function.toString($_transition-default),
+    $transition
+  );
 }
 
 /// Place elements that are described by selectors in one
@@ -44,5 +77,19 @@
         0
         if(list.index($selectors, $selector) == 1, 0, calc(#{$gap} / 2));
     }
+  }
+}
+
+/// Define max-width of element.
+@mixin main-content($max-width) {
+  max-width: $max-width;
+  margin: 0 1em;
+
+  @include breakpoint.from(small) {
+    margin: 0 2em;
+  }
+
+  @include breakpoint.from(xl) {
+    margin: 0 auto;
   }
 }

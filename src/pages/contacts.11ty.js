@@ -1,3 +1,5 @@
+const mailLink = require('../components/mail_link.11ty');
+
 module.exports = class {
   // eslint-disable-next-line class-methods-use-this
   data() {
@@ -19,11 +21,11 @@ module.exports = class {
   async render() {
     return /* html */ `
 			<main>
-				<h1>Contacts</h1>
+				<h1 class="big-title">Contacts</h1>
 				<div class="info-section">
           <div class="left-column">
-            <p>Email us:</p>
-            <a href="mailto:mail@halo-lab.com" rel="noopener noreferrer">mail@halo-lab.com</a>
+            <p class="black-text">Email us:</p>
+            ${mailLink('mail@halo-lab.com')}
           </div>
           <p class="right-column">
             The team is open for your ideas, questions and needs. Our clients get the superior
@@ -71,7 +73,7 @@ module.exports = class {
               </div>
             </div>
 					</fieldset>          
-        	<button class="send-message-button" type="submit">SUBMIT</button>
+        	<button class="send-message-button rectangular-button" type="submit">SUBMIT</button>
 				</form>
 			</main>
     `;

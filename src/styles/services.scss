@@ -1,0 +1,121 @@
+@use '../common'; // Bug?
+@use '../components';
+@use '../partials';
+
+main {
+  @include partials.mixin-main-content(1120px);
+}
+
+.section {
+  margin-bottom: min(200px, 10em);
+}
+
+.advantage-block {
+  @include partials.media-from(small) {
+    display: grid;
+    grid: repeat(3, auto) / repeat(2, 1fr);
+    column-gap: min(100px, calc(7.8vw / 1.62));
+
+    &-item {
+      &:first-child {
+        grid-area: 1 / 1 / 2 / span 2;
+      }
+    }
+  }
+
+  @include partials.media-from(medium) {
+    &-item {
+      &:first-child {
+        // We also cover 1 auto added row to handle
+        // fifth element.
+        grid-area: 1 / 1 / span 4 / 2;
+      }
+
+      .advantage-quote {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include partials.media-from(large) {
+    grid-template-columns: 31% repeat(2, 1fr);
+  }
+
+  &-item {
+    margin-bottom: 2.2em;
+
+    @include partials.media-to(small) {
+      text-align: center;
+    }
+
+    .advantage-quote {
+      margin-bottom: 1.7em;
+
+      @include partials.media-to(small) {
+        text-align: center;
+      }
+    }
+
+    .contact-link {
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 10px;
+      margin-bottom: 3em;
+    }
+
+    .advantage-icon {
+      width: 60px;
+      display: block;
+
+      @include partials.media-to(small) {
+        margin: 0 auto;
+      }
+    }
+
+    .advantage-item-title {
+      font: {
+        size: 1.3rem;
+        family: 'Gramatika';
+        weight: 900;
+      }
+      margin: 1em 0 0 0;
+
+      @include partials.media-to(small) {
+        text-align: center;
+      }
+    }
+
+    .advantage-text {
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      opacity: 0.75;
+
+      @include partials.media-to(small) {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.download-link {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  color: partials.$color-white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4em;
+
+  @include partials.media-to(small) {
+    justify-content: center;
+  }
+
+  .presentation-image {
+    display: inline-block;
+    margin-right: 1.7em;
+  }
+
+  span {
+    width: min-content;
+  }
+}

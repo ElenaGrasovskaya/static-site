@@ -13,7 +13,7 @@ html {
    * Safari 12.2.
    */
   font-size: max(16px, min(1.375 * 1vw, 22px));
-  line-height: 160%;
+  line-height: 1.6;
 }
 
 body {
@@ -86,4 +86,88 @@ textarea {
   outline: none;
 
   @extend %inherit-font;
+}
+
+.big-title {
+  text-align: center;
+  font: {
+    size: 3rem;
+    family: 'Gramatika';
+    weight: 900;
+  }
+  line-height: 100%;
+  letter-spacing: -2px;
+  background: partials.$color-text-gradient;
+  background-clip: text;
+  color: transparent;
+  margin: 1.1em auto;
+
+  @include partials.media-from(small) {
+    font-size: 5rem;
+  }
+}
+
+.black-text {
+  font: {
+    size: 1.6rem;
+    family: 'Gramatika';
+    weight: 900;
+  }
+}
+
+.rectangular-button {
+  display: block;
+  color: partials.$color-white;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-size: 0.8rem;
+  position: relative;
+  padding: 0.5em 1em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    right: -20px;
+    transition: height 0.2s;
+    display: block;
+    height: 50%;
+    background: partials.$color-medium-blue;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    height: 100%;
+  }
+}
+
+.mail-link {
+  color: transparent;
+  background-clip: text;
+  background-image: partials.$color-text-gradient;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -0.3em;
+    left: 0;
+    display: block;
+    height: 1px;
+    width: 45%;
+    background-image: partials.$color-text-gradient;
+
+    @include partials.mixin-smooth(
+      (
+        property: width,
+        duration: 0.25s,
+      )
+    );
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 }

@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+
+/// Converts $value to string.
+/// If it is map, then its values is joined with space as separator.
+/// If it is list, then its values is joined with space as separator.
+/// Otherwise is used default Sass's `toString` behavior.
+///
+/// @return unquoted string.
+@function toString($value) {
+  @if meta.type-of($value) == map {
+    @return #{list.join((), map.values($value), $separator: space, $bracketed: false)};
+  } @else if meta.type-of($value) == list {
+    @return #{list.join((), $value, $separator: space, $bracketed: false)};
+  } @else {
+    @return #{$value};
+  }
+}
