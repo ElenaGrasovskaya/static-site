@@ -60,30 +60,9 @@ $_transition-default: (
   );
 }
 
-/// Place elements that are described by selectors in one
-/// row with $gap between them.
-@mixin columns($selectors, $gap: 1em) {
-  $selectors-length: list.length($selectors);
-
-  @each $selector in $selectors {
-    #{$selector} {
-      display: inline-block;
-      width: calc(100% / #{list.length($selectors)} - #{$gap} / 2);
-      margin: 0
-        if(
-          list.index($selectors, $selector) == $selectors-length,
-          0,
-          calc(#{$gap} / 2)
-        )
-        0
-        if(list.index($selectors, $selector) == 1, 0, calc(#{$gap} / 2));
-    }
-  }
-}
-
-/// Define max-width of element.
+/// Define max-width of the page.
 @mixin main-content($max-width) {
-  max-width: $max-width;
+  max-width: if($max-width, $max-width, 1680px);
   margin: 0 1em;
 
   @include breakpoint.from(small) {

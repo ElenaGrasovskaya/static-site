@@ -7,12 +7,6 @@
 }
 
 html {
-  /*
-   * Use `clamp(16px, 1.375 * 1vw, 22px)` 
-   * when there will no intention to support
-   * Safari 12.2.
-   */
-  font-size: max(16px, min(1.375 * 1vw, 22px));
   line-height: 1.6;
 }
 

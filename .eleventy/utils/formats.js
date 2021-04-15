@@ -1,11 +1,20 @@
-const pathStats = require('./path_stats');
+const { extensionOf } = require('./extension_of');
 
 /** List of script formats. */
 const SCRIPT_FORMATS = ['js', 'ts', 'cjs', 'mjs'];
 /** List of style formats. */
 const STYLE_FORMATS = ['css', 'scss', 'sass'];
 /** List of image formats. */
-const IMAGE_FORMATS = ['jpg', 'png', 'gif', 'ico', 'svg', 'jpeg', 'avif', 'webp'];
+const IMAGE_FORMATS = [
+  'jpg',
+  'png',
+  'gif',
+  'ico',
+  'svg',
+  'jpeg',
+  'avif',
+  'webp',
+];
 /** List of font formats. */
 const FONT_FORMATS = ['eot', 'ttf', 'otf', 'ttc', 'woff', 'woff2'];
 
@@ -14,35 +23,35 @@ const FONT_FORMATS = ['eot', 'ttf', 'otf', 'ttc', 'woff', 'woff2'];
  *
  * @param {string} url
  */
-const isScript = (url) => SCRIPT_FORMATS.includes(pathStats(url).extension);
+const isScript = (url) => SCRIPT_FORMATS.includes(extensionOf(url));
 
 /**
  * Check if url's file is style.
  *
  * @param {string} url
  */
-const isStyle = (url) => STYLE_FORMATS.includes(pathStats(url).extension);
+const isStyle = (url) => STYLE_FORMATS.includes(extensionOf(url));
 
 /**
  * Check if url's file is image.
  *
  * @param {string} url
  */
-const isImage = (url) => IMAGE_FORMATS.includes(pathStats(url).extension);
+const isImage = (url) => IMAGE_FORMATS.includes(extensionOf(url));
 
 /**
  * Check if url points to SVG.
  *
  * @param {string} url
  */
-const isSVG = (url) => 'svg' === pathStats(url).extension;
+const isSVG = (url) => 'svg' === extensionOf(url);
 
 /**
  * Check if url's file is font.
  *
  * @param {string} url
  */
-const isFont = (url) => FONT_FORMATS.includes(pathStats(url).extension);
+const isFont = (url) => FONT_FORMATS.includes(extensionOf(url));
 
 /**
  * Get format/formats of image.

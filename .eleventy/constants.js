@@ -57,17 +57,10 @@ const MANIFEST_FILE = 'manifest.json';
 /** Name of favicon file. */
 const FAVICON_FILE = 'favicon.png';
 
-/**
- * Closing part of <head> tag.
- * @internal
- */
-const HEAD_CLOSED_TAG = '</head>';
-
 module.exports = {
   FAVICON_FILE,
   MANIFEST_FILE,
   DATA_DIRECTORY,
-  HEAD_CLOSED_TAG,
   AUDIO_DIRECTORY,
   FONTS_DIRECTORY,
   BUILD_DIRECTORY,

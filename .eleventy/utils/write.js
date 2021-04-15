@@ -1,7 +1,6 @@
 const path = require('path');
 const { writeFile } = require('fs').promises;
 
-const toPublicUrl = require('./to_public_url');
 const makeDirectories = require('./mkdir');
 const { reachFromBuild } = require('./reach');
 
@@ -13,13 +12,11 @@ const { reachFromBuild } = require('./reach');
  * @param {ReadonlyArray<string>} parts - path to content's file.
  */
 module.exports = async (content, ...parts) => {
-  const publicUrl = toPublicUrl(...parts);
+	const outputFilePath = reachFromBuild(...parts);
 
-  const outputFilePath = reachFromBuild(publicUrl);
+	await makeDirectories(path.dirname(outputFilePath)).then(() =>
+		writeFile(outputFilePath, content)
+	);
 
-  await makeDirectories(path.dirname(outputFilePath)).then(() =>
-    writeFile(outputFilePath, content),
-  );
-
-  return publicUrl;
+	return path.join(...parts);
 };

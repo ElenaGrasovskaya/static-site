@@ -1,7 +1,6 @@
 const mailLink = require('../components/mail_link.11ty');
 
 module.exports = class {
-  // eslint-disable-next-line class-methods-use-this
   data() {
     return {
       lang: 'en',
@@ -10,7 +9,7 @@ module.exports = class {
       styles: 'contacts.scss',
       scripts: 'contacts.js',
       keywords: 'Halo Lab',
-      // permalink: 'contacts.html',
+      permalink: 'contacts.html',
       description:
         'If you want to create a product or you would like to discuss ' +
         "how it could be realized, you're exactly where you're supposed " +
