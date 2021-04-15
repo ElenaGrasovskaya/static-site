@@ -88,6 +88,12 @@ textarea {
   @extend %inherit-font;
 }
 
+.text-gradient {
+  background-image: partials.$color-text-gradient;
+  background-clip: text;
+  color: transparent;
+}
+
 .big-title {
   text-align: center;
   font: {
@@ -97,10 +103,9 @@ textarea {
   }
   line-height: 100%;
   letter-spacing: -2px;
-  background: partials.$color-text-gradient;
-  background-clip: text;
-  color: transparent;
   margin: 1.1em auto;
+
+  @extend .text-gradient;
 
   @include partials.media-from(small) {
     font-size: 5rem;
@@ -143,11 +148,10 @@ textarea {
 }
 
 .mail-link {
-  color: transparent;
-  background-clip: text;
-  background-image: partials.$color-text-gradient;
   position: relative;
   display: inline-block;
+
+  @extend .text-gradient;
 
   &::after {
     content: '';

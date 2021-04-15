@@ -1,6 +1,6 @@
-@use '../common'; // Bug?
-@use '../components';
-@use '../partials';
+@use 'common'; // Bug?
+@use 'components';
+@use 'partials';
 
 @mixin fluid-label($shift-size, $selectors...) {
   @each $selector in $selectors {

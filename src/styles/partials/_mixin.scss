@@ -20,6 +20,7 @@ $_transition-default: (
   padding: calc(min(#{$size}, #{$max-size}) / 4);
   border-radius: $radius;
   width: min(#{$size}, #{$max-size});
+  min-width: min(#{$size}, #{$max-size});
   height: min(#{$size}, #{$max-size});
 
   @content;

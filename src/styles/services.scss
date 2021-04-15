@@ -1,6 +1,9 @@
-@use '../common'; // Bug?
-@use '../components';
-@use '../partials';
+@use 'swiper/swiper';
+@use 'swiper/components/navigation/navigation';
+
+@use 'common';
+@use 'components';
+@use 'partials';
 
 main {
   @include partials.mixin-main-content(1120px);
@@ -117,5 +120,110 @@ main {
 
   span {
     width: min-content;
+  }
+}
+
+.slider-wrapper {
+  position: relative;
+}
+
+.swiper-container {
+  max-width: 82%;
+}
+
+.swiper-wrapper {
+  // Allow slide icon to be visible.
+  margin-top: 4em;
+}
+
+.swiper-button-next {
+  right: 1em;
+}
+
+.swiper-button-prev {
+  left: 1em;
+}
+
+.slide {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.6rem;
+  font-family: 'Gramatika';
+  font-weight: 900;
+  text-align: center;
+  background-image: linear-gradient(
+    110.72deg,
+    rgba(132, 164, 255, 0.2) 6.69%,
+    rgba(2, 2, 30, 0) 85.43%
+  );
+  padding: 3.6em;
+  position: relative;
+
+  &::before {
+    --size: min(4.4em, 80px);
+
+    font-size: 1rem;
+    content: url('svg/research_icon.svg');
+    display: block;
+    position: absolute;
+    top: calc(var(--size) / 2 * -1);
+    left: 50%;
+    transform: translateX(-50%);
+    background: partials.$color-medium-blue center center;
+
+    @include partials.mixin-rounded(4.4em, 80px);
+  }
+}
+
+.navigation-wrapper {
+  // Size of button.
+  --size: min(3.3em, 60px);
+
+  position: absolute;
+  top: calc(50% + var(--size) / 2);
+  width: 100%;
+
+  .navigation-button {
+    &::after {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-color);
+
+      @extend %outlined;
+      @include partials.mixin-rounded(3.3em);
+      @include partials.mixin-smooth();
+    }
+
+    &:hover::after {
+      background: partials.$color-medium-blue;
+      border-color: partials.$color-medium-blue;
+    }
+  }
+}
+
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  position: initial;
+
+  &-bullet {
+    display: flex;
+    flex-direction: column;
+
+    i {
+      font-size: 1.22rem;
+
+      @include partials.mixin-rounded(2.72em);
+    }
+
+    &:not(:last-child) {
+      margin-right: 1em;
+
+      i::after {
+        content: url('svg/dots.svg');
+      }
+    }
   }
 }

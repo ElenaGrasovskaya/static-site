@@ -13,7 +13,6 @@ const { PurgeCSS } = require('purgecss');
 const rip = require('../utils/rip');
 const read = require('../utils/read');
 const write = require('../utils/write');
-const brotli = require('../utils/brotli');
 const toPublicUrl = require('../utils/to_public_url');
 const isProduction = require('../utils/mode');
 const optimizeImage = require('../utils/image');
@@ -61,6 +60,8 @@ const processUrl = (url) => {
   }
 };
 
+module.exports.processUrl = processUrl;
+
 /**
  * Compile style content with `sass` module.
  *
@@ -70,12 +71,7 @@ const compile = (data) => {
   const { css } = sass.renderSync({
     data,
     // Specify directories for ability for sass to resolve imported styles.
-    includePaths: fs
-      .readdirSync(reachFromSource(STYLES_DIRECTORY), {
-        withFileTypes: true,
-      })
-      .filter((dirent) => dirent.isDirectory())
-      .map((directory) => reachFromSource(STYLES_DIRECTORY, directory.name)),
+    includePaths: [path.resolve('node_modules'), reachFromSource(STYLES_DIRECTORY)],
   });
 
   return css;
@@ -117,6 +113,7 @@ const purge = async (html, css) => {
     await new PurgeCSS().purge({
       css: [{ raw: css }],
       content: [{ raw: html, extension: 'html' }],
+      safelist: [/^swiper/]
     })
   ).reduce((accumulator, { css }) => accumulator + css, '');
 };
@@ -128,25 +125,7 @@ const purge = async (html, css) => {
  * @param {string} css
  * @param {string} inputUrl
  */
-const flush = async (css, inputUrl) => {
-  return {
-    css,
-    url: await write(css, STYLES_DIRECTORY, inputUrl),
-  };
-};
-
-/**
- * Compress CSS using brotli algorithm.
- *
- * @param {{ css: string, url: string }} content
- */
-const compress = async ({ css, url: publicUrl }) => {
-  await brotli(css, reachFromBuild(publicUrl)).then(({ data, url }) =>
-    fs.promises.writeFile(url, data),
-  );
-
-  return publicUrl;
-};
+const flush = async (css, inputUrl) => write(css, STYLES_DIRECTORY, inputUrl);
 
 /**
  * Read style's URL from HTML content,
@@ -155,7 +134,7 @@ const compress = async ({ css, url: publicUrl }) => {
  *
  * @param {string} html
  */
-module.exports = async (html) => {
+const styles = async (html) => {
   start(PROCESS_NAME, 'Search styles in HTML...');
 
   const linkToStyles = rip(html, STYLESHEET_LINK_REGEXP);
@@ -173,7 +152,6 @@ module.exports = async (html) => {
         .then(normalize)
         .then((css) => purge(html, css))
         .then((css) => flush(css, inputUrl))
-        .then(compress)
         .then((url) => {
           done(PROCESS_NAME, `Compiled CSS was written to "${reachFromBuild(url)}"`);
           return url;

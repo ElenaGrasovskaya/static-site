@@ -1,10 +1,8 @@
 const path = require('path');
-const { readFile, writeFile } = require('fs').promises;
 
 const esbuild = require('esbuild');
 
 const rip = require('../utils/rip');
-const brotli = require('../utils/brotli');
 const toPublicUrl = require('../utils/to_public_url');
 const isProduction = require('../utils/mode');
 const makeDirectories = require('../utils/mkdir');
@@ -40,22 +38,6 @@ const bundle = async (scriptPath) => {
 };
 
 /**
- * Compress script using brotli algorithm.
- *
- * @param {string} publicUrl - path in build
- * directory to script.
- */
-const compress = async (publicUrl) => {
-  const outputFilePath = reachFromBuild(publicUrl);
-
-  await readFile(outputFilePath, { encoding: 'utf8' })
-    .then((content) => brotli(content, outputFilePath))
-    .then(({ data, url }) => writeFile(url, data));
-
-  return publicUrl;
-};
-
-/**
  * Read script's URL from HTML content,
  * compile files and write to HTML proper paths
  * to compiled and bundled scripts.
@@ -74,7 +56,6 @@ module.exports = async (content) => {
         ),
       )
         .then(() => bundle(inputUrl))
-        .then(compress)
         .then((url) => {
           done(
             PROCESS_NAME,
