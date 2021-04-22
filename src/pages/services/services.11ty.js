@@ -8,7 +8,7 @@ module.exports = class {
     return {
       lang: 'en',
       title: 'Services - Halo Lab',
-      layout: 'pwa',
+      layout: 'base',
       styles: 'services.scss',
       scripts: 'services.js',
       keywords: 'Halo Lab',

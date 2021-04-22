@@ -59,17 +59,3 @@ $_transition-default: (
     $transition
   );
 }
-
-/// Define max-width of the page.
-@mixin main-content($max-width) {
-  max-width: if($max-width, $max-width, 1680px);
-  margin: 0 1em;
-
-  @include breakpoint.from(small) {
-    margin: 0 2em;
-  }
-
-  @include breakpoint.from(xl) {
-    margin: 0 auto;
-  }
-}

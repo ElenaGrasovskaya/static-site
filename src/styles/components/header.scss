@@ -1,23 +1,19 @@
 @use '../partials';
+@use '../partials/breakpoint';
+@use '../partials/grid';
 
 .main-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 1em 2em 0;
 
-  @include partials.media-from(medium) {
-    margin: 1.5em 4em 0;
-  }
-  @include partials.media-from(xl) {
-    margin: 1.875em 5em 0;
-  }
+  @include grid.dimension($property: height, $count: 5);
+  @include grid.dimension($property: padding-top, $count: 2);
+  @include grid.dimension($property: padding-left, $count: 4);
+  @include grid.dimension($property: padding-right, $count: 4);
 
   .logo-button {
-    width: 45%;
-    min-width: 140px;
-    max-width: 170px;
-
+    @include grid.dimension($from: 5, $to: 12);
     @extend %hide-text;
   }
 
@@ -26,6 +22,7 @@
     align-items: center;
 
     .contact-button {
+      // TODO: adapt to units
       display: none;
       padding: 0.88em 3.11em;
       font-size: 1.1rem;
@@ -50,24 +47,19 @@
     }
 
     .menu-button {
-      --size: 2.45em;
-
       @extend %outlined;
       @include partials.mixin-smooth();
-      @include partials.mixin-rounded(var(--size)) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
+      @include grid.dimension($property: width, $count: 3);
+      @include grid.dimension($property: height, $count: 3);
+      border-radius: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         background: partials.$color-medium-blue;
         border-color: partials.$color-medium-blue;
-      }
-
-      @include partials.media-from(medium) {
-        --size: 3.75em;
       }
 
       & span {

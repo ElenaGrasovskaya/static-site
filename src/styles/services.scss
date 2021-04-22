@@ -5,10 +5,6 @@
 @use 'components';
 @use 'partials';
 
-main {
-  @include partials.mixin-main-content(1120px);
-}
-
 .section {
   margin-bottom: min(200px, 10em);
 }

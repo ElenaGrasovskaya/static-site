@@ -1,6 +1,8 @@
 @use 'common';
 @use 'components';
 @use 'partials';
+@use 'partials/grid';
+@use 'partials/breakpoint';
 
 @mixin fluid-label($shift-size, $selectors...) {
   @each $selector in $selectors {
@@ -22,23 +24,19 @@
 }
 
 main {
-  --elements-gap: 2em;
-
-  @include partials.mixin-main-content(840px);
+  margin-right: auto;
+  margin-left: auto;
+  @include grid.dimension($property: max-width, $from: 12, $to: 53);
 }
 
 .info-section {
-  .left-column {
-    margin-bottom: 1.7em;
+  @include grid.dimension($property: margin-bottom, $count: 5);
 
-    font: {
-      family: 'Gramatika';
-      weight: 900;
-      size: 1.5rem;
-    }
+  .left-column {
+    @include grid.dimension($property: width, $from: 12, $to: 33);
 
     p {
-      margin-bottom: 0.4em;
+      margin: 0;
     }
   }
 
@@ -46,31 +44,23 @@ main {
     margin: 0;
     letter-spacing: 0.5px;
     font-weight: 300;
+    @include grid.dimension($property: font-size, $count: 0.9);
+    @include grid.dimension($property: width, $from: 34, $to: 53);
   }
 
-  @include partials.media-from(medium) {
+  @include breakpoint.from(medium) {
     display: flex;
-
-    @include partials.mixin-columns(
-      ('.left-column', '.right-column'),
-      $gap: var(--elements-gap)
-    );
 
     .left-column {
       margin-bottom: 0;
-
-      p {
-        margin-top: 0;
-      }
     }
   }
 }
 
 .contact-form {
-  --form-margin: 5em;
   --inset-margin: 1em;
-
-  margin: var(--form-margin) 0;
+  
+  @include grid.dimension($property: margin-bottom, $count: 8);
 
   fieldset {
     &:first-child {
@@ -167,11 +157,6 @@ main {
   }
 
   @include partials.media-from(medium) {
-    @include partials.mixin-columns(
-      ('.name-input-wrapper', '.company-input-wrapper'),
-      $gap: var(--elements-gap)
-    );
-
     .email-input-wrapper {
       margin-top: var(--elements-gap);
     }

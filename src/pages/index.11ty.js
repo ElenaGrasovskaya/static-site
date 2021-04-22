@@ -4,7 +4,7 @@ module.exports = class {
     return {
       lang: 'en',
       title: 'Home Page - Halo Lab',
-      layout: 'pwa',
+      layout: 'base',
       styles: 'index.scss',
       scripts: 'index.js',
       keywords: 'Halo Lab',

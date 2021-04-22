@@ -1,8 +1,10 @@
 @use '../partials';
+@use '../partials/grid';
+@use '../partials/breakpoint';
 
 *,
-::after,
-::before {
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -24,7 +26,6 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  min-height: 100vh;
   background: partials.$color-xiketic url('svg/background.svg');
   font-family: 'Sofia Pro', sans-serif;
   color: partials.$color-white;
@@ -82,6 +83,12 @@ textarea {
   @extend %inherit-font;
 }
 
+.site-body {
+  min-height: 100vh;
+
+  @include grid.container;
+}
+
 .text-gradient {
   background-image: partials.$color-text-gradient;
   background-clip: text;
@@ -91,24 +98,23 @@ textarea {
 .big-title {
   text-align: center;
   font: {
-    size: 3rem;
     family: 'Gramatika';
     weight: 900;
   }
   line-height: 100%;
   letter-spacing: -2px;
-  margin: 1.1em auto;
+  margin-right: auto;
+  margin-left: auto;
 
   @extend .text-gradient;
-
-  @include partials.media-from(small) {
-    font-size: 5rem;
-  }
+  @include grid.dimension($property: font-size, $count: 5);
+  @include grid.dimension($property: margin-top, $count: 5);
+  @include grid.dimension($property: margin-bottom, $count: 5);
 }
 
 .black-text {
+  @include grid.dimension($property: font-size, $count: 1.5);
   font: {
-    size: 1.6rem;
     family: 'Gramatika';
     weight: 900;
   }

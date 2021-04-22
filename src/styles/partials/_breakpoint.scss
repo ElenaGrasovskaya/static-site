@@ -7,7 +7,12 @@ $_breakpoints: (
   large: 1024px,
   xl: 1280px,
   xxl: 1536px,
+  max: 1680px,
 );
+
+@function get($name) {
+  @return map.get($_breakpoints, $name);
+}
 
 /// Wrap content into media query starting from
 /// $type keyword. If type is not recognizable,
@@ -16,7 +21,7 @@ $_breakpoints: (
 /// @param {"small" | "medium" | "large" | "xl" | "xxl"} $type - name of breakpoint.
 @mixin from($type) {
   @if map.has-key($_breakpoints, $type) {
-    @media (min-width: map.get($_breakpoints, $type)) {
+    @media (min-width: get($type)) {
       @content;
     }
   } @else {
@@ -33,7 +38,7 @@ $_breakpoints: (
   @if map.has-key($_breakpoints, $type) {
     // max-width is inclusive property, so we need to exlude 1px from it,
     // in order to avoid interlacing of styles.
-    @media (max-width: #{map.get($_breakpoints, $type) - 1}) {
+    @media (max-width: #{get($type) - 1}) {
       @content;
     }
   } @else {

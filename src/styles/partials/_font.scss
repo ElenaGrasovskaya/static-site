@@ -1,11 +1,12 @@
 @use 'function';
+@use 'coefficient';
 
-@mixin size-title($size) {
-  font-size: calc(#{$size} * var(--coef-title));
+@mixin size-title($units) {
+  font-size: calc(#{$units} * #{coefficient.$title});
 }
 
-@mixin size-text($size) {
-  font-size: calc(#{$size} * var(--coef-text));
+@mixin size-text($units) {
+  font-size: calc(#{$units} * #{coefficient.$text});
 }
 
 @mixin fluid($min-vw, $max-vw, $min-font-size, $max-font-size) {
@@ -19,8 +20,8 @@
       font-size: $min-font-size;
       @media screen and (min-width: $min-vw) {
         font-size: calc(
-          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
-            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+          #{$min-font-size} + #{function.strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{function.strip-unit($max-vw - $min-vw)})
         );
       }
 

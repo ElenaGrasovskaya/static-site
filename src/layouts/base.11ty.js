@@ -42,16 +42,20 @@ module.exports.render = async function pwa({
    
       <!--  Here styles are inserted. -->
 			${(Array.isArray(styles) ? styles : Array.of(styles))
+        .filter(Boolean)
         .map((url) => /* html */ `<link rel="stylesheet" href="${url}">`)
         .reduce((text, link) => text + link, '')}
     </head>
     <body>
-      ${await header.call(this)}
-      ${content}
-			${await footer.call(this)}	
-
+      <div class="site-body">
+        ${await header.call(this, this.page.url.includes('contacts'))}
+        ${content}
+			  ${await footer.call(this)}	
+      </div>
+      
       <!--  Here scripts are inserted. -->
 			${(Array.isArray(scripts) ? scripts : Array.of(scripts))
+        .filter(Boolean)
         .map((url) => /* html */ `<script defer src="${url}"></script>`)
         .reduce((text, script) => text + script, '')}
     </body>

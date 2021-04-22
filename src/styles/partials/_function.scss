@@ -26,7 +26,7 @@
 
 /// Extracts number value from unit number.
 @function strip-unit($number) {
-  @if meta.type-of($number) == 'number' and not math.unitless($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
     @return $number / extract-unit($number);
   }
 
@@ -74,7 +74,7 @@
 }
 
 /// Count width for grid inside element.
-/// We take inner container's width in columns and 
+/// We take inner container's width in columns and
 /// element's width in columns, function return element's width in percent.
 @function elem-width($elWidth, $allWidth) {
   @return $elWidth * (100 / $allWidth) * 1%;

@@ -5,7 +5,7 @@ module.exports = class {
     return {
       lang: 'en',
       title: 'Contacts - Halo Lab',
-      layout: 'pwa',
+      layout: 'base',
       styles: 'contacts.scss',
       scripts: 'contacts.js',
       keywords: 'Halo Lab',
@@ -24,7 +24,7 @@ module.exports = class {
 				<div class="info-section">
           <div class="left-column">
             <p class="black-text">Email us:</p>
-            ${mailLink('mail@halo-lab.com')}
+            ${mailLink('mail@halo-lab.com', { classes: ['black-text'] })}
           </div>
           <p class="right-column">
             The team is open for your ideas, questions and needs. Our clients get the superior
