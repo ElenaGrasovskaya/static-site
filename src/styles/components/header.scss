@@ -1,20 +1,28 @@
-@use '../partials';
-@use '../partials/breakpoint';
 @use '../partials/grid';
+@use '../partials/mixin';
+@use '../partials/color';
+@use '../partials/breakpoint';
+@use '../partials/placeholder';
 
 .main-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @include grid.dimension($property: height, $count: 5);
-  @include grid.dimension($property: padding-top, $count: 2);
-  @include grid.dimension($property: padding-left, $count: 4);
-  @include grid.dimension($property: padding-right, $count: 4);
+  @include grid.dimension($property: height, $units: 5);
+  @include grid.dimension($property: padding-top, $units: 2);
+  @include grid.dimension($property: padding-left, $units: 4);
+  @include grid.dimension($property: padding-right, $units: 4);
 
   .logo-button {
-    @include grid.dimension($from: 5, $to: 12);
+    @include grid.dimension($property: width, $from: 5, $to: 12, $min: 144px);
     @extend %hide-text;
+
+    svg {
+      // Safari can't display SVG without declaring
+      // its size explicitly.
+      min-width: 100%;
+    }
   }
 
   .right-column {
@@ -22,35 +30,39 @@
     align-items: center;
 
     .contact-button {
-      // TODO: adapt to units
       display: none;
-      padding: 0.88em 3.11em;
-      font-size: 1.1rem;
-      font-weight: 300;
-      line-height: 160%;
+      font: {
+        weight: 300;
+        size: inherit;
+      }
+      line-height: inherit;
       letter-spacing: 0.5px;
-      color: partials.$color-white;
-      margin-right: 1.1em;
+      color: color.$white;
       border-radius: 100px;
 
       @extend %outlined;
-      @include partials.mixin-smooth();
+      @include mixin.smooth();
+      @include grid.dimension($property: padding-right, $units: 3);
+      @include grid.dimension($property: padding-left, $units: 3);
+      @include grid.dimension($property: padding-top, $units: 0.8);
+      @include grid.dimension($property: padding-bottom, $units: 0.8);
+      @include grid.dimension($property: margin-right, $units: 1);
 
       &:hover {
-        background: partials.$color-medium-blue;
-        border-color: partials.$color-medium-blue;
+        background: color.$medium-blue;
+        border-color: color.$medium-blue;
       }
 
-      @include partials.media-from(medium) {
+      @include breakpoint.from(medium) {
         display: block;
       }
     }
 
     .menu-button {
       @extend %outlined;
-      @include partials.mixin-smooth();
-      @include grid.dimension($property: width, $count: 3);
-      @include grid.dimension($property: height, $count: 3);
+      @include mixin.smooth();
+      @include grid.dimension($property: width, $units: 3, $min: 43px);
+      @include grid.dimension($property: height, $units: 3, $min: 43px);
       border-radius: 100%;
       display: flex;
       flex-direction: column;
@@ -58,23 +70,24 @@
       justify-content: center;
 
       &:hover {
-        background: partials.$color-medium-blue;
-        border-color: partials.$color-medium-blue;
+        background: color.$medium-blue;
+        border-color: color.$medium-blue;
       }
 
       & span {
         height: 2px;
         border-radius: 100px;
-        background: partials.$color-white;
-        width: 14px;
+        background: color.$white;
         display: block;
 
+        @include grid.dimension($property: width, $units: 0.7, $min: 8px);
+
         &:nth-child(2) {
-          width: 20px;
+          @include grid.dimension($property: width, $units: 1, $min: 15px);
         }
 
         &:not(:last-child) {
-          margin-bottom: 5px;
+          @include grid.dimension($property: margin-bottom, $units: 0.25, $min: 4px);
         }
       }
     }

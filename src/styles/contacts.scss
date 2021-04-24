@@ -1,39 +1,23 @@
 @use 'common';
 @use 'components';
-@use 'partials';
 @use 'partials/grid';
+@use 'partials/color';
+@use 'partials/mixin';
 @use 'partials/breakpoint';
-
-@mixin fluid-label($shift-size, $selectors...) {
-  @each $selector in $selectors {
-    #{$selector} {
-      + label {
-        top: if($selector == textarea, 1.45em, 50%);
-        transform: translate(#{$shift-size}, if($selector == textarea, 0, -50%));
-      }
-
-      &:focus,
-      &:not(:placeholder-shown) {
-        + label {
-          transform: translate(0, if($selector == textarea, -70%, -120%));
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
-}
+@use 'partials/placeholder';
 
 main {
   margin-right: auto;
   margin-left: auto;
-  @include grid.dimension($property: max-width, $from: 12, $to: 53);
+  @include grid.dimension($property: max-width, $from: 12, $to: 53, $max: 93vw);
 }
 
 .info-section {
-  @include grid.dimension($property: margin-bottom, $count: 5);
+  @include grid.dimension($property: margin-bottom, $units: 5);
 
   .left-column {
     @include grid.dimension($property: width, $from: 12, $to: 33);
+    @include grid.dimension($property: margin-bottom, $units: 3);
 
     p {
       margin: 0;
@@ -44,8 +28,6 @@ main {
     margin: 0;
     letter-spacing: 0.5px;
     font-weight: 300;
-    @include grid.dimension($property: font-size, $count: 0.9);
-    @include grid.dimension($property: width, $from: 34, $to: 53);
   }
 
   @include breakpoint.from(medium) {
@@ -54,32 +36,79 @@ main {
     .left-column {
       margin-bottom: 0;
     }
+
+    .right-column {
+      @include grid.dimension($property: width, $from: 34, $to: 53);
+    }
   }
 }
 
 .contact-form {
-  --inset-margin: 1em;
-  
-  @include grid.dimension($property: margin-bottom, $count: 8);
+  @include grid.dimension($property: margin-bottom, $units: 8);
+
+  input[type='checkbox'] {
+    + label {
+      display: inline-block;
+      border-color: color.$medium-blue;
+      cursor: pointer;
+
+      @extend %outlined;
+      @include mixin.smooth(
+        (
+          duration: 0.2s,
+        )
+      );
+      @include grid.dimension($property: padding, $units: 1);
+
+      &:not(:last-child) {
+        @include grid.dimension($property: margin-right, $units: 1);
+        @include grid.dimension($property: margin-bottom, $units: 1);
+      }
+    }
+
+    &:checked + label {
+      background-color: color.$medium-blue;
+    }
+  }
 
   fieldset {
-    &:first-child {
-      margin-bottom: 3em;
+    &:not(:last-of-type) {
+      @include grid.dimension($property: margin-bottom, $units: 3);
+    }
+
+    &:first-of-type {
+      @include breakpoint.from(medium) {
+        .input-wrapper {
+          &:not(:last-of-type) {
+            display: inline-block;
+          }
+
+          &:nth-of-type(1) {
+            @include grid.dimension($property: width, $from: 12, $to: 31);
+            @include grid.dimension($property: margin-right, $units: 2);
+          }
+
+          &:nth-of-type(2) {
+            @include grid.dimension($property: width, $from: 34, $to: 53);
+          }
+        }
+      }
+    }
+
+    &:last-of-type {
+      @include grid.dimension($property: margin-bottom, $units: 5);
     }
 
     legend {
-      letter-spacing: 10px;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      margin-bottom: 1.1em;
+
+      @include grid.dimension($property: letter-spacing, $units: 0.5);
+      @include grid.dimension($property: font-size, $units: 0.7, $min: 12px);
+      @include grid.dimension($property: margin-bottom, $units: 1);
     }
 
     .input-wrapper:not(:last-child) {
-      margin-bottom: 1em;
-
-      @include partials.media-from(medium) {
-        margin-bottom: 0;
-      }
+      @include grid.dimension($property: margin-bottom, $units: 2);
     }
   }
 
@@ -87,102 +116,92 @@ main {
     position: relative;
     font-weight: 300;
 
+    @extend %outlined;
+
     &.message-wrapper {
       display: flex;
       flex-direction: column;
-
-      @include partials.mixin-smooth();
-
-      .message-section-footer {
-        @include partials.mixin-smooth();
-      }
     }
 
-    label {
+    > label {
       transform-origin: left top;
       position: absolute;
-      left: var(--inset-margin);
-      color: partials.$color-roman-silver;
+      color: color.$roman-silver;
       letter-spacing: 0.5px;
 
-      @include partials.mixin-smooth(
+      @include grid.dimension($property: left, $units: 2);
+      @include mixin.smooth(
         (
-          property: transform,
-          duration: 0.5s,
+          property: top,
+          duration: 0.3s,
         ),
         (
           property: font-size,
-          duration: 0.5s,
+          duration: 0.3s,
         )
       );
     }
 
     textarea,
     input:not([type='submit'], [type='file']) {
-      padding: 2em var(--inset-margin) var(--inset-margin) var(--inset-margin);
       background: transparent;
       width: 100%;
       outline: none;
+      color: color.$white;
 
       @extend %inherit-font;
-      @include partials.mixin-smooth();
+      @include grid.dimension($property: padding-top, $units: 2.6);
+      @include grid.dimension($property: padding-bottom, $units: 1.3);
+      @include grid.dimension($property: padding-right, $units: 2);
+      @include grid.dimension($property: padding-left, $units: 2);
+
+      + label {
+        @include grid.dimension($property: top, $units: 1.8);
+      }
 
       &:focus,
       &:not(:placeholder-shown) {
-        background: partials.$color-white;
-
-        ~ .message-section-footer {
-          @include partials.mixin-smooth();
-          background: partials.$color-white;
+        + label {
+          @include grid.dimension($property: font-size, $units: 0.8, $min: 14px);
+          @include grid.units($property: top, $count: 0.5);
         }
       }
     }
 
-    &.message-wrapper,
-    input:not([type='submit'], [type='file']) {
-      @extend %outlined;
-    }
-
     textarea {
-      width: 100%;
       resize: none;
-      min-height: 14em;
-    }
-
-    @include fluid-label(
-      var(--inset-margin),
-      textarea,
-      "input:not([type='submit'], [type='file'])"
-    );
-  }
-
-  @include partials.media-from(medium) {
-    .email-input-wrapper {
-      margin-top: var(--elements-gap);
+      @include grid.dimension($property: min-height, $units: 11);
     }
   }
 
   .message-section {
     &-footer {
+      @include grid.dimension($property: margin-bottom, $units: 1);
+      @include grid.dimension($property: margin-left, $units: 2);
+
       .attach-button {
         display: none;
 
-        @include partials.media-from(medium) {
-          display: block;
-          margin: 0 0 var(--inset-margin) calc(var(--inset-margin) * 2);
-          background: partials.$color-space-cadet;
+        @include breakpoint.from(medium) {
+          background: color.$space-cadet;
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
 
-          @include partials.mixin-smooth();
-          @include partials.mixin-rounded(3em) {
-            svg {
-              height: 100%;
-            }
-          }
+          @include mixin.smooth();
+          @include grid.dimension($property: width, $units: 2, $min: 35px);
+          @include grid.dimension($property: height, $units: 2, $min: 35px);
 
           &:hover {
-            background-color: partials.$color-medium-blue;
+            background-color: color.$medium-blue;
             transform: scale(1.1);
           }
+        }
+
+        svg {
+          height: 50%;
         }
       }
     }
@@ -190,5 +209,8 @@ main {
 }
 
 .send-message-button {
-  margin: var(--form-margin) auto 0;
+  margin: 0 auto;
+
+  @include grid.dimension($property: width, $units: 9);
+  @include grid.dimension($property: height, $units: 9);
 }

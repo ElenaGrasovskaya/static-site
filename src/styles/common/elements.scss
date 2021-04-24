@@ -1,6 +1,8 @@
-@use '../partials';
 @use '../partials/grid';
+@use '../partials/mixin';
+@use '../partials/color';
 @use '../partials/breakpoint';
+@use '../partials/placeholder';
 
 *,
 ::before,
@@ -15,7 +17,7 @@ html {
 body {
   --light-image: radial-gradient(
     41.38% 40.85% at 56.08% 46.24%,
-    #{partials.$color-medium-blue} 0%,
+    #{color.$medium-blue} 0%,
     rgba(55, 25, 202, 0) 100%
   );
   // Size of width and height relative to page width -> light width -> light height
@@ -23,12 +25,14 @@ body {
   --light-width: calc(100% * var(--light-ratio));
   --light-height: calc(var(--light-width) * var(--light-ratio));
 
+  color: color.$white;
   margin: 0;
   padding: 0;
   position: relative;
-  background: partials.$color-xiketic url('svg/background.svg');
+  background: color.$xiketic url('svg/background.svg');
   font-family: 'Sofia Pro', sans-serif;
-  color: partials.$color-white;
+
+  @include grid.dimension($property: font-size, $units: 0.9, $min: 16px);
 
   &::before {
     content: '';
@@ -54,6 +58,10 @@ body {
 img {
   max-width: 100%;
   object-fit: cover;
+}
+
+input {
+  border: none;
 }
 
 button,
@@ -90,7 +98,7 @@ textarea {
 }
 
 .text-gradient {
-  background-image: partials.$color-text-gradient;
+  background-image: color.$text-gradient;
   background-clip: text;
   color: transparent;
 }
@@ -101,49 +109,37 @@ textarea {
     family: 'Gramatika';
     weight: 900;
   }
-  line-height: 100%;
+  line-height: 1;
   letter-spacing: -2px;
   margin-right: auto;
   margin-left: auto;
 
   @extend .text-gradient;
-  @include grid.dimension($property: font-size, $count: 5);
-  @include grid.dimension($property: margin-top, $count: 5);
-  @include grid.dimension($property: margin-bottom, $count: 5);
+  @include grid.dimension($property: font-size, $units: 5);
+  @include grid.dimension($property: margin-top, $units: 5);
+  @include grid.dimension($property: margin-bottom, $units: 5);
 }
 
 .black-text {
-  @include grid.dimension($property: font-size, $count: 1.5);
+  @include grid.dimension($property: font-size, $units: 1.5, $min: 18px);
   font: {
     family: 'Gramatika';
     weight: 900;
   }
 }
 
-.rectangular-button {
+.control-button {
   display: block;
-  color: partials.$color-white;
+  color: color.$white;
+  background-color: color.$medium-blue;
+  border-radius: 100%;
   text-transform: uppercase;
-  letter-spacing: 10px;
-  font-size: 0.8rem;
-  position: relative;
-  padding: 0.5em 1em;
 
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -20px;
-    right: -20px;
-    transition: height 0.2s;
-    display: block;
-    height: 50%;
-    background: partials.$color-medium-blue;
-    z-index: -1;
-  }
+  @include grid.dimension($property: font-size, $units: 0.7, $min: 10px);
+  @include grid.dimension($property: letter-spacing, $units: 0.5);
 
-  &:hover::before {
-    height: 100%;
+  span {
+    @include grid.dimension($property: margin-right, $units: -0.5);
   }
 }
 
@@ -154,16 +150,16 @@ textarea {
   @extend .text-gradient;
 
   &::after {
-    content: '';
-    position: absolute;
-    bottom: -0.3em;
     left: 0;
-    display: block;
+    content: '';
     height: 1px;
-    width: 45%;
-    background-image: partials.$color-text-gradient;
+    display: block;
+    position: absolute;
+    background-image: color.$text-gradient;
 
-    @include partials.mixin-smooth(
+    @include grid.dimension($property: bottom, $units: -0.3);
+    @include grid.dimension($property: width, $from: 12, $to: 18);
+    @include mixin.smooth(
       (
         property: width,
         duration: 0.25s,

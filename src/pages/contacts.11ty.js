@@ -20,7 +20,7 @@ module.exports = class {
   async render() {
     return /* html */ `
 			<main>
-				<h1 class="big-title">Contacts</h1>
+				<h1 class="big-title">Contact us</h1>
 				<div class="info-section">
           <div class="left-column">
             <p class="black-text">Email us:</p>
@@ -49,6 +49,41 @@ module.exports = class {
               <label for="email-input">Email</label>
             </div>
 					</fieldset>          
+
+          <fieldset>
+            <legend>SERVICES</legend>
+
+            <input id="branding" hidden name="branding" type="checkbox" />
+            <label for="branding">
+              Logo/Branding
+            </label>
+
+            <input id="ui-ux" hidden name="ui-ux" type="checkbox" />
+            <label for="ui-ux">
+              UI/UX
+            </label>
+
+            <input id="web-design" hidden name="web-design" type="checkbox" />
+            <label for="web-design">
+              Web design
+            </label>
+
+            <input id="mobile-design" hidden name="mobile-design" type="checkbox" />
+            <label for="mobile-design">
+              Mobile app design
+            </label>
+
+            <input id="web-development" hidden name="web-development" type="checkbox" />
+            <label for="web-development">
+              Web development
+            </label>
+            
+            <input id="mobile-development" hidden name="mobile-development" type="checkbox" />
+            <label for="mobile-development">
+              Mobile development
+            </label>
+          </fieldset>
+
 					<fieldset class="message-section">
 						<legend>MESSAGE</legend>
 
@@ -59,20 +94,62 @@ module.exports = class {
               </label>
               
               <div class="message-section-footer">
-                <button class="attach-button">
-                  <input 
-                    hidden
-                    multiple
-                    type="file" 
-                    id="file-input" 
-                    accept=".png,.jpg,.pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  >
+                <input 
+                  hidden
+                  multiple
+                  type="file" 
+                  id="file-input" 
+                  accept=".png,.jpg,.pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                >
+                <label for="file-input" class="attach-button">
                   ${await this.image('svg/attach.svg')}
-                </button>
+                </label>
               </div>
             </div>
-					</fieldset>          
-        	<button class="send-message-button rectangular-button" type="submit">SUBMIT</button>
+					</fieldset>
+
+          <fieldset>
+            <legend>How did you hear about us?</legend>
+
+            <input id="dribbble-behance" hidden name="dribbble-behance" type="checkbox" />
+            <label for="dribbble-behance">
+              Dribbble/Behance
+            </label>
+            
+            <input id="search" hidden name="search" type="checkbox" />
+            <label for="search">
+              Search engine
+            </label>
+            
+            <input id="social-media" hidden name="social-media" type="checkbox" />
+            <label for="social-media">
+              Social media
+            </label>
+            
+            <input id="recommended" hidden name="recommended" type="checkbox" />
+            <label for="recommended">
+              Recommended
+            </label>
+            
+            <input id="directories" hidden name="directories" type="checkbox" />
+            <label for="directories">
+              Directories
+            </label>
+            
+            <input id="publication" hidden name="publication" type="checkbox" />
+            <label for="publication">
+              Blog or publication
+            </label>
+            
+            <input id="other" hidden name="other" type="checkbox" />
+            <label for="other">
+              Other
+            </label>
+          </fieldset>
+
+        	<button class="send-message-button control-button" type="submit">
+            <span>SUBMIT</span>
+          </button>
 				</form>
 			</main>
     `;

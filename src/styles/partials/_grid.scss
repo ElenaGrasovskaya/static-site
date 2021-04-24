@@ -1,5 +1,12 @@
+@use 'sass:meta';
 @use 'function';
 @use 'breakpoint';
+
+// In order to make seamless increasing/decreasing values,
+// linear interpolation can be used.
+// It gives general approximation for values. We name it units.
+//
+// [Linear interpolation between allowed unit values](https://en.wikipedia.org/wiki/Linear_interpolation)
 
 :root {
   --min-unit-value: 10px;
@@ -7,15 +14,19 @@
   // Difference between max and min unit's possible value.
   --unit-difference: 15;
 
+  // Width of current viewport, but not greater than
+  // maximum defined viewport width.
   --current-viewport-width: min(#{breakpoint.get(max)}, 100vw);
+  // Difference between maximum and minimun viewport.
   --viewport-difference: #{function.strip-unit(
       breakpoint.get(max) - breakpoint.get(small)
     )};
+  // Difference between current viewport width ant minimum one.
   --current-viewport-difference: calc(
     var(--current-viewport-width) - #{breakpoint.get(small)}
   );
 
-  // Linear interpolation between allowed unit values.
+  // Finds medium optimal values of units in range.
   --fluid-unit-value: calc(
     var(--min-unit-value) + var(--unit-difference) *
       var(--current-viewport-difference) / var(--viewport-difference)
@@ -28,17 +39,61 @@
   );
 }
 
+/// Limits width of element to maximum allowed breakpoint.
 @mixin container {
   max-width: breakpoint.get(max);
   margin-right: auto;
   margin-left: auto;
 }
 
-@mixin dimension($count: 1, $property: width, $from: 1, $to: null) {
-  --#{$property}-units-count: #{if($to != null, $to - $from + 1, $count)};
-  #{$property}: calc(var(--#{$property}-units-count) * var(--unit));
+/// Defines value of the $property in unit measures.
+/// You can explicitly provide $units count or
+/// define size $from and $to columns or rows.
+///
+/// If you want to define custom property name
+/// or value in units should be passed as argument
+/// to CSS function, you can define content block
+/// with two variables: unit $value and $property name.
+///
+/// Note that page has only 64 columns, but rows will be
+/// as many as you want. The size of a row and a colums is
+/// the same and equal to unit value.
+///
+/// There is possibility to limit range of value.
+/// For this to work out define either $min or $max bounds or both.
+@mixin dimension($property, $units: 1, $from: 1, $to: null, $max: null, $min: null) {
+  --#{$property}-units-count: #{if($to != null, $to - $from + 1, $units)};
+
+  @if meta.content-exists() {
+    @content ($value: _in-range($property, $min, $max), $property: $property);
+  } @else {
+    #{$property}: _in-range($property, $min, $max);
+  }
 }
 
+/// Changes the $count of units for some $property.
 @mixin units($property, $count) {
   --#{$property}-units-count: #{$count};
+}
+
+/// Returns exact value of $property that depends on
+/// unit and its count.
+@function _exact($property) {
+  @return calc(var(--#{$property}-units-count) * var(--unit));
+}
+
+/// Allows value of the $property to be resized freely
+/// in declared range (from $min to $max). Bounds
+/// can be omitted, then range is implicitly implied
+/// as infinity and are limited only by unit value.
+@function _in-range($property, $min: null, $max: null) {
+  @if $min != null and $max != null {
+    @return max(#{$min}, min(#{_exact($property)}, #{$max}));
+  } @else if $min != null {
+    @return max(#{$min}, #{_exact($property)});
+  } @else if $max != null {
+    @return min(#{_exact($property)}, #{$max});
+  } @else {
+    @return _exact($property);
+  }
 }

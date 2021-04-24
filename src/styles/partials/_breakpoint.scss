@@ -28,20 +28,3 @@ $_breakpoints: (
     @content;
   }
 }
-
-/// Wrap content into media query starting from
-/// `0px` to $type keyword. If type is not recognizable,
-/// then content is meant for `0px` and up.
-///
-/// @param {"small" | "medium" | "large" | "xl" | "xxl"} $type - name of breakpoint.
-@mixin to($type) {
-  @if map.has-key($_breakpoints, $type) {
-    // max-width is inclusive property, so we need to exlude 1px from it,
-    // in order to avoid interlacing of styles.
-    @media (max-width: #{get($type) - 1}) {
-      @content;
-    }
-  } @else {
-    @content;
-  }
-}

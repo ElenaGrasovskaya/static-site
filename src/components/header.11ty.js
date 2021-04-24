@@ -1,4 +1,6 @@
-module.exports = async function header(isContacts = false) {
+module.exports = async function header() {
+  const isContacts = this.page.url.includes('contacts');
+
   return /* html */ `
   <header class="main-header">
     <a href="/" class="logo-button">Halo Lab logotype ${await this.image(

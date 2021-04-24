@@ -48,7 +48,7 @@ module.exports.render = async function pwa({
     </head>
     <body>
       <div class="site-body">
-        ${await header.call(this, this.page.url.includes('contacts'))}
+        ${await header.call(this)}
         ${content}
 			  ${await footer.call(this)}	
       </div>

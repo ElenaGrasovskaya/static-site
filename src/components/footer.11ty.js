@@ -1,4 +1,6 @@
 module.exports = async function footer() {
+  const isContacts = this.page.url.includes('contacts');
+
   return /* html */ `
 	<footer class="main-footer">
 		<div></div>
@@ -19,7 +21,11 @@ module.exports = async function footer() {
         'svg/dribbble.svg',
       )}</a>
 		</div>
-		<p class="with-love-title">With Love from <b class="with-love-title-brand">Halo Lab</b></p>
+    ${
+      isContacts
+        ? '<div></div>'
+        : '<p class="with-love-title">With Love from <b class="with-love-title-brand">Halo Lab</b></p>'
+    }
 	</footer>
 	`;
 };
