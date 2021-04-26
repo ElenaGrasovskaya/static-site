@@ -2,41 +2,11 @@
 @use 'function';
 @use 'breakpoint';
 
-// In order to make seamless increasing/decreasing values,
-// linear interpolation can be used.
-// It gives general approximation for values. We name it units.
-//
-// [Linear interpolation between allowed unit values](https://en.wikipedia.org/wiki/Linear_interpolation)
-
 :root {
-  --min-unit-value: 10px;
-  --max-unit-value: 25px;
-  // Difference between max and min unit's possible value.
-  --unit-difference: 15;
-
-  // Width of current viewport, but not greater than
-  // maximum defined viewport width.
-  --current-viewport-width: min(#{breakpoint.get(max)}, 100vw);
-  // Difference between maximum and minimun viewport.
-  --viewport-difference: #{function.strip-unit(
-      breakpoint.get(max) - breakpoint.get(small)
-    )};
-  // Difference between current viewport width ant minimum one.
-  --current-viewport-difference: calc(
-    var(--current-viewport-width) - #{breakpoint.get(small)}
-  );
-
-  // Finds medium optimal values of units in range.
-  --fluid-unit-value: calc(
-    var(--min-unit-value) + var(--unit-difference) *
-      var(--current-viewport-difference) / var(--viewport-difference)
-  );
-  // unit is value that resizes freely between minimum
-  // and maximum acceptible value.
-  --unit: max(
-    var(--min-unit-value),
-    min(var(--max-unit-value), var(--fluid-unit-value))
-  );
+  // Unit is dynamic value that changes relative to
+  // current viewport. It has lower and upper bounds
+  // and equals to size of grid cell with 64 columns.
+  --unit: max(10px, min(25px, 100vw / 64));
 }
 
 /// Limits width of element to maximum allowed breakpoint.
