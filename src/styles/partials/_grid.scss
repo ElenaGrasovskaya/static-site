@@ -1,19 +1,10 @@
 @use 'sass:meta';
-@use 'function';
-@use 'breakpoint';
 
 :root {
   // Unit is dynamic value that changes relative to
   // current viewport. It has lower and upper bounds
   // and equals to size of grid cell with 64 columns.
   --unit: max(10px, min(25px, 100vw / 64));
-}
-
-/// Limits width of element to maximum allowed breakpoint.
-@mixin container {
-  max-width: breakpoint.get(max);
-  margin-right: auto;
-  margin-left: auto;
 }
 
 /// Defines value of the $property in unit measures.
