@@ -21,7 +21,7 @@
     "eleventy-plugin-pwa-icons": "^1.0.0",
     "eleventy-plugin-scripts": "^1.0.0",
     "eleventy-plugin-styles": "^1.0.0",
-    "eleventy-plugin-workbox": "^1.1.1",
+    "eleventy-plugin-workbox": "^1.2.0",
     "eleventy-shortcode-image": "^1.0.1",
     "html-minifier": "^4.0.0",
     "http-server": "^0.12.3",

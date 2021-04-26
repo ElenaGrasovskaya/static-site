@@ -93,8 +93,9 @@ textarea {
 
 .site-body {
   min-height: 100vh;
-
-  @include grid.container;
+  max-width: breakpoint.get(max);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .text-gradient {

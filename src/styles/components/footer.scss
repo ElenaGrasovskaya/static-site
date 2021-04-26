@@ -21,8 +21,8 @@
       @extend %hide-text;
       @extend %outlined;
       @include mixin.smooth();
-      @include grid.dimension($property: width, $units: 3);
-      @include grid.dimension($property: height, $units: 3);
+      @include grid.dimension($property: width, $units: 3, $min: 40px);
+      @include grid.dimension($property: height, $units: 3, $min: 40px);
 
       &:not(:last-of-type) {
         @include grid.dimension($property: margin-right, $units: 1.5);
