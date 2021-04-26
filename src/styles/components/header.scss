@@ -11,8 +11,13 @@
 
   @include grid.dimension($property: height, $units: 5);
   @include grid.dimension($property: padding-top, $units: 2);
-  @include grid.dimension($property: padding-left, $units: 4);
-  @include grid.dimension($property: padding-right, $units: 4);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 2);
+
+  @include breakpoint.from(medium) {
+    @include grid.units($property: padding-left, $count: 4);
+    @include grid.units($property: padding-right, $count: 4);
+  }
 
   .logo-button {
     @include grid.dimension($property: width, $from: 5, $to: 12, $min: 144px);

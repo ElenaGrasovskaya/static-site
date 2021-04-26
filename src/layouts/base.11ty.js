@@ -10,6 +10,8 @@ module.exports.render = async function pwa({
   keywords = '',
   description = '',
 }) {
+  const isContacts = this.page.url.includes('contacts');
+
   return /* html */ `
   <!DOCTYPE html>
   <html lang="${lang}">
@@ -48,9 +50,9 @@ module.exports.render = async function pwa({
     </head>
     <body>
       <div class="site-body">
-        ${await header.call(this)}
+        ${await header.call(this, isContacts)}
         ${content}
-			  ${await footer.call(this)}	
+			  ${await footer.call(this, isContacts)}	
       </div>
       
       <!--  Here scripts are inserted. -->

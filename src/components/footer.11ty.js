@@ -1,6 +1,4 @@
-module.exports = async function footer() {
-  const isContacts = this.page.url.includes('contacts');
-
+module.exports = async function footer(isContacts = false) {
   return /* html */ `
 	<footer class="main-footer">
 		<div></div>

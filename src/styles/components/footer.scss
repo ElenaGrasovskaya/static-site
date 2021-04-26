@@ -49,9 +49,10 @@
       font-weight: 700;
 
       &::after {
-        content: url('svg/star.svg');
+        content: url('star.png');
         position: absolute;
         display: block;
+        // TODO: change to grid dimensions.
         width: 9px;
         height: 9px;
         right: -0.7em;
