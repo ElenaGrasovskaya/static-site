@@ -4,6 +4,8 @@
 @use '../partials/breakpoint';
 @use '../partials/placeholder';
 
+@include grid.init();
+
 *,
 ::before,
 ::after {

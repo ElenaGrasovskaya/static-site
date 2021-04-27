@@ -1,10 +1,28 @@
 @use 'sass:meta';
 
-:root {
-  // Unit is dynamic value that changes relative to
-  // current viewport. It has lower and upper bounds
-  // and equals to size of grid cell with 64 columns.
-  --unit: max(10px, min(25px, 100vw / 64));
+/// Initializes grid on site.
+/// And defines dynamic _unit_ value.
+/// Should be invoked at the root of a module.
+///
+/// By default grid has 64 columns, which is
+/// optimal for design and width as current
+/// viewport. The main aim for this is that
+/// designer uses only one grid on the whole page.
+@mixin init(
+  $columns: 64,
+  $grid-width: 100vw,
+  $min-unit-value: 10px,
+  $max-unit-value: 25px
+) {
+  :root {
+    // Unit is dynamic value that changes relative to
+    // current viewport. It has lower and upper bounds
+    // and equals to size of grid cell with $columns count.
+    --unit: max(
+      #{$min-unit-value},
+      min(#{$grid-width} / #{$columns}, #{$max-unit-value})
+    );
+  }
 }
 
 /// Defines value of the $property in unit measures.
