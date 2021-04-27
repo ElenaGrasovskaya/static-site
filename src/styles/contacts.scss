@@ -130,7 +130,7 @@ main {
       color: color.$roman-silver;
       letter-spacing: 0.5px;
 
-      @include grid.dimension($property: top, $units: 0.5);
+      @include grid.dimension($property: top, $units: 0.6);
       @include grid.dimension($property: left, $units: 1);
       @include grid.dimension($property: transform, $units: 1) using
         ($value, $property) {
@@ -141,12 +141,10 @@ main {
 
     textarea,
     input:not([type='submit'], [type='file']) {
-      --box-shadow-color: transparent;
-
       background: transparent;
       width: 100%;
       outline: none;
-      box-shadow: 0 0 0 2px var(--box-shadow-color);
+      border: 2px solid transparent;
 
       @extend %inherit-font;
       @include grid.dimension($property: padding-top, $units: 1.6);
@@ -156,12 +154,16 @@ main {
       @include mixin.smooth();
 
       &:not(:placeholder-shown):invalid {
-        --box-shadow-color: color.$crimson;
+        border-color: color.$crimson;
+
+        + label {
+          color: color.$crimson;
+        }
       }
 
       &:focus,
       &:not(:placeholder-shown) {
-        --box-shadow-color: #{color.$medium-blue};
+        border-color: color.$medium-blue;
         background-color: color.$white;
 
         + label {
@@ -171,13 +173,22 @@ main {
 
         ~ .message-section-footer {
           background-color: color.$white;
+          border-color: color.$medium-blue;
         }
       }
     }
 
     textarea {
       resize: none;
+      border-bottom: none;
+
       @include grid.dimension($property: min-height, $units: 11);
+
+      ~ .message-section-footer {
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+      }
     }
   }
 
@@ -219,6 +230,15 @@ main {
 .send-message-button {
   margin: 0 auto;
 
+  @include mixin.smooth();
   @include grid.dimension($property: width, $units: 9);
   @include grid.dimension($property: height, $units: 9);
+
+  &:hover {
+    transform: scale(1.25);
+    @include grid.dimension($property: box-shadow, $units: 2) using
+      ($value, $property) {
+      #{$property}: 0 0 $value 0 color.$medium-blue;
+    }
+  }
 }

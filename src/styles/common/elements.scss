@@ -124,6 +124,7 @@ textarea {
 
   &::after {
     left: 0;
+    width: 50%;
     content: '';
     height: 1px;
     display: block;
@@ -131,7 +132,6 @@ textarea {
     background-image: color.$text-gradient;
 
     @include grid.dimension($property: bottom, $units: -0.3);
-    @include grid.dimension($property: width, $from: 12, $to: 18);
     @include mixin.smooth(
       (
         property: width,

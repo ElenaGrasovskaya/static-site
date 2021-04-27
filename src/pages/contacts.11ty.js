@@ -37,11 +37,11 @@ module.exports = class {
 						<legend>REQUEST A QUOTE</legend>
 						
             <div class="input-wrapper name-input-wrapper">
-              <input min="2" placeholder=" " type="text" id="name-input" required name="name">
+              <input minlength="2" pattern="\\w{2,}" placeholder=" " type="text" id="name-input" required name="name">
               <label for="name-input">Full Name</label>
             </div>
             <div class="input-wrapper company-input-wrapper">
-              <input placeholder=" " type="text" id="company-input" name="company">
+              <input placeholder=" " minlength="2" pattern="\\w{2,}" type="text" id="company-input" name="company">
               <label for="company-input">Company</label>
             </div>
             <div class="input-wrapper email-input-wrapper">
@@ -53,32 +53,32 @@ module.exports = class {
           <fieldset>
             <legend>SERVICES</legend>
 
-            <input id="branding" hidden name="branding" type="checkbox" />
+            <input id="branding" hidden name="services" value="branding" type="checkbox" />
             <label for="branding">
               Logo/Branding
             </label>
 
-            <input id="ui-ux" hidden name="ui-ux" type="checkbox" />
+            <input id="ui-ux" hidden name="services" value="ui-ux" type="checkbox" />
             <label for="ui-ux">
               UI/UX
             </label>
 
-            <input id="web-design" hidden name="web-design" type="checkbox" />
+            <input id="web-design" hidden name="services" value="web-design" type="checkbox" />
             <label for="web-design">
               Web design
             </label>
 
-            <input id="mobile-design" hidden name="mobile-design" type="checkbox" />
+            <input id="mobile-design" hidden name="services" value="mobile-design" type="checkbox" />
             <label for="mobile-design">
               Mobile app design
             </label>
 
-            <input id="web-development" hidden name="web-development" type="checkbox" />
+            <input id="web-development" hidden name="services" value="web-development" type="checkbox" />
             <label for="web-development">
               Web development
             </label>
             
-            <input id="mobile-development" hidden name="mobile-development" type="checkbox" />
+            <input id="mobile-development" hidden name="services" value="mobile-development" type="checkbox" />
             <label for="mobile-development">
               Mobile development
             </label>
@@ -111,37 +111,37 @@ module.exports = class {
           <fieldset>
             <legend>How did you hear about us?</legend>
 
-            <input id="dribbble-behance" hidden name="dribbble-behance" type="checkbox" />
+            <input id="dribbble-behance" hidden name="referrals" value="dribbble-behance" type="checkbox" />
             <label for="dribbble-behance">
               Dribbble/Behance
             </label>
             
-            <input id="search" hidden name="search" type="checkbox" />
+            <input id="search" hidden name="referrals" value="search" type="checkbox" />
             <label for="search">
               Search engine
             </label>
             
-            <input id="social-media" hidden name="social-media" type="checkbox" />
+            <input id="social-media" hidden name="referrals" value="social-media" type="checkbox" />
             <label for="social-media">
               Social media
             </label>
             
-            <input id="recommended" hidden name="recommended" type="checkbox" />
+            <input id="recommended" hidden name="referrals" value="recommended" type="checkbox" />
             <label for="recommended">
               Recommended
             </label>
             
-            <input id="directories" hidden name="directories" type="checkbox" />
+            <input id="directories" hidden name="referrals" value="directories" type="checkbox" />
             <label for="directories">
               Directories
             </label>
             
-            <input id="publication" hidden name="publication" type="checkbox" />
+            <input id="publication" hidden name="referrals" value="publication" type="checkbox" />
             <label for="publication">
               Blog or publication
             </label>
             
-            <input id="other" hidden name="other" type="checkbox" />
+            <input id="other" hidden name="referrals" value="other" type="checkbox" />
             <label for="other">
               Other
             </label>
