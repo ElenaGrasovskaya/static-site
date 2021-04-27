@@ -130,15 +130,23 @@ main {
       color: color.$roman-silver;
       letter-spacing: 0.5px;
 
-      @include grid.dimension($property: left, $units: 2);
+      @include grid.dimension($property: top, $units: 0.5);
+      @include grid.dimension($property: left, $units: 1);
+      @include grid.dimension($property: transform, $units: 1) using
+        ($value, $property) {
+        #{$property}: translate(#{$value}, calc(#{$value} / 2));
+      }
       @include mixin.smooth();
     }
 
     textarea,
     input:not([type='submit'], [type='file']) {
+      --box-shadow-color: transparent;
+
       background: transparent;
       width: 100%;
       outline: none;
+      box-shadow: 0 0 0 2px var(--box-shadow-color);
 
       @extend %inherit-font;
       @include grid.dimension($property: padding-top, $units: 1.6);
@@ -147,23 +155,18 @@ main {
       @include grid.dimension($property: padding-left, $units: 1);
       @include mixin.smooth();
 
-      + label {
-        @include grid.dimension($property: top, $units: 1);
-      }
-
       &:not(:placeholder-shown):invalid {
-        box-shadow: 0 0 0 2px color.$crimson;
+        --box-shadow-color: color.$crimson;
       }
 
       &:focus,
       &:not(:placeholder-shown) {
+        --box-shadow-color: #{color.$medium-blue};
         background-color: color.$white;
-        box-shadow: 0 0 0 2px color.$medium-blue;
 
         + label {
+          @include grid.dimension($property: transform, $units: 0);
           @include grid.dimension($property: font-size, $units: 0.7, $min: 14px);
-          @include grid.units($property: top, $count: 0.5);
-          @include grid.units($property: left, $count: 1);
         }
 
         ~ .message-section-footer {
