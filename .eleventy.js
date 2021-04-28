@@ -54,7 +54,6 @@ module.exports = (config) => {
   config.addPlugin(icons, {
     manifest: {
       pathToManifest: path.join(SOURCE_DIRECTORY, MANIFEST_FILE),
-      outputDirectory: BUILD_DIRECTORY,
     },
     icons: {
       pathToRawImage: path.join(
@@ -63,11 +62,7 @@ module.exports = (config) => {
         IMAGES_DIRECTORY,
         FAVICON_FILE,
       ),
-      outputDirectory: path.join(
-        BUILD_DIRECTORY,
-        IMAGES_DIRECTORY,
-        FAVICONS_DIRECTORY,
-      ),
+      publicDirectory: path.join(IMAGES_DIRECTORY, FAVICONS_DIRECTORY),
     },
   });
 

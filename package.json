@@ -18,7 +18,7 @@
     "browserslist": "^4.16.3",
     "dotenv": "^8.2.0",
     "eleventy-plugin-compress": "^1.0.0",
-    "eleventy-plugin-pwa-icons": "^1.0.0",
+    "eleventy-plugin-pwa-icons": "^1.1.0",
     "eleventy-plugin-scripts": "^1.0.0",
     "eleventy-plugin-styles": "^1.0.0",
     "eleventy-plugin-workbox": "^1.2.0",
