@@ -1,21 +1,28 @@
 {
-  "name": "halo_lab_v3",
-  "version": "0.0.1",
-  "description": "Personal website for Halo Lab company",
+  "name": "static-site",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "rimraf build; eleventy --serve --port=3000",
-    "build": "rimraf build; NODE_ENV=production eleventy build",
-    "serve": "http-server build --port 3000 -b --ssl --key certs/key.pem --cert certs/cert.pem",
-    "certs": "mkdir -p certs; mkcert -key-file certs/key.pem -cert-file certs/cert.pem localhost 127.0.0.1"
+    "clean": "rimraf build",
+    "build": "NODE_ENV=production eleventy build",
+    "start": "eleventy --serve --port=3000",
+    "prestart": "npm run clean",
+    "prebuild": "npm run clean"
   },
-  "author": "Halo Lab team",
-  "license": "UNLICENSED",
+  "browserslist": [
+    "> 0.5%",
+    "last 4 version",
+    "not dead"
+  ],
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "@11ty/eleventy-img": "^0.8.2",
-    "@quasibit/eleventy-plugin-sitemap": "^2.0.5",
-    "@trivago/prettier-plugin-sort-imports": "^2.0.2",
-    "browserslist": "^4.16.3",
+    "@11ty/eleventy-img": "^0.8.3",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@quasibit/eleventy-plugin-sitemap": "^2.1.3",
+    "autoprefixer": "^10.2.5",
+    "browserslist": "^4.16.5",
+    "chalk": "^4.1.1",
+    "cssnano": "^5.0.1",
     "dotenv": "^8.2.0",
     "eleventy-plugin-compress": "^1.0.0",
     "eleventy-plugin-pwa-icons": "^1.0.0",
@@ -23,22 +30,18 @@
     "eleventy-plugin-styles": "^1.0.0",
     "eleventy-plugin-workbox": "^1.1.1",
     "eleventy-shortcode-image": "^1.0.1",
+    "esbuild": "^0.11.15",
     "html-minifier": "^4.0.0",
-    "http-server": "^0.12.3",
+    "postcss": "^8.2.12",
     "postcss-url": "^10.1.3",
-    "prettier": "^2.2.1",
-    "prettier-config-halo-lab": "^1.0.7",
+    "pwa-asset-generator": "^4.1.1",
     "rimraf": "^3.0.2",
-    "svgo": "^2.3.0"
+    "sass": "^1.32.11",
+    "svgo": "^2.3.0",
+    "workbox-build": "^6.1.5"
   },
-  "prettier": "prettier-config-halo-lab",
-  "browserslist": [
-    "> 0.5%",
-    "last 4 version",
-    "not dead"
-  ],
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "swiper": "^6.5.3"
+    "swiper": "^6.5.8"
   }
 }
