@@ -2,7 +2,7 @@ const advantageBlock = require('../advantage_block');
 
 module.exports = async function designBlock() {
   return /* html */ `
-  <h2 class="big-title">Design with passion</h2>
+  <h2 class="big-title big-title-lh">Design with passion</h2>
         ${advantageBlock({
           quote:
             'We make the people and interface interaction more intensive and exiting.',

@@ -9,7 +9,7 @@ async function presentationLink() {
 
 module.exports = async function developerBlock() {
   return /* html */ `
-    <h2 class="big-title">Development for years</h2>
+    <h2 class="big-title big-title-lh">Development for years</h2>
         ${advantageBlock({
           quote: 'Front-end & back-end expertise from development to delivery',
           contactText: 'need a developer?',
@@ -46,7 +46,7 @@ module.exports = async function developerBlock() {
                 'Effective solutions for iOS and Android platforms with focus on performance.',
             },
           ],
-          additionalBlock: await presentationLink.call(this),
+          // additionalBlock: await presentationLink.call(this),
         })}
   `;
 };

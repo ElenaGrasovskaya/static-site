@@ -8,13 +8,15 @@ module.exports = ({
   additionalBlock = '',
 }) => /* html */ `
   <div class="section advantage-block">
-    <div class="advantage-block-item">
+    <div class="advantage-block-item-main">
       <h5 class="advantage-quote black-text">
         ${quote}
       </h5>
       ${mailLink(contactText, { classes: 'contact-link' })}
       ${additionalBlock}
     </div>
-    ${items.map(buildAdvantageItem).join('')}
+    <div class="advantage-blocks">
+      ${items.map(buildAdvantageItem).join('')}
+    </div>
   </div>
 `;
