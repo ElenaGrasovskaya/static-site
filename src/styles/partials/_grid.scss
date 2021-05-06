@@ -41,38 +41,53 @@
 /// There is possibility to limit range of value.
 /// For this to work out define either $min or $max bounds or both.
 @mixin dimension($property, $units: 1, $from: 1, $to: null, $max: null, $min: null) {
-  --#{$property}-units-count: #{if($to != null, $to - $from + 1, $units)};
+  @include units($property: $property, $count: $units, $from: $from, $to: $to);
 
   @if meta.content-exists() {
-    @content ($value: _in-range($property, $min, $max), $property: $property);
+    @content ($value: _in-range($property: $property, $min: $min, $max: $max), $property: $property);
   } @else {
-    #{$property}: _in-range($property, $min, $max);
+    #{$property}: _in-range($property: $property, $min: $min, $max: $max);
   }
 }
 
 /// Changes the $count of units for some $property.
-@mixin units($property, $count) {
-  --#{$property}-units-count: #{$count};
+/// You can use $from and $to or $count to define amount of units.
+@mixin units($property, $count: 1, $from: 1, $to: null) {
+  --#{$property}-units-count: #{if($to != null, $to - $from + 1, $count)};
+}
+
+/// Returns value of some amount of units.
+/// Useful when you need to define multiple different
+/// values on the same property.
+@function size($count: 1, $from: 1, $to: null, $min: null, $max: null) {
+  @return _in-range(
+    $count: if($to != null, $to - $from + 1, $count),
+    $min: $min,
+    $max: $max
+  );
 }
 
 /// Returns exact value of $property that depends on
 /// unit and its count.
-@function _exact($property) {
-  @return calc(var(--#{$property}-units-count) * var(--unit));
+/// Either $property or $count argument should be passed.
+@function _exact($property: null, $count: 1) {
+  @return calc(
+    #{if($property != null, var(--#{$property}-units-count), $count)} * var(--unit)
+  );
 }
 
 /// Allows value of the $property to be resized freely
 /// in declared range (from $min to $max). Bounds
 /// can be omitted, then range is implicitly implied
 /// as infinity and are limited only by unit value.
-@function _in-range($property, $min: null, $max: null) {
+@function _in-range($count: 1, $property: null, $min: null, $max: null) {
   @if $min != null and $max != null {
-    @return max(#{$min}, min(#{_exact($property)}, #{$max}));
+    @return max(#{$min}, min(#{_exact($property, $count)}, #{$max}));
   } @else if $min != null {
-    @return max(#{$min}, #{_exact($property)});
+    @return max(#{$min}, #{_exact($property, $count)});
   } @else if $max != null {
-    @return min(#{_exact($property)}, #{$max});
+    @return min(#{_exact($property, $count)}, #{$max});
   } @else {
-    @return _exact($property);
+    @return _exact($property, $count);
   }
 }

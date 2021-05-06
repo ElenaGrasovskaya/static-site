@@ -2,8 +2,6 @@ import Swiper, { Navigation, Pagination } from 'swiper';
 
 Swiper.use([Navigation, Pagination]);
 
-console.log(document.documentElement.clientWidth);
-
 /** Name of the titles in slide pagination. */
 const slideTitles = [
   'Research',
@@ -14,15 +12,15 @@ const slideTitles = [
   'Support',
 ];
 
-const swiper = new Swiper('.swiper-container', {
+const flowSwiper = new Swiper('.flow-carousel', {
   loop: true,
   centeredSlides: true,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.flow-next-button',
+    prevEl: '.flow-prev-button',
   },
   pagination: {
-    el: '.swiper-pagination-flow',
+    el: '.flow-pagination-wrapper',
     clickable: true,
     renderBullet: (index, className) => /* html */ `
       <div class="${className}">
@@ -35,18 +33,18 @@ const swiper = new Swiper('.swiper-container', {
 
 const techSlideTitles = ['Front-end', 'Back-end', 'Databases', 'CMS'];
 
-const swiperTech = new Swiper('.swiper-container', {
-  loop: true,
-  centeredSlides: true,
-  pagination: {
-    el: '.swiper-pagination-tech',
-    type: 'bullets',
-    bulletActiveClass: 'active-tech',
-    clickable: true,
-    renderBullet: (index, className) => /* html */ `
-      <div class="${className}">
-        <p>${techSlideTitles[index]}</p>
-      </div>
-    `,
-  },
-});
+// const swiperTech = new Swiper('.swiper-container', {
+//   loop: true,
+//   centeredSlides: true,
+//   pagination: {
+//     el: '.swiper-pagination-tech',
+//     type: 'bullets',
+//     bulletActiveClass: 'active-tech',
+//     clickable: true,
+//     renderBullet: (index, className) => /* html */ `
+//       <div class="${className}">
+//         <p>${techSlideTitles[index]}</p>
+//       </div>
+//     `,
+//   },
+// });

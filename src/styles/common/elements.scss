@@ -94,11 +94,12 @@ textarea {
 }
 
 .black-text {
-  @include grid.dimension($property: font-size, $units: 1.5, $min: 18px);
   font: {
     family: 'Gramatika';
     weight: 900;
   }
+
+  @include grid.dimension($property: font-size, $units: 1.5, $min: 20px);
 }
 
 .control-button {

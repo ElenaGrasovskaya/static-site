@@ -1,8 +1,8 @@
 const flowBlock = require('./components/flowBlock');
 const designBlock = require('./components/designBlock');
+const bottomBlock = require('./bottomBlock');
 const developerBlock = require('./components/developerBlock');
 const technologiesBlock = require('./components/technologiesBlock');
-const bottomBlock = require('./bottomBlock');
 
 module.exports = class {
   // eslint-disable-next-line class-methods-use-this
@@ -28,12 +28,7 @@ module.exports = class {
         ${await developerBlock.call(this)}
         ${await flowBlock.call(this)}
         ${await technologiesBlock.call(this)}
-        
       </main>
     `;
   }
 };
-
-/*
-${await bottomBlock.call(this)}
-*/

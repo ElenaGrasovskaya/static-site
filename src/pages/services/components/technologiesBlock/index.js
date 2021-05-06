@@ -1,6 +1,6 @@
 module.exports = async function technologiesBlock() {
   return /* html */ `
-    <h2 class="big-title big-title-lh big-title-technologies">Technologies</h2>
+    <h2 class="big-title">Technologies</h2>
 
         <div class="tech-swiper-wrapper">
           <div class="swiper-pagination-tech"></div>
