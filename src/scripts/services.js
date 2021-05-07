@@ -1,5 +1,9 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
 
+
+
+
+
 Swiper.use([Navigation, Pagination]);
 
 /** Name of the titles in slide pagination. */
@@ -21,11 +25,12 @@ const flowSwiper = new Swiper('.flow-carousel', {
   },
   pagination: {
     el: '.flow-pagination-wrapper',
+    bulletActiveClass: 'flow-bullet-active',
     clickable: true,
     renderBullet: (index, className) => /* html */ `
-      <div class="${className}">
-        <p>${index + 1}</p>
-        <span>${slideTitles[index]}</span>
+      <div class="${className} flow-bullet">
+        <div class="flow-bullet__number">${index + 1}</div>
+        <p class="flow-bullet__text">${slideTitles[index]}</p>
       </div>
     `,
   },

@@ -7,7 +7,8 @@ module.exports = async function flowBlock() {
       
         <div class="swiper-wrapper">
           <div class="swiper-slide slide">
-            The starting point of any project is research. Its main three aspects are user flow, target audience and niche segment of the product.
+            The starting point of any project is research. Its main three aspects are user flow, 
+            target audience and niche segment of the product.
           </div>
           <div class="swiper-slide slide">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -45,8 +46,12 @@ module.exports = async function flowBlock() {
         </div>
 
         <div class="navigation-wrapper">
-          <div class="swiper-button-prev flow-prev-button"></div>
-          <div class="swiper-button-next flow-next-button"></div>
+          <div class="flow-prev-button">
+            ${await this.image('svg/arrow-left.svg')}
+          </div>
+          <div class="flow-next-button">
+            ${await this.image('svg/arrow-right.svg')}
+          </div>
         </div>
       </div>
   `;

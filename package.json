@@ -47,12 +47,12 @@
     "prettier-config-halo-lab": "^1.0.7",
     "pwa-asset-generator": "^4.1.1",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.11",
+    "sass": "^1.32.12",
     "svgo": "^2.3.0",
     "workbox-build": "^6.1.5"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "swiper": "^6.5.8"
+    "swiper": "^6.5.9"
   }
 }
