@@ -12,7 +12,7 @@ module.exports = class {
       title: 'Services - Halo Lab',
       layout: 'base',
       styles: 'services.scss',
-      scripts: 'services.js',
+      scripts: 'services/index.ts',
       keywords: 'Halo Lab',
       permalink: 'services.html',
       description:
@@ -21,13 +21,13 @@ module.exports = class {
     };
   }
 
-  async render() {
+  async render(data) {
     return /* html */ `
       <main class="footer-colored">
         ${await designBlock.call(this)}
         ${await developerBlock.call(this)}
-        ${await flowBlock.call(this)}
-        ${await technologiesBlock.call(this)}
+        ${await flowBlock.call(this, data)}
+        ${await technologiesBlock.call(this, data)}
       </main>
     `;
   }

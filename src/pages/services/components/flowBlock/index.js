@@ -1,56 +1,44 @@
-module.exports = async function flowBlock() {
+module.exports = async function flowBlock({ flowCarousel }) {
   return /* html */ `
-    <h2 class="big-title">Our Flow</h2>
-    
-      <div class="swiper-container flow-carousel">
-        <div class="flow-pagination-wrapper"></div>
+      <h2 class="big-title">Our Flow</h2>
       
-        <div class="swiper-wrapper">
-          <div class="swiper-slide slide">
-            The starting point of any project is research. Its main three aspects are user flow, 
-            target audience and niche segment of the product.
-          </div>
-          <div class="swiper-slide slide">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type 
-            specimen book. It has survived not only five centuries, but also the leap into 
-            electronic typesetting, remaining essentially unchanged. It was popularised in 
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </div>
-          <div class="swiper-slide slide">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below 
-            for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum 
-            et Malorum" by Cicero are also reproduced in their exact original form, accompanied 
-            by English versions from the 1914 translation by H. Rackham.
-          </div>
-          <div class="swiper-slide slide">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below 
-            for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum 
-            et Malorum" by Cicero are also reproduced in their exact original form, accompanied 
-            by English versions from the 1914 translation by H. Rackham.
-          </div>
-          <div class="swiper-slide slide">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below 
-            for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum 
-            et Malorum" by Cicero are also reproduced in their exact original form, accompanied 
-            by English versions from the 1914 translation by H. Rackham.
-          </div>
-          <div class="swiper-slide slide">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below 
-            for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum 
-            et Malorum" by Cicero are also reproduced in their exact original form, accompanied 
-            by English versions from the 1914 translation by H. Rackham.
-          </div>
+      <div class="section">
+        <div class="pagination-wrapper flow-pagination-wrapper">
+          ${flowCarousel
+            .map(
+              ({ title }, index) => /* html */ `
+              <button data-index="${index + 1}" class="bullet flow-bullet ${
+                index === 0 ? 'active' : ''
+              }">
+                <div class="flow-bullet__number">${index + 1}</div>
+                <p class="bullet-text">${title}</p>
+              </button>
+          `,
+            )
+            .join('')}
         </div>
-
-        <div class="navigation-wrapper">
-          <div class="flow-prev-button">
-            ${await this.image('svg/arrow-left.svg')}
+          
+        <div class="swiper-container flow-carousel">
+          <div class="swiper-wrapper">
+            ${await Promise.all(
+              flowCarousel.map(
+                async ({ text, imageSource }) => /* html */ `
+                <div class="swiper-slide slide flow-slide black-text">
+                  <div class="slide-thumb">${await this.image(imageSource)}</div>
+                  ${text}
+                </div>
+               `,
+              ),
+            ).then((slides) => slides.join(''))}
           </div>
-          <div class="flow-next-button">
-            ${await this.image('svg/arrow-right.svg')}
+  
+          <div class="navigation-wrapper">
+            <button class="flow-prev-button">
+              ${await this.image('svg/arrow-left.svg')}
+            </button>
+            <button class="flow-next-button">
+              ${await this.image('svg/arrow-right.svg')}
+            </button>
           </div>
         </div>
       </div>

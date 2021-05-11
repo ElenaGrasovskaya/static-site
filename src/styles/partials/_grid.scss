@@ -59,7 +59,7 @@
 /// Returns value of some amount of units.
 /// Useful when you need to define multiple different
 /// values on the same property.
-@function size($count: 1, $from: 1, $to: null, $min: null, $max: null) {
+@function value($count: 1, $from: 1, $to: null, $min: null, $max: null) {
   @return _in-range(
     $count: if($to != null, $to - $from + 1, $count),
     $min: $min,

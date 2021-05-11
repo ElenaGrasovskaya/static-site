@@ -16,7 +16,7 @@ main {
 }
 
 .section {
-  @include grid.dimension($property: margin-bottom, $units: 5);
+  @include grid.dimension($property: margin-bottom, $units: 10);
 }
 
 .advantage-block {
@@ -31,8 +31,8 @@ main {
 
   @include breakpoint.from(large) {
     grid:
-      repeat(2, auto) / grid.size($from: 5, $to: 27) grid.size($from: 28, $to: 46)
-      grid.size($from: 47, $to: 60);
+      repeat(2, auto) / grid.value($from: 5, $to: 27) grid.value($from: 28, $to: 46)
+      grid.value($from: 47, $to: 60);
     gap: 0;
   }
 
@@ -98,32 +98,64 @@ main {
   }
 }
 
-/* purgecss start ignore */
-
-.flow-pagination-wrapper {
+.pagination-wrapper {
   display: flex;
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
   overflow-x: auto;
 
+  @include grid.dimension($property: margin-bottom, $units: 4);
+
   @include breakpoint.from(large) {
     overflow-x: initial;
+  }
+}
+
+.flow-pagination-wrapper {
+  @include breakpoint.from(large) {
     @include grid.dimension($property: width, $from: 10, $to: 55);
+  }
+}
+
+.bullet {
+  &.active {
+    color: color.$white;
+
+    .bullet-text::after {
+      height: 50%;
+    }
+  }
+
+  &-text {
+    --letter-spacing: 4px;
+
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing);
+    position: relative;
+
+    @include mixin.smooth();
+    @include grid.dimension($property: font-size, $units: 0.7, $min: 12px);
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: calc(-5% - var(--letter-spacing));
+      width: 110%;
+      height: 0;
+      background: color.$medium-blue;
+      z-index: -1;
+
+      @include mixin.smooth();
+    }
   }
 }
 
 .flow-bullet {
   color: color.$purple-navy;
-  cursor: pointer;
-
-  &.flow-bullet-active {
-    color: color.$white;
-
-    .flow-bullet__text::after {
-      height: 50%;
-    }
-  }
 
   &__number {
     text-align: center;
@@ -164,34 +196,82 @@ main {
       @include grid.units($property: right, $count: -4.5);
     }
   }
+}
 
-  &__text {
-    --letter-spacing: 4px;
+.slide {
+  position: relative;
+  height: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
 
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing);
-    position: relative;
+  @include grid.dimension($property: width, $from: 10, $to: 55);
+}
 
-    @include mixin.smooth();
-    @include grid.dimension($property: font-size, $units: 0.7, $min: 12px);
+.flow-slide {
+  @include grid.dimension($property: margin-top, $units: 2);
+  @include grid.dimension($property: padding-top, $units: 6);
+  @include grid.dimension($property: padding-left, $units: 5);
+  @include grid.dimension($property: padding-right, $units: 5);
+  @include grid.dimension($property: padding-bottom, $units: 5);
 
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: calc(-5% - var(--letter-spacing));
-      width: 110%;
-      height: 0;
-      background: color.$medium-blue;
-      z-index: -1;
+  &.swiper-slide-active {
+    /* purgecss ignore current */
+    background: linear-gradient(110.72deg, rgba(132, 164, 255, 0.2) 6.69%, rgba(2, 2, 30, 0) 85.43%);
+  }
 
-      @include mixin.smooth();
+  &-thumb {
+    left: 50%;
+    position: absolute;
+    background: color.$medium-blue;
+    border-radius: 50%;
+
+    @include grid.dimension($property: top, $units: -2);
+    @include grid.dimension($property: width, $units: 4);
+    @include grid.dimension($property: height, $units: 4);
+    @include grid.dimension($property: padding, $units: 1);
+  }
+}
+
+.navigation-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+
+  @include grid.dimension($property: margin-top, $units: -1.5);
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+
+    @extend %outlined;
+    @include grid.dimension($property: width, $units: 3);
+    @include grid.dimension($property: height, $units: 3);
+
+    svg {
+      @include grid.dimension($property: width, $units: 0.5, $min: 9px);
     }
   }
 }
 
-/* purgecss end ignore */
+.tech-pagination-wrapper {
+  @include breakpoint.from(large) {
+    @include grid.dimension($property: width, $from: 16, $to: 47);
+  }
+}
+
+.tech-bullet {
+  color: color.$white;
+}
 
 //.swiper-slide {
 //  @include grid.dimension($property: width, $from: 10, $to: 55);
