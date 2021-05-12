@@ -1,8 +1,5 @@
 @use 'color';
-
-%outlined {
-  border: 1.25px solid color.$space-cadet;
-}
+@use 'mixin';
 
 %inherit-font {
   font-size: inherit;

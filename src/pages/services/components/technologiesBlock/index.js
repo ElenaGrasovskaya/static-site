@@ -1,6 +1,6 @@
 const decomposeSlide = async function (icons) {
   return /* html */ `
-  <div class="swiper-slide slide">
+  <div class="swiper-slide slide tech-slide">
     ${await Promise.all(
       icons.map(
         async ({ src, title }) => /* html */ `
@@ -24,8 +24,8 @@ module.exports = async function technologiesBlock({ techCarousel }) {
           .map(
             ({ title }, index) => /* html */ `
               <button data-index="${index + 1}" class="tech-bullet bullet ${
-                  index === 0 ? 'active' : ''
-                }">
+              index === 0 ? 'active' : ''
+            }">
                 <span class="bullet-text">${title}</span>
               </button>`,
           )

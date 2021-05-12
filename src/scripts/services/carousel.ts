@@ -1,12 +1,14 @@
+import Swiper from 'swiper';
+
 const activeClass = 'active';
 
-export const deactivateBullets = (bullets: ReadonlyArray<HTMLButtonElement>): void =>
+const deactivateBullets = (bullets: ReadonlyArray<HTMLButtonElement>): void =>
   bullets.forEach((bullet) => bullet.classList.remove(activeClass));
 
-export const activate = (bullet: HTMLButtonElement): void =>
+const activate = (bullet: HTMLButtonElement): void =>
   bullet.classList.add(activeClass);
 
-export const calculateOverflow = (
+const calculateOverflow = (
   container: HTMLElement,
   bullet: HTMLButtonElement,
 ): number => {
@@ -15,9 +17,41 @@ export const calculateOverflow = (
   return positiveOffset - container.scrollLeft;
 };
 
-export const calculateIndex = (activeIndex, itemsCount): number =>
+const calculateIndex = (activeIndex, itemsCount): number =>
   activeIndex > 0
     ? activeIndex - 1 >= itemsCount
       ? activeIndex - itemsCount - 1
       : activeIndex - 1
     : itemsCount - 1;
+
+export const bindSwiperInstanceWithPagination = (
+  swiper: Swiper,
+  paginationWrapper: HTMLElement,
+) => {
+  const bullets = Array.from(
+    paginationWrapper.querySelectorAll<HTMLButtonElement>('.bullet'),
+  );
+
+  swiper.on('activeIndexChange', (swiper) => {
+    const bullet = bullets[calculateIndex(swiper.activeIndex, bullets.length)];
+
+    deactivateBullets(bullets);
+    activate(bullet);
+    paginationWrapper.scrollBy({
+      left: calculateOverflow(paginationWrapper, bullet),
+      behavior: 'smooth',
+    });
+  });
+
+  bullets.forEach((bullet) => {
+    bullet.addEventListener('click', () => {
+      deactivateBullets(bullets);
+      activate(bullet);
+      swiper.slideTo(parseInt(bullet.dataset.index));
+      paginationWrapper.scrollBy({
+        left: calculateOverflow(paginationWrapper, bullet),
+        behavior: 'smooth',
+      });
+    });
+  });
+};

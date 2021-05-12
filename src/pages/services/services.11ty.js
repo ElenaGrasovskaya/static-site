@@ -1,6 +1,6 @@
 const flowBlock = require('./components/flowBlock');
 const designBlock = require('./components/designBlock');
-const bottomBlock = require('./bottomBlock');
+const bottomBlock = require('../../components/bottom_block');
 const developerBlock = require('./components/developerBlock');
 const technologiesBlock = require('./components/technologiesBlock');
 
@@ -28,6 +28,7 @@ module.exports = class {
         ${await developerBlock.call(this)}
         ${await flowBlock.call(this, data)}
         ${await technologiesBlock.call(this, data)}
+        ${await bottomBlock()}
       </main>
     `;
   }

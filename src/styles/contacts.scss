@@ -52,7 +52,7 @@ main {
       border-color: color.$medium-blue;
       cursor: pointer;
 
-      @extend %outlined;
+      @include mixin.outlined();
       @include mixin.smooth(
         (
           duration: 0.2s,
@@ -117,7 +117,7 @@ main {
     position: relative;
     font-weight: 300;
 
-    @extend %outlined;
+    @include mixin.outlined();
 
     &.message-wrapper {
       display: flex;

@@ -24,7 +24,7 @@ module.exports = async function flowBlock({ flowCarousel }) {
               flowCarousel.map(
                 async ({ text, imageSource }) => /* html */ `
                 <div class="swiper-slide slide flow-slide black-text">
-                  <div class="slide-thumb">${await this.image(imageSource)}</div>
+                  <div class="flow-slide-thumb">${await this.image(imageSource)}</div>
                   ${text}
                 </div>
                `,

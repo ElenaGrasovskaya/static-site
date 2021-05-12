@@ -79,7 +79,7 @@ textarea {
 .big-title {
   text-align: center;
   font: {
-    family: 'Gramatika';
+    family: 'Gramatika', sans-serif;
     weight: 900;
   }
   line-height: 1;
@@ -88,14 +88,14 @@ textarea {
   margin-left: auto;
 
   @extend .text-gradient;
-  @include grid.dimension($property: font-size, $units: 5);
+  @include grid.dimension($property: font-size, $units: 4.8);
   @include grid.dimension($property: margin-top, $units: 5);
   @include grid.dimension($property: margin-bottom, $units: 5);
 }
 
 .black-text {
   font: {
-    family: 'Gramatika';
+    family: 'Gramatika', sans-serif;
     weight: 900;
   }
 
