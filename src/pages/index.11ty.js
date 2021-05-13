@@ -22,7 +22,23 @@ module.exports = class {
   async render() {
     return /* html */ `
       ${await header.call(this)}
-      Hello world.
+      <main>
+      <h1 class="big-title">Design-driven<br><span>development of<br>your</span> web products<br><span>for years<span></h1>
+        <div class="advantage-section">
+            <div class="advantage-section-item">
+                ${await this.image('svg/upwork-icon.svg')}        
+                <p class="grey-text">Awarded as Best Design & Creative</p>
+              </div>
+              <div class="advantage-section-item">
+                ${await this.image('svg/dribbble-icon.svg')}   
+                <p class="grey-text">We regularly hit Top-5 Trending Teams</p>
+              </div>
+            <div class="advantage-section-item">
+                ${await this.image('svg/clutch-icon.svg')}   
+              <p class="grey-text">Top User Experience Agency</p>
+            </div>
+        </div>
+      </main>
       ${await footer.call(this)}
     `;
   }

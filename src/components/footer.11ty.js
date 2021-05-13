@@ -14,7 +14,7 @@ const contactUsBlock = () => /* html */ `
 module.exports = async function footer() {
   const isContactsPage = this.page.url.includes('contacts');
   const isContactUsBlockVisible =
-    this.page.url.includes('services') || /^\/$/.test(this.page.url);
+    this.page.url.includes('services') || this.page.url === '';
 
   return /* html */ `
 	<footer class="main-footer">
