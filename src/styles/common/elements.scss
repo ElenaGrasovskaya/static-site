@@ -91,6 +91,9 @@ textarea {
   @include grid.dimension($property: font-size, $units: 4.8);
   @include grid.dimension($property: margin-top, $units: 5);
   @include grid.dimension($property: margin-bottom, $units: 5);
+  span {
+    color: color.$white;
+  }
 }
 
 .black-text {
@@ -101,6 +104,17 @@ textarea {
 
   @include grid.dimension($property: font-size, $units: 1.5, $min: 20px);
 }
+.grey-text {
+  font: {
+    family: 'Sofia Pro',sans-serif;
+    weight: 300;
+    
+  }
+  opacity: 0.5;
+
+  @include grid.dimension($property: font-size, $units: 1.2, $min: 20px);
+}
+
 
 .control-button {
   display: block;

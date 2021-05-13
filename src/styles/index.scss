@@ -1,2 +1,70 @@
 @use 'common';
 @use 'components';
+@use 'partials/grid';
+@use 'partials/color';
+@use 'partials/mixin';
+@use 'partials/breakpoint';
+@use 'partials/placeholder';
+
+main {
+    margin-right: auto;
+    margin-left: auto;
+    @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
+  }
+  
+  .advantage-section {
+    display: grid;
+    @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
+    
+   
+  
+    @include breakpoint.from(small) {
+      grid: auto/ repeat(2, 1fr);
+  
+      @include grid.dimension($property: row-gap, $units: 2);
+      @include grid.dimension($property: column-gap, $units: 3);
+    }
+  
+    @include breakpoint.from(large) {
+      grid:
+        auto / grid.size($from: 3, $to: 22) grid.size($from: 23, $to: 41)
+        grid.size($from: 42, $to: 57);
+      gap: 0;
+    }
+  
+    .advantage-section-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: top;
+        p {
+            text-align: center;
+        }
+      
+  
+      @include grid.dimension($property: margin-bottom, $units: 2);
+  
+      @include breakpoint.from(small) {
+        &:last-of-type {
+          display: none;
+        }
+      }
+  
+      @include breakpoint.from(large) {
+        &:last-of-type {
+            display: block;
+          }
+  
+        @include grid.dimension($property: width, $units: 14);
+      }
+      
+    }
+    svg {
+        // Safari can't display SVG without declaring
+        // its size explicitly.
+        min-width: 100%;
+        @include grid.dimension($property: height, $units: 3);
+        opacity: 50%;
+        }   
+   
+
+}
