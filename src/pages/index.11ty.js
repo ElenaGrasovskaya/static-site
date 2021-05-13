@@ -1,3 +1,6 @@
+const header = require('../components/header.11ty');
+const footer = require('../components/footer.11ty');
+
 module.exports = class {
   // eslint-disable-next-line class-methods-use-this
   data() {
@@ -17,6 +20,10 @@ module.exports = class {
   }
 
   async render() {
-    return /* html */ `Hello world.`;
+    return /* html */ `
+      ${await header.call(this)}
+      Hello world.
+      ${await footer.call(this)}
+    `;
   }
 };

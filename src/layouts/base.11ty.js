@@ -1,6 +1,3 @@
-const header = require('../components/header.11ty');
-const footer = require('../components/footer.11ty');
-
 module.exports.render = async function pwa({
   lang = 'en',
   title = '',
@@ -50,9 +47,7 @@ module.exports.render = async function pwa({
     </head>
     <body>
       <div class="site-body">
-        ${await header.call(this, isContacts)}
         ${content}
-			  ${await footer.call(this, isContacts)}	
       </div>
       
       <!--  Here scripts are inserted. -->

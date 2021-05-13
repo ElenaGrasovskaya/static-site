@@ -183,22 +183,31 @@
   display: flex;
   align-items: center;
 
-  @include grid.dimension($property: width, $from: 10, $to: 55);
+  @include breakpoint.from(medium) {
+    @include grid.dimension($property: width, $from: 10, $to: 55);
+  }
 }
 
 .flow-slide {
   @include grid.dimension($property: margin-top, $units: 2);
-  @include grid.dimension($property: padding-top, $units: 6);
-  @include grid.dimension($property: padding-left, $units: 5);
-  @include grid.dimension($property: padding-right, $units: 5);
-  @include grid.dimension($property: padding-bottom, $units: 5);
+  @include grid.dimension($property: padding-top, $units: 2);
+  @include grid.dimension($property: padding-bottom, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 1);
+  @include grid.dimension($property: padding-left, $units: 1);
+
+  @include breakpoint.from(medium) {
+    @include grid.units($property: padding-top, $count: 6);
+    @include grid.units($property: padding-bottom, $count: 5);
+    @include grid.units($property: padding-left, $count: 5);
+    @include grid.units($property: padding-right, $count: 5);
+  }
 
   &.swiper-slide-active {
     /* purgecss ignore current */
     background: linear-gradient(
-        110.72deg,
-        rgba(132, 164, 255, 0.2) 6.69%,
-        rgba(2, 2, 30, 0) 85.43%
+      110.72deg,
+      rgba(132, 164, 255, 0.2) 6.69%,
+      rgba(2, 2, 30, 0) 85.43%
     );
   }
 
@@ -216,31 +225,35 @@
 }
 
 .navigation-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 10;
+  display: none;
 
-  @include grid.dimension($property: margin-top, $units: -1.5);
-
-  button {
+  @include breakpoint.from(medium) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
+    justify-content: space-between;
+    z-index: 10;
 
-    @include mixin.outlined();
-    @include grid.dimension($property: width, $units: 3);
-    @include grid.dimension($property: height, $units: 3);
+    @include grid.dimension($property: margin-top, $units: -1.5);
 
-    svg {
-      @include grid.dimension($property: width, $units: 0.5, $min: 9px);
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+
+      @include mixin.outlined();
+      @include grid.dimension($property: width, $units: 3);
+      @include grid.dimension($property: height, $units: 3);
+
+      svg {
+        @include grid.dimension($property: width, $units: 0.5, $min: 9px);
+      }
     }
   }
 }
