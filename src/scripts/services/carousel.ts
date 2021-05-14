@@ -1,5 +1,7 @@
 import Swiper from 'swiper';
 
+import { queryAll } from '../common';
+
 const activeClass = 'active';
 
 const deactivateBullets = (bullets: ReadonlyArray<HTMLButtonElement>): void =>
@@ -29,7 +31,7 @@ export const bindSwiperInstanceWithPagination = (
   paginationWrapper: HTMLElement,
 ) => {
   const bullets = Array.from(
-    paginationWrapper.querySelectorAll<HTMLButtonElement>('.bullet'),
+    queryAll<HTMLButtonElement>('.bullet', paginationWrapper),
   );
 
   swiper.on('activeIndexChange', (swiper) => {

@@ -1,5 +1,7 @@
-const header = document.querySelector<HTMLHeadingElement>('.main-header');
-const menuButton = header.querySelector<HTMLButtonElement>('.menu-button');
+import { query } from '../common';
+
+const header = query<HTMLHeadingElement>('.main-header');
+const menuButton = query<HTMLButtonElement>('.menu-button', header);
 
 const bodyNoScroll = 'no-scroll';
 const menuOpenedClass = 'menu-opened';

@@ -1,5 +1,6 @@
-import { query, navigate } from './common';
 import './components/header';
+
+import { query, navigate } from './common';
 
 const isValidEmail = (email: string) => /[^@]+@[^.]+\..+/g.test(email);
 
