@@ -1,4 +1,4 @@
-const header = require('../../components/header.11ty');
+const header = require('../../components/header/header.11ty');
 const footer = require('../../components/footer.11ty');
 const flowBlock = require('./components/flowBlock');
 const designBlock = require('./components/designBlock');

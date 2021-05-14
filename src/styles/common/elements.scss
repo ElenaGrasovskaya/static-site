@@ -27,6 +27,11 @@ body {
   @include grid.dimension($property: font-size, $units: 0.9, $min: 16px);
 }
 
+/* purgecss ignore */
+body.no-scroll {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   object-fit: cover;
@@ -106,15 +111,13 @@ textarea {
 }
 .grey-text {
   font: {
-    family: 'Sofia Pro',sans-serif;
+    family: 'Sofia Pro', sans-serif;
     weight: 300;
-    
   }
   opacity: 0.5;
 
   @include grid.dimension($property: font-size, $units: 1.2, $min: 20px);
 }
-
 
 .control-button {
   display: block;

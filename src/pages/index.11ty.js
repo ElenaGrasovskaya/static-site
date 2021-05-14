@@ -1,4 +1,4 @@
-const header = require('../components/header.11ty');
+const header = require('../components/header/header.11ty');
 const footer = require('../components/footer.11ty');
 
 module.exports = class {
@@ -9,7 +9,7 @@ module.exports = class {
       title: 'Home Page - Halo Lab',
       layout: 'base',
       styles: 'index.scss',
-      scripts: 'index.js',
+      scripts: 'index.ts',
       keywords: 'Halo Lab',
       permalink: 'index.html',
       description:

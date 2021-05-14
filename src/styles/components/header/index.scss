@@ -1,10 +1,43 @@
-@use '../partials/grid';
-@use '../partials/mixin';
-@use '../partials/color';
-@use '../partials/breakpoint';
-@use '../partials/placeholder';
+@use '../../partials/grid';
+@use '../../partials/mixin';
+@use '../../partials/color';
+@use '../../partials/breakpoint';
+@use '../../partials/placeholder';
+
+@use 'menu';
 
 .main-header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* purgecss start ignore */
+.main-header.menu-opened {
+  height: 100vh;
+
+  .menu-button {
+    span:nth-of-type(2n + 1) {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    span:nth-of-type(2) {
+      transform: rotate(45deg);
+
+      &::after {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* purgecss end ignore */
+
+.top-line {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,15 +97,16 @@
     }
 
     .menu-button {
-      @include mixin.outlined();
-      @include mixin.smooth();
-      @include grid.dimension($property: width, $units: 3, $min: 43px);
-      @include grid.dimension($property: height, $units: 3, $min: 43px);
       border-radius: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      @include mixin.outlined();
+      @include mixin.smooth();
+      @include grid.dimension($property: width, $units: 3, $min: 43px);
+      @include grid.dimension($property: height, $units: 3, $min: 43px);
 
       &:hover {
         background: color.$medium-blue;
@@ -85,10 +119,25 @@
         background: color.$white;
         display: block;
 
+        @include mixin.smooth();
         @include grid.dimension($property: width, $units: 0.7, $min: 8px);
 
         &:nth-child(2) {
+          position: relative;
+
           @include grid.dimension($property: width, $units: 1, $min: 15px);
+
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            transition: inherit;
+          }
         }
 
         &:not(:last-child) {
@@ -98,3 +147,4 @@
     }
   }
 }
+

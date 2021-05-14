@@ -1,4 +1,4 @@
-const header = require('../components/header.11ty');
+const header = require('../components/header/header.11ty');
 const footer = require('../components/footer.11ty');
 const mailLink = require('../components/mail_link.11ty');
 
@@ -9,7 +9,7 @@ module.exports = class {
       title: 'Contacts - Halo Lab',
       layout: 'base',
       styles: 'contacts.scss',
-      scripts: 'contacts.js',
+      scripts: 'contacts.ts',
       keywords: 'Halo Lab',
       permalink: 'contacts/index.html',
       description:
