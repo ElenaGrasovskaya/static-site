@@ -7,80 +7,64 @@
 @use 'partials/placeholder';
 
 main {
-  margin-right: auto;
-  margin-left: auto;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
-}
-
-.advantage-section {
-  display: grid;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
-  @include grid.dimension($property: margin-bottom, $units: 7);
-
-  @include breakpoint.from(small) {
-    grid: auto/ repeat(2, 1fr);
+    margin-right: auto;
+    margin-left: auto;
+    @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
   }
-
-  @include breakpoint.from(large) {
-    grid:
-      auto / grid.size($from: 5, $to: 21) grid.size($from: 22, $to: 38)
-      grid.size($from: 39, $to: 53);
-    gap: 0;
-  }
-
-  .advantage-section-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-    p {
-      text-align: center;
-    }
-
-    @include grid.dimension($property: margin-bottom, $units: 2);
-
+  
+  .advantage-section {
+    display: grid;
+    @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
+    
+   
+  
     @include breakpoint.from(small) {
-      &:last-of-type {
-        display: none;
-      }
+      grid: auto/ repeat(2, 1fr);
+  
+      @include grid.dimension($property: row-gap, $units: 2);
+      @include grid.dimension($property: column-gap, $units: 3);
     }
-
+  
     @include breakpoint.from(large) {
-      &:last-of-type {
-        display: flex;
+      grid:
+        auto / grid.size($from: 3, $to: 22) grid.size($from: 23, $to: 41)
+        grid.size($from: 42, $to: 57);
+      gap: 0;
+    }
+  
+    .advantage-section-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: top;
+        p {
+            text-align: center;
+        }
+      
+  
+      @include grid.dimension($property: margin-bottom, $units: 2);
+  
+      @include breakpoint.from(small) {
+        &:last-of-type {
+          display: none;
+        }
       }
-
-      @include grid.dimension($property: width, $units: 14);
+  
+      @include breakpoint.from(large) {
+        &:last-of-type {
+            display: block;
+          }
+  
+        @include grid.dimension($property: width, $units: 14);
+      }
+      
     }
     svg {
-      // Safari can't display SVG without declaring
-      // its size explicitly.
-      min-width: 100%;
-      @include grid.dimension($property: height, $units: 3);
-      opacity: 50%;
-    }
-  }
-}
+        // Safari can't display SVG without declaring
+        // its size explicitly.
+        min-width: 100%;
+        @include grid.dimension($property: height, $units: 3);
+        opacity: 50%;
+        }   
+   
 
-.aim-section {
-  display: grid;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
-  @include grid.dimension($property: margin-bottom, $units: 7);
-  @include grid.dimension($property: gap, $units: 4);
-
-  @include breakpoint.from(small) {
-    grid: auto;
-  }
-  @include breakpoint.from(large) {
-    grid: auto/grid.size($from: 5, $to: 21) auto;
-  }
-}
-
-.aim-section-item {
-  p {
-    margin: 0;
-  }
-  span {
-    text-align: justify;
-    text-justify: inter-word;
-  }
 }
