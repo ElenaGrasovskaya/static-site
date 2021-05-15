@@ -19,7 +19,7 @@ module.exports = class {
   async render() {
     return /* html */ `
     <main>
-    <h1 class="big-title">Design-driven<br><span>development of<br>your</span> web products<br><span>for years<span></h1>
+      <h1 class="big-title">Design-driven<br><span>development of<br>your</span> web products<br><span>for years<span></h1>
       <div class="advantage-section">
           <div class="advantage-section-item">
               ${await this.image('svg/upwork-icon.svg')}        
@@ -45,7 +45,38 @@ module.exports = class {
                   We believe, our clients deserve to be remarkable in their business.
                   The studio develops the products people appreciate all around the world.</span></p>
             </div>
+      </div>
+      <h2 class="big-title"><span>Recent Works</span></h2>
+      <a  class= "dribbble-link-animated" href="https://www.dribbble.com/halolab" rel="noopener noreferrer">
+        <div class = "dribbble-logo-animated-back">
+        <div class = "dribbble-logo-animated-front">${await this.image('svg/dribbble-red.svg')}</div>
         </div>
+      </a>
+      <div class="recent-works-container">
+        <div class="recent-works-block">
+          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+        </div>
+        <div class="recent-works-block">
+          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+        </div>
+        <div class="recent-works-block">
+          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
+          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+        </div>
+      </div>
+
+      <h2 class="big-title"><span>Projects</span></h2>
+
+      
+      
     </main>
     `;
   }
