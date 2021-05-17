@@ -130,7 +130,7 @@ main {
 .recent-works-container
 {
   position: relative;
-  left: -50vw;
+  @include grid.dimension($property: left, $units: -20);
   top: -2vw;
   display: grid;
   grid: auto / 1fr 1fr 1fr;
@@ -150,7 +150,7 @@ main {
 .recent-works-item
 {
   overflow: hidden;
-  object-fit: cover ;
+  object-fit: cover;
   &:nth-child(1)
   {
     grid-column-start: 1;
@@ -180,5 +180,182 @@ main {
     grid-row-end: 4;
   }
 }
+.projects-section {
+  @include grid.dimension($property: margin-top, $units: 10);
+ 
+  @include breakpoint.from(small) {
+    display:flex;
+    flex-direction: column;
+    @include grid.dimension($property: left, $units: 0);
+  }
+
+  @include breakpoint.from(large)
+  {
+    position: relative;
+    @include grid.dimension($property: left, $units: -10);
+    display: grid;
+    grid: auto / grid.size( $from: 1, $to: 38)  grid.size( $from: 39, $to: 42) grid.size( $from: 42, $to: 64); 
+
+  }
+
+}
+
+.projects-section-image {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+ 
+}
+.logo-list
+{
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  @include grid.dimension($property: height, $units: 5);
+  @include grid.dimension($property: padding-right, $units: 2);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include breakpoint.from(small)
+  {
+   display: none;
+  }
+  @include breakpoint.from(large)
+  {
+    display: flex;
+  }
+  svg {
+    @include grid.dimension($property: padding-right, $units: 2);
+    @include grid.dimension($property: padding-top, $units: 1);
+    @include grid.dimension($property: padding-bottom, $units: 1);
+  };
+}
+.projects-section-text {
+  
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  @include breakpoint.from(small)
+  {
+    margin: none;
+    padding: none; 
+  }
+  @include breakpoint.from(large)
+  {
+    @include grid.dimension($property: margin-top, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 3);
+  }
+    span 
+    {
+      color:white;
+    }
+    p {
+      &:nth-child(2)
+      {
+        @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+      }
+      
+      &:nth-of-type(3)
+      {
+        text-transform: uppercase;
+        @include grid.dimension($property: letter-spacing, $units: 0.5);
+        @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+        @include grid.dimension($property: margin-top, $units: 2);
+      }
+     
+    }
+ }
+.portrait-container
+{
+  display:grid;
+  @include grid.dimension($property: margin-top, $units: 4);
+  grid: auto/1fr 3fr;
+  @include grid.dimension($property: gap, $units: 1);
+  
+}
+.thin-grey-text
+{
+  @include grid.dimension($property: font-size, $units: 1, $min: 14px);
+  font-weight: 300;
+  line-height: 1.6em;
+  letter-spacing: .5px;
+  color: #ccccd2;
+  
+}
+
+.portrait {
+  display: inline-block;
+  @include grid.dimension($property: padding-top, $units: 0.3);
+  @include grid.dimension($property: top, $units: 0.5);
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+  background-color: lightgrey;
+  @include grid.dimension($property: width, $units: 5);
+  @include grid.dimension($property: height, $units: 5);
+  overflow: hidden;
+}
+
+.projects-section-reverse {
+  @include grid.dimension($property: margin-top, $units: 10);
+ 
+  @include breakpoint.from(small) {
+    display:flex;
+    flex-direction: column-reverse;
+    @include grid.dimension($property: left, $units: 0);
+   }
+   @include breakpoint.from(large)
+   {
+    position: relative;
+    display: grid;
+    grid: auto / grid.size( $from: 1, $to: 21)  grid.size( $from: 22, $to: 26) grid.size( $from: 27, $to: 64); 
+   }
+
+}
+.projects-section-image-reverse {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+   
+}
+.projects-section-text-reverse {
+  z-index: 10;
+  @include grid.dimension($property: padding-top, $units: 3);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  @include breakpoint.from(small)
+  {
+    margin: none;
+    padding: none; 
+  }
+  @include breakpoint.from(large)
+  {
+    @include grid.dimension($property: margin-top, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 3);
+  }
+    span 
+    {
+      color:white;
+    }
+    p {
+      &:nth-child(2)
+      {
+        @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+      }
+      
+      &:nth-child(3)
+      {
+        text-transform: uppercase;
+        @include grid.dimension($property: letter-spacing, $units: 0.5);
+        @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+        @include grid.dimension($property: margin-top, $units: 2);
+      }
+     
+    }
+ }
+
 
 
