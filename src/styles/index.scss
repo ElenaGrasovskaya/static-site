@@ -223,7 +223,7 @@ main {
     @include grid.dimension($property: padding-top, $units: 3);
   }
   span {
-    color: white;
+    color: color.$white;
   }
   p {
     &:nth-child(2) {
@@ -256,10 +256,7 @@ main {
   display: inline-block;
   @include grid.dimension($property: padding-top, $units: 0.3);
   @include grid.dimension($property: top, $units: 0.5);
-  border-top-left-radius: 50% 50%;
-  border-top-right-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-  border-bottom-left-radius: 50% 50%;
+  border-radius: 50%;
   background-color: lightgrey;
   @include grid.dimension($property: width, $units: 5);
   @include grid.dimension($property: height, $units: 5);
@@ -305,7 +302,7 @@ main {
     @include grid.dimension($property: padding-top, $units: 3);
   }
   span {
-    color: white;
+    color: color.$white;
   }
   p {
     &:nth-child(2) {
@@ -319,4 +316,28 @@ main {
       @include grid.dimension($property: margin-top, $units: 2);
     }
   }
+}
+
+.and-others-section
+{
+  @include grid.dimension($property: padding-top, $units: 3);
+  @include grid.dimension($property: width, $from: 11, $to: 65);
+  display:grid;
+  grid: 1fr/grid.size($from: 1, $to: 12) repeat(4, 1fr);
+  p {
+    @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    @include grid.dimension($property: margin-left, $units: 2);
+  }
+}
+
+.and-others-section-item
+{
+  @include grid.dimension($property: height, $units: 10);
+  @include grid.dimension($property: width, $units: 10);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 2);
+  @include grid.dimension($property: padding-top, $units: 4);
+  @include grid.dimension($property: padding-bottom, $units: 4);
+  box-shadow: inset 1px 1px 0.25px 0.25px color.$space-cadet;
+
 }
