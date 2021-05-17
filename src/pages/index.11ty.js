@@ -49,27 +49,53 @@ module.exports = class {
       <h2 class="big-title"><span>Recent Works</span></h2>
       <a  class= "dribbble-link-animated" href="https://www.dribbble.com/halolab" rel="noopener noreferrer">
         <div class = "dribbble-logo-animated-back">
-        <div class = "dribbble-logo-animated-front">${await this.image('svg/dribbble-red.svg')}</div>
+        <div class = "dribbble-logo-animated-front">${await this.image(
+          'svg/dribbble-red.svg',
+        )}</div>
         </div>
       </a>
       <div class="recent-works-container">
         <div class="recent-works-block">
-          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 28.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 27.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 29.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 30.svg',
+          )}</div>
         </div>
         <div class="recent-works-block">
-          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 28.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 27.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 29.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 30.svg',
+          )}</div>
         </div>
         <div class="recent-works-block">
-          <div class = "recent-works-item">${await this.image('svg/image 28.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 27.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 29.svg')}</div>
-          <div class = "recent-works-item">${await this.image('svg/image 30.svg')}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 28.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 27.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 29.svg',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'svg/image 30.svg',
+          )}</div>
         </div>
       </div>
 
@@ -77,7 +103,11 @@ module.exports = class {
       <div class="projects-section">
           <div class="projects-section-image">
           ${await this.image('svg/project1.svg')}
-          <div class="logo-list"> ${await this.image('svg/mashable.svg')}  ${await this.image('svg/kickstarter.svg')}  ${await this.image('svg/huffpost.svg')}</div>
+          <div class="logo-list"> ${await this.image(
+            'svg/mashable.svg',
+          )}  ${await this.image('svg/kickstarter.svg')}  ${await this.image(
+      'svg/huffpost.svg',
+    )}</div>
             
           </div>
             <div class="projects-section-text">
@@ -109,14 +139,22 @@ module.exports = class {
             </div>
             <div class="projects-section-image-reverse">
               ${await this.image('svg/project2.svg')}
-              <div class="logo-list"> ${await this.image('svg/forbes.svg')}  ${await this.image('svg/techcrunch.svg')}  ${await this.image('svg/vc.ru.svg')} ${await this.image('svg/angellist.svg')}</div>
+              <div class="logo-list"> ${await this.image(
+                'svg/forbes.svg',
+              )}  ${await this.image('svg/techcrunch.svg')}  ${await this.image(
+      'svg/vc.ru.svg',
+    )} ${await this.image('svg/angellist.svg')}</div>
             
             </div>
       </div>
       <div class="projects-section">
           <div class="projects-section-image">
           ${await this.image('svg/project3.svg')}
-          <div class="logo-list"> ${await this.image('svg/forbes.svg')}  ${await this.image('svg/techcrunch.svg')}  ${await this.image('svg/mashable.svg')} ${await this.image('svg/indiegogo.svg')}</div>
+          <div class="logo-list"> ${await this.image(
+            'svg/forbes.svg',
+          )}  ${await this.image('svg/techcrunch.svg')}  ${await this.image(
+      'svg/mashable.svg',
+    )} ${await this.image('svg/indiegogo.svg')}</div>
             
           </div>
             <div class="projects-section-text">
