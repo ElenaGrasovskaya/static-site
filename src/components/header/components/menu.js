@@ -1,19 +1,23 @@
 module.exports = async function menu() {
   return /* html */ `
     <aside class="menu">
-      <a data-icon="projects" href="/projects">
+      <a class="menu-link" data-icon="projects" href="/projects">
+        <div class="background-image"></div>
         <span></span>
         <span>projects</span>
       </a>   
-      <a data-icon="services" href="/services">
+      <a class="menu-link" data-icon="services" href="/services">
+        <div class="background-image"></div>
         <span></span>
         <span>services</span>
       </a>   
-      <a data-icon="blog" href="/blog">
+      <a class="menu-link" data-icon="blog" href="/blog">
+        <div class="background-image"></div>
         <span></span>
         <span>blog</span>
       </a>   
-      <a data-icon="contacts" href="/contacts">
+      <a class="menu-link" data-icon="contacts" href="/contacts">
+        <div class="background-image"></div>
         <span></span>
         <span>contacts</span>
       </a>   

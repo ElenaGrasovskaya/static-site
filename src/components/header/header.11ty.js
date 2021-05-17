@@ -15,6 +15,7 @@ module.exports = async function header() {
           ? ''
           : '<a href="/contacts" class="contact-button">Contact</a>'
       }
+        <a class="contact-mail" href="mailto:mail@halo-lab.com">mail@halo-lab.com</a>
         <button class="menu-button" aria-label="Menu">
           <span></span>
           <span></span>

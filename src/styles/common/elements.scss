@@ -68,6 +68,12 @@ textarea {
   @extend %inherit-font;
 }
 
+svg {
+  // Safari can't display SVG without declaring
+  // its size explicitly.
+  min-width: 100%;
+}
+
 .site-body {
   min-height: 100vh;
   max-width: breakpoint.get(max);

@@ -1,6 +1,20 @@
 @use '../../partials/grid';
+@use '../../partials/mixin';
 @use '../../partials/color';
 @use '../../partials/breakpoint';
+@use '../../partials/placeholder';
+
+@keyframes appearance {
+  from {
+    opacity: 0;
+    top: 50px;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
 
 $_icons: (
   projects: 7,
@@ -12,9 +26,37 @@ $_icons: (
 @mixin links-with-icons {
   @each $name, $size in $_icons {
     &[data-icon='#{$name}'] {
-      background-image: url('svg/#{$name}.svg');
+      .background-image {
+        background: url('svg/#{$name}.svg') no-repeat center transparent;
 
-      @include grid.dimension($property: background-size, $units: $size);
+        @include grid.dimension($property: background-size, $units: $size);
+      }
+
+      &::before {
+        background-color: color.$medium-blue;
+        transform: scale(0.6) rotate(20deg);
+      }
+
+      &::after {
+        opacity: 0;
+        transform: scale(0.6) rotate(20deg);
+      }
+
+      &.active,
+      &:hover {
+        .background-image {
+          opacity: 1;
+        }
+
+        &::before {
+          transform: scale(1) rotate(0);
+        }
+
+        &::after {
+          opacity: 1;
+          transform: scale(1) rotate(-20deg);
+        }
+      }
     }
   }
 }
@@ -22,9 +64,8 @@ $_icons: (
 .menu {
   flex: 1;
   display: none;
-  margin-left: auto;
-  margin-right: auto;
 
+  @extend %center-block;
   @include grid.dimension($property: padding, $units: 2);
   @include grid.dimension($property: width, $units: 32);
 
@@ -34,22 +75,83 @@ $_icons: (
     margin-right: initial;
   }
 
-  a {
+  .menu-link {
+    position: relative;
     color: color.$white;
-    border-radius: 50%;
     display: flex;
+    opacity: 0;
     align-items: center;
     justify-content: center;
-    background-color: color.$medium-blue;
-    background-position: center;
-    background-repeat: no-repeat;
     text-transform: uppercase;
+    animation: appearance 0.5s forwards;
+
+    @for $i from 1 through 4 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: #{$i / 10}s;
+      }
+    }
 
     @include links-with-icons;
     @include grid.dimension($property: width, $from: 22, $to: 35);
     @include grid.dimension($property: height, $from: 22, $to: 35);
     @include grid.dimension($property: font-size, $units: 0.6, $min: 10px);
     @include grid.dimension($property: letter-spacing, $units: 0.4, $min: 6px);
+
+    &.active {
+      // Disable click event on anchor tag because we are
+      // already on the needed page.
+      pointer-events: none;
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+
+      @include mixin.smooth(
+        (
+          delay: 0.1s,
+          duration: 0.5s,
+        )
+      );
+    }
+
+    &::before {
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+
+      @include mixin.smooth(
+        (
+          duration: 0.4s,
+        )
+      );
+    }
+
+    &::after {
+      content: '';
+      background-image: url('svg/stars.svg');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      @include mixin.smooth(
+        (
+          duration: 0.5s,
+          timing-function: ease-out,
+        )
+      );
+    }
 
     &:nth-of-type(2n) {
       align-self: flex-end;
