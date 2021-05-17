@@ -21,7 +21,7 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  background: color.$xiketic url('svg/background.svg');
+  background: url('svg/universe.svg') color.$xiketic;
   font-family: 'Sofia Pro', sans-serif;
 
   @include grid.dimension($property: font-size, $units: 0.9, $min: 16px);
@@ -71,7 +71,7 @@ textarea {
 svg {
   // Safari can't display SVG without declaring
   // its size explicitly.
-  min-width: 100%;
+  width: 100%;
 }
 
 .site-body {
