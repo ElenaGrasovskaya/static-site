@@ -7,12 +7,12 @@
 @keyframes appearance {
   from {
     opacity: 0;
-    top: 50px;
+    transform: translateY(10%);
   }
 
   to {
     opacity: 1;
-    top: 0;
+    transform: translateY(0);
   }
 }
 
@@ -75,9 +75,11 @@ $_icons: (
   flex: 1;
   display: none;
 
+  @include grid.dimension($property: width, $units: 32);
+
   @extend %center-block;
-  @include grid.dimension($property: padding, $units: 2);
-  @include grid.dimension($property: width, $units: 44);
+  @include grid.dimension($property: padding-right, $units: 2);
+  @include grid.dimension($property: padding-left, $units: 1);
 
   @include breakpoint.from(medium) {
     width: initial;
@@ -106,6 +108,40 @@ $_icons: (
     @include grid.dimension($property: height, $from: 22, $to: 35);
     @include grid.dimension($property: font-size, $units: 0.6, $min: 10px);
     @include grid.dimension($property: letter-spacing, $units: 0.4, $min: 6px);
+
+    &:nth-of-type(2n) {
+      align-self: flex-end;
+    }
+
+    &:not(:nth-of-type(1)) {
+      @include grid.dimension($property: margin-top, $units: -4);
+
+      @include breakpoint.from(medium) {
+        @include grid.units($property: margin-top, $count: -8);
+      }
+    }
+
+    &:nth-of-type(4) {
+      @include grid.dimension($property: margin-right, $units: 4);
+    }
+
+    @include breakpoint.from(medium) {
+      &:nth-of-type(1) {
+        @include grid.dimension($property: margin-left, $from: 1, $to: 21);
+      }
+
+      &:nth-of-type(2) {
+        @include grid.dimension($property: margin-right, $from: 57, $to: 64);
+      }
+
+      &:nth-of-type(3) {
+        @include grid.dimension($property: margin-left, $from: 1, $to: 5);
+      }
+
+      &:nth-of-type(4) {
+        @include grid.units($property: margin-right, $from: 42, $to: 64);
+      }
+    }
 
     &.active {
       // Disable click event on anchor tag because we are
@@ -163,36 +199,6 @@ $_icons: (
       );
     }
 
-    &:nth-of-type(2n) {
-      align-self: flex-end;
-    }
-
-    &:not(:nth-of-type(1)) {
-      @include grid.dimension($property: margin-top, $units: -4);
-
-      @include breakpoint.from(medium) {
-        @include grid.units($property: margin-top, $count: -8);
-      }
-    }
-
-    @include breakpoint.from(medium) {
-      &:nth-of-type(1) {
-        @include grid.dimension($property: margin-left, $from: 1, $to: 21);
-      }
-
-      &:nth-of-type(2) {
-        @include grid.dimension($property: margin-right, $from: 57, $to: 64);
-      }
-
-      &:nth-of-type(3) {
-        @include grid.dimension($property: margin-left, $from: 1, $to: 5);
-      }
-
-      &:nth-of-type(4) {
-        @include grid.dimension($property: margin-right, $from: 42, $to: 64);
-      }
-    }
-
     @include breakpoint.from(xxl) {
       @include grid.units($property: width, $count: 13);
       @include grid.units($property: height, $count: 13);
@@ -200,10 +206,6 @@ $_icons: (
 
     span {
       width: 50%;
-
-      &:first-child {
-        @include grid.dimension($property: margin-right, $units: 1);
-      }
     }
   }
 }

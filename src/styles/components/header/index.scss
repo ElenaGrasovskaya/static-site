@@ -10,7 +10,7 @@
   from {
     opacity: 0;
 
-    @include grid.dimension($property: transform, $units: -1) using
+    @include grid.dimension($property: transform, $units: 2) using
       ($value, $property) {
       #{$property}: translateX(#{$value});
     }
@@ -39,8 +39,10 @@
     display: none;
   }
 
-  .contact-mail {
-    display: block;
+  @include breakpoint.from(small) {
+    .contact-mail {
+      display: block;
+    }
   }
 
   .menu-button {
@@ -61,6 +63,7 @@
   .menu {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 }
 /* purgecss end ignore */
