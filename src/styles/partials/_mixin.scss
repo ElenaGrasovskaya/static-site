@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use 'sass:list';
 
+@use 'grid';
+@use 'color';
 @use 'function';
 @use 'breakpoint';
 
@@ -47,15 +49,49 @@ $_transition-default: (
     $property-transition: function.toString(map.merge($_transition-default, $map));
 
     $transition: if(
-      $transition,
-      (#{$transition}, #{$property-transition}),
-      $property-transition
+        $transition,
+          (#{$transition}, #{$property-transition}),
+        $property-transition
     );
   }
 
   transition: if(
-    $transition == null,
-    function.toString($_transition-default),
-    $transition
+      $transition == null,
+      function.toString($_transition-default),
+      $transition
   );
+}
+
+/// Adds border to an element.
+/// Allows to configure $size and $color of border.
+@mixin outlined($color: color.$space-cadet, $width: 1.25px) {
+  border: $width solid $color;
+}
+
+/// Makes text small with all capitalized letters.
+@mixin small-caps-text($spacing: 0px) {
+  text-transform: uppercase;
+  letter-spacing: $spacing;
+
+  @include grid.dimension($property: font-size, $units: 0.7, $min: 12px);
+}
+
+/// Adds blue rectangle to element's background.
+@mixin blue-rectangle($spacing: 0px, $height: 50%) {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: calc(-5% - #{$spacing} / 2);
+    width: 110%;
+    height: $height;
+    background: color.$medium-blue;
+    z-index: -1;
+
+    @include smooth();
+  }
 }

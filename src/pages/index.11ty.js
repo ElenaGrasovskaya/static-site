@@ -170,11 +170,12 @@ module.exports = class {
             </div>
       </div>
       <div class="and-others-section">
-            <p class="black-text">And<br>others</p>
+            <p class="black-text">And others</p>
+
             <div class="and-others-section-item">${await this.image('svg/auth0.svg')}</div>
             <div class="and-others-section-item">${await this.image('svg/udemy.svg')}</div>
             <div class="and-others-section-item">${await this.image('svg/kkl-luzern.svg')}</div>
-            <div class="and-others-section-item"><p class="mail-link">view all cases</p></div>
+            <div class="and-others-section-item"><a href="/portfolio/">view all cases</a></div>
       </div>
 
       

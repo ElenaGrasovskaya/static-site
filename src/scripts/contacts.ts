@@ -1,11 +1,8 @@
+import './components/header';
+
 import { query, navigate } from './common';
 
-/**
- * Check if email is valid.
- *
- * @param {string} email
- */
-const isValidEmail = (email) => /[^@]+@[^.]+\..+/g.test(email);
+const isValidEmail = (email: string) => /[^@]+@[^.]+\..+/g.test(email);
 
 const data = {
   name: {
@@ -27,33 +24,28 @@ const data = {
   },
 };
 
-/** @type {Array<File>} */
-const attachedFiles = [];
+const attachedFiles: ReadonlyArray<File> = [];
 
 /** Check if all values from form is valid */
-const isDataValid = () =>
+const isDataValid = (): boolean =>
   Object.entries(data).every(([name, { valid }]) =>
     name === 'company' ? true : valid,
   );
 
-/**
- * Fill data from inputs and check for data validity.
- *
- * @param {InputEvent} event
- */
-const onInput = ({ target: { name, value } }) => {
-  data[name] = {
-    valid: name === 'email' ? isValidEmail(value) : Boolean(value),
-    value,
+/** Fill data from inputs and check for data validity. */
+const onInput = ({ target }: InputEvent) => {
+  data[target['name']] = {
+    valid:
+      target['name'] === 'email'
+        ? isValidEmail(target['value'])
+        : Boolean(target['value']),
+    value: target['value'],
   };
 };
 
-/**
- * Receive files from user.
- *
- * @param {Event} event
- */
-const onFileReceive = ({ target: { files } }) => attachedFiles.concat(files);
+/** Receive files from user. */
+const onFileReceive = ({ target }): void =>
+  void attachedFiles.concat(target['files']);
 
 const form = query('.contact-form');
 const nameInput = query('#name-input', form);
@@ -82,8 +74,8 @@ form.addEventListener('submit', (event) => {
       body: formData,
     })
       .then(
-        ({ ok }) => (ok ? '/thanks.html' : '/error.html'),
-        () => '/error.html',
+        ({ ok }) => (ok ? '/thanks' : '/error'),
+        () => '/error',
       )
       .then(navigate);
   }

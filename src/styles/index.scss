@@ -9,11 +9,14 @@
 main {
   margin-right: auto;
   margin-left: auto;
+
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+
 }
 
 .advantage-section {
   display: grid;
+
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
   @include grid.dimension($property: margin-bottom, $units: 7);
 
@@ -32,6 +35,7 @@ main {
     display: flex;
     flex-direction: column;
 
+
     p {
       text-align: center;
     }
@@ -46,11 +50,14 @@ main {
 
     @include breakpoint.from(large) {
       &:last-of-type {
+
         display: flex;
+
       }
 
       @include grid.dimension($property: width, $units: 14);
     }
+
     svg {
       // Safari can't display SVG without declaring
       // its size explicitly.
@@ -341,3 +348,6 @@ main {
   box-shadow: inset 1px 1px 0.25px 0.25px color.$space-cadet;
 
 }
+
+
+

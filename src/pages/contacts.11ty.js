@@ -1,3 +1,5 @@
+const header = require('../components/header/header.11ty');
+const footer = require('../components/footer.11ty');
 const mailLink = require('../components/mail_link.11ty');
 
 module.exports = class {
@@ -7,9 +9,9 @@ module.exports = class {
       title: 'Contacts - Halo Lab',
       layout: 'base',
       styles: 'contacts.scss',
-      scripts: 'contacts.js',
+      scripts: 'contacts.ts',
       keywords: 'Halo Lab',
-      permalink: 'contacts.html',
+      permalink: 'contacts/index.html',
       description:
         'If you want to create a product or you would like to discuss ' +
         "how it could be realized, you're exactly where you're supposed " +
@@ -19,6 +21,7 @@ module.exports = class {
 
   async render() {
     return /* html */ `
+      ${await header.call(this)}
 			<main>
 				<h1 class="big-title">Contact us</h1>
 				<div class="info-section">
@@ -152,6 +155,7 @@ module.exports = class {
           </button>
 				</form>
 			</main>
+      ${await footer.call(this)}
     `;
   }
 };
