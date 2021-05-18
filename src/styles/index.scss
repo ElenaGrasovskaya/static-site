@@ -9,31 +9,31 @@
 main {
   margin-right: auto;
   margin-left: auto;
-  @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
+
+  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
 }
 
 .advantage-section {
   display: grid;
-  @include grid.dimension($property: max-width, $from: 3, $to: 57, $max: 90vw);
+
+  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @include grid.dimension($property: margin-bottom, $units: 7);
 
   @include breakpoint.from(small) {
     grid: auto/ repeat(2, 1fr);
-
-    @include grid.dimension($property: row-gap, $units: 2);
-    @include grid.dimension($property: column-gap, $units: 3);
   }
 
   @include breakpoint.from(large) {
     grid:
-      auto / grid.value($from: 3, $to: 22) grid.value($from: 23, $to: 41)
-      grid.value($from: 42, $to: 57);
+      auto / grid.value($from: 5, $to: 21) grid.value($from: 22, $to: 38)
+      grid.value($from: 39, $to: 53);
     gap: 0;
   }
 
   .advantage-section-item {
     display: flex;
     flex-direction: column;
-    justify-content: top;
+
     p {
       text-align: center;
     }
@@ -48,19 +48,296 @@ main {
 
     @include breakpoint.from(large) {
       &:last-of-type {
-        display: block;
+        display: flex;
       }
 
       @include grid.dimension($property: width, $units: 14);
     }
-  }
-  svg {
-    // Safari can't display SVG without declaring
-    // its size explicitly.
-    min-width: 100%;
-    opacity: 50%;
 
-    @include grid.dimension($property: height, $units: 3);
+    svg {
+      // Safari can't display SVG without declaring
+      // its size explicitly.
+      min-width: 100%;
+      @include grid.dimension($property: height, $units: 3);
+      opacity: 50%;
+    }
   }
 }
 
+.aim-section {
+  display: grid;
+  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @include grid.dimension($property: margin-bottom, $units: 7);
+  @include grid.dimension($property: gap, $units: 4);
+
+  @include breakpoint.from(small) {
+    grid: auto;
+  }
+  @include breakpoint.from(large) {
+    grid: auto/grid.value($from: 5, $to: 21) auto;
+  }
+}
+
+.aim-section-item {
+  p {
+    margin: 0;
+  }
+  span {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.dribbble-link-animated {
+  position: relative;
+  @include grid.dimension($property: left, $units: 45);
+  @include grid.dimension($property: top, $units: -12);
+  display: none;
+
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: inline-block;
+  }
+}
+
+.dribbble-logo-animated-back {
+  position: relative;
+  @include grid.dimension($property: width, $units: 6);
+  @include grid.dimension($property: height, $units: 6);
+  background-image: url('svg/circled-text.svg');
+  background-position: center;
+  background-size: cover;
+}
+.dribbble-logo-animated-front {
+  position: absolute;
+  @include grid.dimension($property: top, $units: 2);
+  @include grid.dimension($property: left, $units: 2);
+  @include grid.dimension($property: width, $units: 2);
+  @include grid.dimension($property: height, $units: 2);
+  transition-duration: 0.8s;
+  transition-property: transform;
+  :hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg) brightness(81%);
+  }
+}
+.recent-works-container {
+  position: relative;
+  @include grid.dimension($property: left, $units: -20);
+  top: -2vw;
+  display: grid;
+  grid: auto / 1fr 1fr 1fr;
+  @include grid.dimension($property: gap, $units: 1);
+}
+
+.recent-works-block {
+  display: grid;
+  @include grid.dimension($property: width, $units: 40);
+  @include grid.dimension($property: height, $units: 15);
+  @include grid.dimension($property: gap, $units: 1);
+  grid: repeat(3, 1fr) / repeat(10, 1fr);
+}
+.recent-works-item {
+  overflow: hidden;
+  object-fit: cover;
+  &:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  &:nth-child(2) {
+    grid-column-start: 7;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  &:nth-child(3) {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  &:nth-child(4) {
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+}
+.projects-section {
+  @include grid.dimension($property: margin-top, $units: 10);
+
+  @include breakpoint.from(small) {
+    display: flex;
+    flex-direction: column;
+    @include grid.dimension($property: left, $units: 0);
+  }
+
+  @include breakpoint.from(large) {
+    position: relative;
+    @include grid.dimension($property: left, $units: -10);
+    display: grid;
+    grid: auto / grid.value($from: 1, $to: 38) grid.value($from: 39, $to: 42) grid.value(
+        $from: 42,
+        $to: 64
+      );
+  }
+}
+
+.projects-section-image {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.logo-list {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  @include grid.dimension($property: height, $units: 5);
+  @include grid.dimension($property: padding-right, $units: 2);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: flex;
+  }
+  svg {
+    @include grid.dimension($property: padding-right, $units: 2);
+    @include grid.dimension($property: padding-top, $units: 1);
+    @include grid.dimension($property: padding-bottom, $units: 1);
+  }
+}
+.projects-section-text {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  @include breakpoint.from(small) {
+    margin: none;
+    padding: none;
+  }
+  @include breakpoint.from(large) {
+    @include grid.dimension($property: margin-top, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 3);
+  }
+  span {
+    color: color.$white;
+  }
+  p {
+    &:nth-child(2) {
+      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    }
+
+    &:nth-of-type(3) {
+      text-transform: uppercase;
+      @include grid.dimension($property: letter-spacing, $units: 0.5);
+      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+      @include grid.dimension($property: margin-top, $units: 2);
+    }
+  }
+}
+.portrait-container {
+  display: grid;
+  @include grid.dimension($property: margin-top, $units: 4);
+  grid: auto/1fr 3fr;
+  @include grid.dimension($property: gap, $units: 1);
+}
+.thin-grey-text {
+  @include grid.dimension($property: font-size, $units: 1, $min: 14px);
+  font-weight: 300;
+  line-height: 1.6em;
+  letter-spacing: 0.5px;
+  color: #ccccd2;
+}
+
+.portrait {
+  display: inline-block;
+  @include grid.dimension($property: padding-top, $units: 0.3);
+  @include grid.dimension($property: top, $units: 0.5);
+  border-radius: 50%;
+  background-color: lightgrey;
+  @include grid.dimension($property: width, $units: 5);
+  @include grid.dimension($property: height, $units: 5);
+  overflow: hidden;
+}
+
+.projects-section-reverse {
+  @include grid.dimension($property: margin-top, $units: 10);
+
+  @include breakpoint.from(small) {
+    display: flex;
+    flex-direction: column-reverse;
+    @include grid.dimension($property: left, $units: 0);
+  }
+  @include breakpoint.from(large) {
+    position: relative;
+    display: grid;
+    grid: auto / grid.value($from: 1, $to: 21) grid.value($from: 22, $to: 26) grid.value(
+        $from: 27,
+        $to: 64
+      );
+  }
+}
+.projects-section-image-reverse {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.projects-section-text-reverse {
+  z-index: 10;
+  @include grid.dimension($property: padding-top, $units: 3);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  @include breakpoint.from(small) {
+    margin: none;
+    padding: none;
+  }
+  @include breakpoint.from(large) {
+    @include grid.dimension($property: margin-top, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 3);
+  }
+  span {
+    color: color.$white;
+  }
+  p {
+    &:nth-child(2) {
+      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    }
+
+    &:nth-child(3) {
+      text-transform: uppercase;
+      @include grid.dimension($property: letter-spacing, $units: 0.5);
+      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+      @include grid.dimension($property: margin-top, $units: 2);
+    }
+  }
+}
+
+.and-others-section {
+  @include grid.dimension($property: padding-top, $units: 3);
+  @include grid.dimension($property: width, $from: 11, $to: 65);
+  display: grid;
+  grid: 1fr / grid.value($from: 1, $to: 12) repeat(4, 1fr);
+  p {
+    @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    @include grid.dimension($property: margin-left, $units: 2);
+  }
+}
+
+.and-others-section-item {
+  @include grid.dimension($property: height, $units: 10);
+  @include grid.dimension($property: width, $units: 10);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 2);
+  @include grid.dimension($property: padding-top, $units: 4);
+  @include grid.dimension($property: padding-bottom, $units: 4);
+  box-shadow: inset 1px 1px 0.25px 0.25px color.$space-cadet;
+}
