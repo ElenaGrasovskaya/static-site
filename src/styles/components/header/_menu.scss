@@ -33,8 +33,18 @@ $_icons: (
       }
 
       &::before {
+        --menu-link-scale-ratio: 0.6;
+
         background-color: color.$medium-blue;
-        transform: scale(0.6) rotate(20deg);
+        transform: scale(var(--menu-link-scale-ratio)) rotate(20deg);
+      }
+
+      &.shrink::before {
+        --menu-link-scale-ratio: 0.3;
+      }
+
+      &.semi-shrink::before {
+        --menu-link-scale-ratio: 0.45;
       }
 
       &::after {
@@ -67,7 +77,7 @@ $_icons: (
 
   @extend %center-block;
   @include grid.dimension($property: padding, $units: 2);
-  @include grid.dimension($property: width, $units: 32);
+  @include grid.dimension($property: width, $units: 44);
 
   @include breakpoint.from(medium) {
     width: initial;
@@ -189,7 +199,7 @@ $_icons: (
     }
 
     span {
-      flex: 1;
+      width: 50%;
 
       &:first-child {
         @include grid.dimension($property: margin-right, $units: 1);
