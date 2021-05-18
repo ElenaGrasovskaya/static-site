@@ -11,7 +11,6 @@ main {
   margin-left: auto;
 
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
-
 }
 
 .advantage-section {
@@ -26,15 +25,14 @@ main {
 
   @include breakpoint.from(large) {
     grid:
-      auto / grid.size($from: 5, $to: 21) grid.size($from: 22, $to: 38)
-      grid.size($from: 39, $to: 53);
+      auto / grid.value($from: 5, $to: 21) grid.value($from: 22, $to: 38)
+      grid.value($from: 39, $to: 53);
     gap: 0;
   }
 
   .advantage-section-item {
     display: flex;
     flex-direction: column;
-
 
     p {
       text-align: center;
@@ -50,9 +48,7 @@ main {
 
     @include breakpoint.from(large) {
       &:last-of-type {
-
         display: flex;
-
       }
 
       @include grid.dimension($property: width, $units: 14);
@@ -78,7 +74,7 @@ main {
     grid: auto;
   }
   @include breakpoint.from(large) {
-    grid: auto/grid.size($from: 5, $to: 21) auto;
+    grid: auto/grid.value($from: 5, $to: 21) auto;
   }
 }
 
@@ -185,7 +181,7 @@ main {
     position: relative;
     @include grid.dimension($property: left, $units: -10);
     display: grid;
-    grid: auto / grid.size($from: 1, $to: 38) grid.size($from: 39, $to: 42) grid.size(
+    grid: auto / grid.value($from: 1, $to: 38) grid.value($from: 39, $to: 42) grid.value(
         $from: 42,
         $to: 64
       );
@@ -281,7 +277,7 @@ main {
   @include breakpoint.from(large) {
     position: relative;
     display: grid;
-    grid: auto / grid.size($from: 1, $to: 21) grid.size($from: 22, $to: 26) grid.size(
+    grid: auto / grid.value($from: 1, $to: 21) grid.value($from: 22, $to: 26) grid.value(
         $from: 27,
         $to: 64
       );
@@ -325,20 +321,18 @@ main {
   }
 }
 
-.and-others-section
-{
+.and-others-section {
   @include grid.dimension($property: padding-top, $units: 3);
   @include grid.dimension($property: width, $from: 11, $to: 65);
-  display:grid;
-  grid: 1fr/grid.size($from: 1, $to: 12) repeat(4, 1fr);
+  display: grid;
+  grid: 1fr / grid.value($from: 1, $to: 12) repeat(4, 1fr);
   p {
     @include grid.dimension($property: font-size, $units: 2, $min: 12px);
     @include grid.dimension($property: margin-left, $units: 2);
   }
 }
 
-.and-others-section-item
-{
+.and-others-section-item {
   @include grid.dimension($property: height, $units: 10);
   @include grid.dimension($property: width, $units: 10);
   @include grid.dimension($property: padding-left, $units: 2);
@@ -346,8 +340,4 @@ main {
   @include grid.dimension($property: padding-top, $units: 4);
   @include grid.dimension($property: padding-bottom, $units: 4);
   box-shadow: inset 1px 1px 0.25px 0.25px color.$space-cadet;
-
 }
-
-
-

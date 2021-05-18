@@ -1,3 +1,6 @@
+const header = require('../components/header/header.11ty');
+const footer = require('../components/footer.11ty');
+
 module.exports = class {
   // eslint-disable-next-line class-methods-use-this
   data() {
@@ -18,6 +21,7 @@ module.exports = class {
 
   async render() {
     return /* html */ `
+    ${await header.call(this)}
     <main>
       <h1 class="big-title">Design-driven<br><span>development of<br>your</span> web products<br><span>for years<span></h1>
       <div class="advantage-section">
@@ -172,15 +176,22 @@ module.exports = class {
       <div class="and-others-section">
             <p class="black-text">And others</p>
 
-            <div class="and-others-section-item">${await this.image('svg/auth0.svg')}</div>
-            <div class="and-others-section-item">${await this.image('svg/udemy.svg')}</div>
-            <div class="and-others-section-item">${await this.image('svg/kkl-luzern.svg')}</div>
+            <div class="and-others-section-item">${await this.image(
+              'svg/auth0.svg',
+            )}</div>
+            <div class="and-others-section-item">${await this.image(
+              'svg/udemy.svg',
+            )}</div>
+            <div class="and-others-section-item">${await this.image(
+              'svg/kkl-luzern.svg',
+            )}</div>
             <div class="and-others-section-item"><a href="/portfolio/">view all cases</a></div>
       </div>
 
       
       
     </main>
+    ${await footer.call(this)}
     `;
   }
 };

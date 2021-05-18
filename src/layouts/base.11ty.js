@@ -7,8 +7,6 @@ module.exports.render = async function pwa({
   keywords = '',
   description = '',
 }) {
-  const isContacts = this.page.url.includes('contacts');
-
   return /* html */ `
   <!DOCTYPE html>
   <html lang="${lang}">
