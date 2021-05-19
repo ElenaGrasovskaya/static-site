@@ -187,15 +187,30 @@ module.exports = class {
             )}</div>
             <div class="and-others-section-item"><a href="/portfolio/">view all cases</a></div>
       </div>
+
+
       <section class="comments-swiper">
         <div class="comments-swiper-container"> 
-          <div></div>
-          <div class="swiper-slider">
-            <div class="slider-raiting"><p>4.8</p>${await this.image('svg/stars-5.svg',)} ${await this.image('svg/clutch-title.svg',)}</div>
-            <div class="slider-text"></div>
+          <div class="slider-button">
+            <div class="prev" role="button" aria-label="Previous slide"></div>
           </div>
-          <div></div>
+          <div class="swiper-slider">
+              <div class="slider-raiting"><p class="black-text">4.8</p>${await this.image(
+                'svg/stars-5.svg',
+              )} ${await this.image('svg/clutch-title.svg')}
+             </div>
+              <div class="slider-text">${await this.image(
+                'svg/quotes.svg',
+              )}<h6>They perfectly met my expectations — 
+                working with them felt like an extension of my in-house team.</h6>
+                <p class="black-text">&#8212;Alexander Kozma Ingal, Room Six</p>
+              </div>
+            </div>
+            <div class="slider-button">
+                <div class="next" role="button" aria-label="Next slide">
 
+                </div>
+          </div>
         </div>
       </section>
 

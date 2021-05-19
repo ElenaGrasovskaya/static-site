@@ -17,6 +17,10 @@
     var(--deep-shampagne-color) 41.89%,
     var(--baby-powder-color) 96.77%
   );
+  --slider-gradient:linear-gradient(
+    126.47deg,
+    rgba(132,164,255,.2)
+     6.69%,rgba(2,2,30,0) 85.43%);
 }
 
 $white: var(--white-color);
@@ -29,3 +33,4 @@ $space-cadet: var(--space-cadet-color);
 $roman-silver: var(--roman-silver-color);
 
 $text-gradient: var(--text-gradient);
+$slider-gradient: var(--slider-gradient);
