@@ -9,13 +9,11 @@
 main {
   margin-right: auto;
   margin-left: auto;
-
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
 }
 
 .advantage-section {
   display: grid;
-
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
   @include grid.dimension($property: margin-bottom, $units: 7);
 
@@ -53,7 +51,6 @@ main {
 
       @include grid.dimension($property: width, $units: 14);
     }
-
     svg {
       // Safari can't display SVG without declaring
       // its size explicitly.
@@ -120,7 +117,6 @@ main {
   transition-property: transform;
   :hover {
     transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
     filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg) brightness(81%);
   }
 }
@@ -179,7 +175,7 @@ main {
 
   @include breakpoint.from(large) {
     position: relative;
-    @include grid.dimension($property: left, $units: -10);
+    @include grid.dimension($property: left, $units: -6);
     display: grid;
     grid: auto / grid.value($from: 1, $to: 38) grid.value($from: 39, $to: 42) grid.value(
         $from: 42,
@@ -198,8 +194,8 @@ main {
   flex-direction: row-reverse;
   justify-content: space-between;
   @include grid.dimension($property: height, $units: 5);
-  @include grid.dimension($property: padding-right, $units: 2);
-  @include grid.dimension($property: padding-left, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 4);
+  @include grid.dimension($property: padding-left, $units: 4);
   @include breakpoint.from(small) {
     display: none;
   }
@@ -322,22 +318,126 @@ main {
 }
 
 .and-others-section {
-  @include grid.dimension($property: padding-top, $units: 3);
-  @include grid.dimension($property: width, $from: 11, $to: 65);
+  @include grid.dimension($property: padding-top, $units: 5);
+  @include grid.dimension($property: width, $from: 5, $to: 53);
   display: grid;
-  grid: 1fr / grid.value($from: 1, $to: 12) repeat(4, 1fr);
+
   p {
-    @include grid.dimension($property: font-size, $units: 2, $min: 12px);
-    @include grid.dimension($property: margin-left, $units: 2);
+    @include grid.dimension($property: font-size, $units: 1.5, $min: 12px);
+
+    @include breakpoint.from(small) {
+      grid-area: 1/1/2/3;
+      text-align: center;
+
+      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    }
+    @include breakpoint.from(large) {
+      text-align: left;
+      width: 20%;
+    }
+  }
+  @include breakpoint.from(small) {
+    @include grid.dimension($property: width, $from: 6, $to: 53);
+    grid: auto/grid.value($from: 6, $to: 28) grid.value($from: 28, $to: 53);
+  }
+  @include breakpoint.from(large) {
+    grid: 1fr / grid.value($from: 5, $to: 27) 1fr grid.value($from: 27, $to: 36) grid.value($from: 36, $to: 45) grid.value($from: 45, $to: 54) grid.value($from: 54, $to: 65);
+    @include grid.dimension($property: margin-left, $units: 3);
   }
 }
 
 .and-others-section-item {
-  @include grid.dimension($property: height, $units: 10);
-  @include grid.dimension($property: width, $units: 10);
-  @include grid.dimension($property: padding-left, $units: 2);
-  @include grid.dimension($property: padding-right, $units: 2);
-  @include grid.dimension($property: padding-top, $units: 4);
-  @include grid.dimension($property: padding-bottom, $units: 4);
-  box-shadow: inset 1px 1px 0.25px 0.25px color.$space-cadet;
+  padding: 25%;
+  padding-top: 40%;
+
+  @include breakpoint.from(small) {
+    @include grid.dimension($property: height, $units: 23);
+    @include grid.dimension($property: width, $units: 23);
+    box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+    &:nth-child(3) {
+      border-right: solid 0.25px color.$space-cadet;
+    }
+    &:nth-child(4) {
+      border-bottom: solid 0.25px color.$space-cadet;
+    }
+  }
+  @include breakpoint.from(large) {
+    @include grid.dimension($property: height, $units: 10);
+    @include grid.dimension($property: width, $units: 10);
+    box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+    border-bottom: solid 0.25px color.$space-cadet;
+    &:nth-child(3) {
+      border-right: inherit;
+    }
+    &:nth-child(4) {
+      border-bottom: solid 0.25px color.$space-cadet;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    @include grid.dimension($property: letter-spacing, $units: 0.5);
+    color: color.$white;
+
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: font-size, $units: 1.8, $min: 12px);
+    }
+    @include breakpoint.from(large) {
+      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+    }
+  }
+  &:last-child {
+    padding: 25%;
+    padding-top: 30%;
+    box-shadow: inset -1px -1px 0 0.25px color.$space-cadet;
+    background-color: color.$medium-blue;
+
+    @include breakpoint.from(small) {
+      border-top: none;
+    }
+    @include breakpoint.from(large) {
+      border-right: solid 0.25px color.$space-cadet;
+    }
+  }
+}
+.comments-swiper
+{
+  @include grid.dimension($property: padding-top, $units: 10);
+}
+.comments-swiper-container
+{
+  @include grid.dimension($property: width, $from: 1, $to: 64, $max: 100vw);
+  display:grid;
+  grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 12, $to: 48) 1fr;
+
+}
+.swiper-slider
+{
+  @include grid.dimension($property: padding-top, $units: 2);
+  @include grid.dimension($property: padding-bottom, $units: 3);
+  background-color: color.$medium-blue;
+  display: grid;
+  grid:1fr/1fr 4fr;
+}
+.slider-raiting
+{
+  @include grid.dimension($property: padding, $units: 3);
+  @include grid.dimension($property: padding-top, $units: 5);
+  display: grid;
+  grid: 3fr 0.3fr 2fr/1fr;
+  align-items: end;
+
+  p {
+    @include grid.dimension($property: font-size, $units: 3);
+    font-family: "Sofia Pro Soft" ,sans-serif;
+    font-weight: 700;
+    margin-bottom: 0px;
+  };
+    
+}
+
+
+  
+.slider-text
+{
+
 }

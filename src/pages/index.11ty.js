@@ -187,6 +187,17 @@ module.exports = class {
             )}</div>
             <div class="and-others-section-item"><a href="/portfolio/">view all cases</a></div>
       </div>
+      <section class="comments-swiper">
+        <div class="comments-swiper-container"> 
+          <div></div>
+          <div class="swiper-slider">
+            <div class="slider-raiting"><p>4.8</p>${await this.image('svg/stars-5.svg',)} ${await this.image('svg/clutch-title.svg',)}</div>
+            <div class="slider-text"></div>
+          </div>
+          <div></div>
+
+        </div>
+      </section>
 
       
       
