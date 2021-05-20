@@ -175,7 +175,7 @@ main {
 
   @include breakpoint.from(large) {
     position: relative;
-    @include grid.dimension($property: left, $units: -6);
+    @include grid.units($property: left, $count: -6);
     display: grid;
     grid: auto / grid.value($from: 1, $to: 38) grid.value($from: 39, $to: 42) grid.value(
         $from: 42,
@@ -328,8 +328,7 @@ main {
     @include breakpoint.from(small) {
       grid-area: 1/1/2/3;
       text-align: center;
-
-      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+      @include grid.units($property: font-size, $count: 2);
     }
     @include breakpoint.from(large) {
       text-align: left;
@@ -341,10 +340,12 @@ main {
     grid: auto/grid.value($from: 6, $to: 28) grid.value($from: 28, $to: 53);
   }
   @include breakpoint.from(large) {
-    grid: 1fr / grid.value($from: 5, $to: 27) 1fr grid.value($from: 27, $to: 36) grid.value(
+    grid:
+      1fr / grid.value($from: 5, $to: 27) 1fr grid.value($from: 27, $to: 36) grid.value(
         $from: 36,
         $to: 45
-      ) grid.value($from: 45, $to: 54) grid.value($from: 54, $to: 65);
+      )
+      grid.value($from: 45, $to: 54) grid.value($from: 54, $to: 65);
     @include grid.dimension($property: margin-left, $units: 3);
   }
 }
@@ -365,8 +366,8 @@ main {
     }
   }
   @include breakpoint.from(large) {
-    @include grid.dimension($property: height, $units: 10);
-    @include grid.dimension($property: width, $units: 10);
+    @include grid.units($property: height, $count: 10);
+    @include grid.units($property: width, $count: 10);
     box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
     border-bottom: solid 0.25px color.$space-cadet;
     &:nth-child(3) {
@@ -385,7 +386,7 @@ main {
       @include grid.dimension($property: font-size, $units: 1.8, $min: 12px);
     }
     @include breakpoint.from(large) {
-      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+      @include grid.units($property: font-size, $count: 0.8);
     }
   }
   &:last-child {
@@ -404,50 +405,10 @@ main {
 }
 .comments-swiper {
   @include grid.dimension($property: padding-top, $units: 10);
-}
-.slider-button {
-  z-index: 10;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1px color.$space-cadet;
-  cursor: pointer;
-  @include grid.dimension($property: width, $units: 3);
-  @include grid.dimension($property: height, $units: 3);
-  margin: auto;
-  display: block;
-
-  &:hover {
-    background-color: color.$medium-blue;
-  }
-}
-.prev {
-  position: relative;
-  top: 50%;
-  right: 5%;
-
-  transform: rotate(45deg) translate(-10%, -80%);
-  border-color: hsla(0, 0%, 100%, 0) hsla(0, 0%, 100%, 0) #fff #fff;
-  display: block;
-  margin: auto;
-  @include grid.dimension($property: height, $units: 0.5);
-  @include grid.dimension($property: width, $units: 0.5);
-
-  border-width: 2px;
-  border-style: solid;
-}
-.next {
-  position: relative;
-  top: 50%;
-  margin: auto;
-  left: 5%;
-  transform: rotate(-45deg) translate(-10%, -80%);
-  border-color: hsla(0, 0%, 100%, 0) #fff #fff hsla(0, 0%, 100%, 0);
-  display: block;
-  @include grid.dimension($property: height, $units: 0.5);
-  @include grid.dimension($property: width, $units: 0.5);
-  border-width: 2px;
-  border-style: solid;
+  @include grid.dimension($property: margin-left, $units: -8);
 }
 .comments-swiper-container {
+  @extend %center-block;
   @include grid.dimension($property: width, $from: 1, $to: 64, $max: 100vw);
   display: grid;
   grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 5, $to: 48) 1fr;
@@ -472,7 +433,48 @@ main {
     margin-bottom: 0px;
   }
 }
+.slider-button {
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px color.$space-cadet;
+  cursor: pointer;
+  @include grid.dimension($property: width, $units: 3);
+  @include grid.dimension($property: height, $units: 3);
+  margin: auto;
+  display: block;
 
+  &:hover {
+    background-color: color.$medium-blue;
+  }
+}
+.prev {
+  position: relative;
+  top: 10%;
+  right: 5%;
+
+  transform: rotate(45deg) translate(-10%, -80%);
+  border-color: hsla(0, 0%, 100%, 0) hsla(0, 0%, 100%, 0) #fff #fff;
+  display: block;
+  @extend %center-block;
+  @include grid.dimension($property: height, $units: 0.5);
+  @include grid.dimension($property: width, $units: 0.5);
+
+  border-width: 2px;
+  border-style: solid;
+}
+.next {
+  position: relative;
+  top: 10%;
+  @extend %center-block;
+  left: 5%;
+  transform: rotate(-45deg) translate(-10%, -80%);
+  border-color: hsla(0, 0%, 100%, 0) #fff #fff hsla(0, 0%, 100%, 0);
+  display: block;
+  @include grid.dimension($property: height, $units: 0.5);
+  @include grid.dimension($property: width, $units: 0.5);
+  border-width: 2px;
+  border-style: solid;
+}
 .slider-text {
   @include grid.dimension($property: padding-left, $units: 0.5);
   @include grid.dimension($property: padding-right, $units: 3);
@@ -489,8 +491,24 @@ main {
     line-height: 1.25;
   }
   p {
-    @include grid.dimension($property: margin-top, $units: 1);
+    @include grid.dimension($property: margin-top, $units: 5);
     @include grid.dimension($property: font-size, $units: 0.8);
     font-weight: 400;
   }
+}
+.swiper-pagination {
+  display: flex;
+  flex-direction: row;
+  margin: grid.value($from: 1, $to: 1.5) auto;
+  @extend %center-block;
+  @include grid.dimension($property: gap, $units: 0.5);
+  align-self: center;
+  @include grid.dimension($property: width, $units: 5);
+}
+
+.swiper-pagination-bullet {
+  @include grid.dimension($property: height, $units: 0.5);
+  @include grid.dimension($property: width, $units: 0.5);
+  background-color: color.$white;
+  border-radius: 50%;
 }

@@ -192,8 +192,8 @@ module.exports = class {
       <section class="comments-swiper">
         <div class="comments-swiper-container"> 
           <div class="slider-button">
-            <div class="prev" role="button" aria-label="Previous slide"></div>
-          </div>
+            <button class="prev" aria-label="Previous slide"></div>
+            </div>
           <div class="swiper-slider">
               <div class="slider-raiting"><p class="black-text">4.8</p>${await this.image(
                 'svg/stars-5.svg',
@@ -207,11 +207,14 @@ module.exports = class {
               </div>
             </div>
             <div class="slider-button">
-                <div class="next" role="button" aria-label="Next slide">
-
-                </div>
+                <button class="next" aria-label="Next slide"></div>
           </div>
         </div>
+        <div class="swiper-pagination"><button class="swiper-pagination-bullet"></button>
+        <<button class="swiper-pagination-bullet"></button>
+        <button class="swiper-pagination-bullet"></button>
+        <button class="swiper-pagination-bullet"></button>
+        <button class="swiper-pagination-bullet"></button></div>
       </section>
 
       
