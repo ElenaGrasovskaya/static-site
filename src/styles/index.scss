@@ -405,32 +405,77 @@ main {
 }
 .comments-swiper {
   @include grid.dimension($property: padding-top, $units: 10);
-  @include grid.dimension($property: margin-left, $units: -8);
+  @include grid.dimension($property: margin-left, $units: -7);
 }
 .comments-swiper-container {
   @extend %center-block;
   @include grid.dimension($property: width, $from: 1, $to: 64, $max: 100vw);
-  display: grid;
-  grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 5, $to: 48) 1fr;
+
+  @include breakpoint.from(small) {
+    display: flex;
+    flex-direction: row;
+  }
+  @include breakpoint.from(large) {
+    display: grid;
+    grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 5, $to: 48) 1fr;
+  }
 }
 .swiper-slider {
   @include grid.dimension($property: padding-top, $units: 2);
   @include grid.dimension($property: padding-bottom, $units: 3);
   background: color.$slider-gradient;
-  display: grid;
-  grid: 1fr/1fr 4fr;
+
+  @include breakpoint.from(small) {
+    display: flex;
+    flex-direction: column;
+    @include grid.dimension($property: margin, $units: 6);
+    @include grid.dimension($property: margin-bottom, $units: 1);
+  }
+  @include breakpoint.from(large) {
+    display: grid;
+    grid: 1fr/1fr 4fr;
+    margin: 0;
+  }
 }
 .slider-raiting {
-  @include grid.dimension($property: padding, $units: 3);
-  @include grid.dimension($property: padding-top, $units: 4);
   display: grid;
-  grid: 3fr 0.3fr 2fr/1fr;
   align-items: end;
   border-right: solid 1px color.$space-cadet;
+  @include breakpoint.from(small) {
+    border: none;
+    grid: grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
+        $from: 1,
+        $to: 4
+      ) / 1fr;
+    @include grid.dimension($property: padding, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 0.5);
+  }
+  @include breakpoint.from(large) {
+    border-right: solid 1px color.$space-cadet;
+    grid: 3fr 0.3fr 2fr/1fr;
+    @include grid.units($property: padding, $count: 3);
+    @include grid.units($property: padding-top, $count: 1);
+  }
 
   p {
-    @include grid.dimension($property: font-size, $units: 3.3);
     margin-bottom: 0px;
+    margin-top: 0px;
+    @extend %center-block;
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: font-size, $units: 3.8);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: font-size, $count: 3.3);
+    }
+  }
+  svg {
+    @include breakpoint.from(small) {
+      width: 20%;
+      margin: 0 auto;
+    }
+    @include breakpoint.from(large) {
+      width: 100%;
+    }
   }
 }
 .slider-button {
@@ -441,17 +486,21 @@ main {
   @include grid.dimension($property: width, $units: 3);
   @include grid.dimension($property: height, $units: 3);
   margin: auto;
-  display: block;
 
   &:hover {
     background-color: color.$medium-blue;
+  }
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: block;
   }
 }
 .prev {
   position: relative;
   top: 10%;
   right: 5%;
-
   transform: rotate(45deg) translate(-10%, -80%);
   border-color: hsla(0, 0%, 100%, 0) hsla(0, 0%, 100%, 0) #fff #fff;
   display: block;
@@ -479,36 +528,85 @@ main {
   @include grid.dimension($property: padding-left, $units: 0.5);
   @include grid.dimension($property: padding-right, $units: 3);
   svg {
-    @include grid.dimension($property: height, $units: 2.5);
-    @include grid.dimension($property: width, $units: 2.5);
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: height, $units: 3);
+      @include grid.dimension($property: width, $units: 3);
+      @include grid.dimension($property: margin-left, $units: 2);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: height, $count: 2.5);
+      @include grid.units($property: width, $count: 2.5);
+      margin: none;
+    }
   }
   h6 {
-    @include grid.dimension($property: margin-top, $units: 1);
-    @include grid.dimension($property: margin-bottom, $units: 3);
     font-family: Gramatika, sans-serif;
     font-weight: 700;
-    @include grid.dimension($property: font-size, $units: 1.8);
     line-height: 1.25;
+
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: margin, $units: 2);
+      @include grid.dimension($property: font-size, $units: 2.5);
+    }
+    @include breakpoint.from(large) {
+      @include grid.dimension($property: margin-top, $units: 1);
+      @include grid.dimension($property: margin-bottom, $units: 3);
+      @include grid.units($property: font-size, $count: 1.7);
+    }
   }
   p {
     @include grid.dimension($property: margin-top, $units: 5);
     @include grid.dimension($property: font-size, $units: 0.8);
     font-weight: 400;
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: font-size, $units: 1.2);
+      @include grid.dimension($property: margin-left, $units: 2);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: font-size, $count: 0.8);
+    }
   }
 }
 .swiper-pagination {
   display: flex;
   flex-direction: row;
-  margin: grid.value($from: 1, $to: 1.5) auto;
+  margin: grid.value($from: 1, $to: 2) auto;
   @extend %center-block;
-  @include grid.dimension($property: gap, $units: 0.5);
+  @include grid.dimension($property: gap, $units: 1);
   align-self: center;
-  @include grid.dimension($property: width, $units: 5);
+  @include grid.dimension($property: width, $units: 1);
+
+  &-bullet
+  {
+    width: 10px;
+    height: 10px;
+    background-color: color.$white;
+    border-radius: 50%;
+    opacity: 0.2;
+    &-active {
+      opacity: 1;
+      background-color: color.$white;
+      border-radius: 50%;
+    }
+  }
 }
 
-.swiper-pagination-bullet {
-  @include grid.dimension($property: height, $units: 0.5);
-  @include grid.dimension($property: width, $units: 0.5);
-  background-color: color.$white;
-  border-radius: 50%;
+.carousel
+{
+  @include grid.dimension($property: margin-top, $units: 5);
+  @include grid.dimension($property: width, $units: 120);
+  @include grid.dimension($property: height, $units: 30);
+  justify-self: center;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content:center;
+  @include grid.dimension($property: gap, $units: 2);
+  
+  &-item
+  {
+    max-width: 100%;
+    height: auto;
+    flex: 0 0 32%;
+
+  }
 }

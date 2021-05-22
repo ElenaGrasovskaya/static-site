@@ -191,9 +191,9 @@ module.exports = class {
 
       <section class="comments-swiper">
         <div class="comments-swiper-container"> 
-          <div class="slider-button">
-            <button class="prev" aria-label="Previous slide"></div>
-            </div>
+          <button class="slider-button">
+            <div class="prev" aria-label="Previous slide"></div>
+            </button>
           <div class="swiper-slider">
               <div class="slider-raiting"><p class="black-text">4.8</p>${await this.image(
                 'svg/stars-5.svg',
@@ -203,18 +203,27 @@ module.exports = class {
                 'svg/quotes.svg',
               )}<h6>They perfectly met my expectations — 
                 working with them felt like an extension of my in-house team.</h6>
-                <p class="black-text">&#8212;Alexander Kozma Ingal, Room Six</p>
+                <p class="black-text">&#8212; Alexander Kozma Ingal, Room Six</p>
               </div>
             </div>
-            <div class="slider-button">
-                <button class="next" aria-label="Next slide"></div>
-          </div>
+            <button class="slider-button">
+                <div class="next" aria-label="Next slide"></div>
+              </button>
         </div>
-        <div class="swiper-pagination"><button class="swiper-pagination-bullet"></button>
-        <<button class="swiper-pagination-bullet"></button>
+        <div class="swiper-pagination"><button class="swiper-pagination-bullet-active"></button>
+        <button class="swiper-pagination-bullet"></button>
         <button class="swiper-pagination-bullet"></button>
         <button class="swiper-pagination-bullet"></button>
         <button class="swiper-pagination-bullet"></button></div>
+      </section>
+      <h2 class="big-title"><span>Creative Atmosphere</span></h2>
+      <section class="carousel">
+        <div class="carousel-item">${await this.image('svg/image 28.svg')}</div>
+        <div class="carousel-item">${await this.image('svg/image 28.svg')}</div>
+        <div class="carousel-item">${await this.image('svg/image 30.svg')}</div>
+        <div class="carousel-item">${await this.image('svg/image 28.svg')}</div>
+        <div class="carousel-item">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </div>
+
       </section>
 
       
