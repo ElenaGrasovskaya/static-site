@@ -225,7 +225,34 @@ module.exports = class {
         <div class="carousel-item">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </div>
 
       </section>
-
+      <section class="blog-section">
+        <div class="blog-section-container">
+          <div class="blog-section-container-left-column">
+            <div class="blog-logo">${await this.image('svg/B.svg')}</div>
+          <p>Front-end & back-end expertise from development to delivery</p>
+          <a class="mail-link" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a>
+        
+        </div>
+          
+          <div class="blog-section-container-right-column">
+              <div class="blog-section-container-right-column-block">
+                <img src="https://www.halo-lab.com/static/24b7cfd96da65780863425337ab691cc/6bbb8/Cover.webp">
+                <p><span>#AGENCY</span><br>How to check the website before releasing it?</p>
+                </div>
+              <div class="blog-section-container-right-column-block">
+                <img src="https://api.halo-lab.com/wp-content/uploads/2020/08/Done.png">
+                <p><span>#NEWS</span><br>Halo Lab Named Top Ukranian B2B Company</p>
+              </div>
+              <div class="blog-section-container-right-column-block">
+                <img src="https://api.halo-lab.com/wp-content/uploads/2020/07/Branding.png">
+                <p><span>#AGENCY</span><br>Brand analysis: second step to the brand identity</p> 
+              </div>
+          </div>
+          
+        </div>
+        <a class="mail-link" id="hide" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a> 
+        
+      </section>
       
       
     </main>

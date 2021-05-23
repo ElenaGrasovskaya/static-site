@@ -443,10 +443,12 @@ main {
   border-right: solid 1px color.$space-cadet;
   @include breakpoint.from(small) {
     border: none;
-    grid: grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
+    grid:
+      grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
         $from: 1,
         $to: 4
-      ) / 1fr;
+      )
+      / 1fr;
     @include grid.dimension($property: padding, $units: 3);
     @include grid.dimension($property: padding-top, $units: 0.5);
   }
@@ -576,8 +578,7 @@ main {
   align-self: center;
   @include grid.dimension($property: width, $units: 1);
 
-  &-bullet
-  {
+  &-bullet {
     width: 10px;
     height: 10px;
     background-color: color.$white;
@@ -591,22 +592,155 @@ main {
   }
 }
 
-.carousel
-{
+.carousel {
   @include grid.dimension($property: margin-top, $units: 5);
   @include grid.dimension($property: width, $units: 120);
   @include grid.dimension($property: height, $units: 30);
   justify-self: center;
   display: inline-flex;
   flex-direction: row;
-  justify-content:center;
+  justify-content: center;
   @include grid.dimension($property: gap, $units: 2);
-  
-  &-item
-  {
+
+  &-item {
     max-width: 100%;
     height: auto;
     flex: 0 0 32%;
-
   }
 }
+.blog-section {
+  @include grid.dimension($property: margin-top, $units: 5);
+  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  &-container {
+    @include breakpoint.from(small) {
+      display: flex;
+      flex-direction: column;
+      gap: none;
+    }
+    @include breakpoint.from(large) {
+      display: grid;
+      grid: 1fr/2fr 3fr;
+      @include grid.dimension($property: gap, $units: 5);
+    }
+
+    &-left-column {
+      p {
+        font-weight: 700;
+        @include breakpoint.from(small) {
+          padding: none;
+          @include grid.dimension($property: font-size, $units: 2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 1.8);
+        }
+      }
+      span {
+        color: color.$white;
+        font-weight: 600;
+        line-height: 1.4em;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        @include grid.dimension($property: font-size, $units: 0.8);
+
+        @include breakpoint.from(small) {
+          display: none;
+        }
+        @include breakpoint.from(large) {
+          display: inline;
+        }
+      }
+    }
+
+    &-right-column {
+      display: grid;
+      grid: 1fr 1fr 1fr/1fr;
+
+      @include breakpoint.from(small) {
+        gap: none;
+      }
+      @include breakpoint.from(large) {
+        @include grid.dimension($property: gap, $units: 2);
+      }
+
+      &-block {
+        display: grid;
+        grid: grid.value($from: 1, $to: 10) / 2fr 3fr;
+
+        @include breakpoint.from(small) {
+          display: flex;
+          flex-direction: column;
+          border-bottom: none;
+          gap: none;
+        }
+        @include breakpoint.from(large) {
+          display: grid;
+          @include grid.dimension($property: gap, $units: 2);
+          border-bottom: 1px solid color.$space-cadet;
+        }
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+      img {
+        border: 1px solid color.$space-cadet;
+
+        @include breakpoint.from(small) {
+          margin: none;
+        }
+        @include breakpoint.from(large) {
+          @include grid.dimension($property: margin-left, $units: 1);
+        }
+      }
+      span {
+        font-family: Gramatika, sans-serif;
+        font-weight: 700;
+        margin-bottom: 0.7em;
+        opacity: 0.5;
+        text-transform: uppercase;
+
+        @include breakpoint.from(small) {
+          @include grid.dimension($property: font-size, $units: 1.2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 0.8);
+        }
+      }
+      p {
+        margin-top: none;
+
+        @include breakpoint.from(small) {
+          @include grid.dimension($property: font-size, $units: 2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 1.2);
+        }
+      }
+    }
+  }
+}
+.blog-logo {
+  background-color: color.$medium-blue;
+  border-radius: 50%;
+  @include grid.dimension($property: padding, $units: 1.2);
+  @include grid.dimension($property: width, $units: 4);
+  @include grid.dimension($property: height, $units: 4);
+
+  svg {
+    z-index: 10;
+  }
+}
+#hide {
+  position: relative;
+  @include grid.dimension($property: top, $units: -8);
+
+  span {
+    color: color.$white;
+    @include breakpoint.from(small) {
+      display: inline-block;
+    }
+    @include breakpoint.from(large) {
+      display: none;
+    }
+  }
+}
+
