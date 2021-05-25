@@ -26,15 +26,15 @@ module.exports = class {
       <h1 class="big-title">Design-driven<br><span>development of<br>your</span> web products<br><span>for years<span></h1>
       <div class="advantage-section">
           <div class="advantage-section-item">
-              ${await this.image('svg/upwork-icon.svg')}        
+              ${await this.image('index/svg/upwork-icon.svg')}        
               <p class="grey-text">Awarded as Best Design & Creative</p>
             </div>
             <div class="advantage-section-item">
-              ${await this.image('svg/dribbble-icon.svg')}   
+              ${await this.image('index/svg/dribbble-icon.svg')}   
               <p class="grey-text">We regularly hit Top-5 Trending Teams</p>
             </div>
           <div class="advantage-section-item">
-              ${await this.image('svg/clutch-icon.svg')}   
+              ${await this.image('index/svg/clutch-icon.svg')}   
             <p class="grey-text">Top User Experience Agency</p>
           </div>
       </div>
@@ -54,51 +54,51 @@ module.exports = class {
       <a  class= "dribbble-link-animated" href="https://www.dribbble.com/halolab" rel="noopener noreferrer">
         <div class = "dribbble-logo-animated-back">
         <div class = "dribbble-logo-animated-front">${await this.image(
-          'svg/dribbble-red.svg',
+          'index/svg/dribbble-red.svg',
         )}</div>
         </div>
       </a>
       <div class="recent-works-container">
         <div class="recent-works-block">
           <div class = "recent-works-item">${await this.image(
-            'png/image 28.png',
+            'index/png/image 28.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 27.png',
+            'index/png/image 27.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 29.png',
+            'index/png/image 29.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 30.png',
-          )}</div>
-        </div>
-        <div class="recent-works-block">
-          <div class = "recent-works-item">${await this.image(
-            'png/image 28.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'png/image 27.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'png/image 29.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'png/image 30.png',
+            'index/png/image 30.png',
           )}</div>
         </div>
         <div class="recent-works-block">
           <div class = "recent-works-item">${await this.image(
-            'png/image 28.png',
+            'index/png/image 28.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 27.png',
+            'index/png/image 27.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 29.png',
+            'index/png/image 29.png',
           )}</div>
           <div class = "recent-works-item">${await this.image(
-            'png/image 30.png',
+            'index/png/image 30.png',
+          )}</div>
+        </div>
+        <div class="recent-works-block">
+          <div class = "recent-works-item">${await this.image(
+            'index/png/image 28.png',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'index/png/image 27.png',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'index/png/image 29.png',
+          )}</div>
+          <div class = "recent-works-item">${await this.image(
+            'index/png/image 30.png',
           )}</div>
         </div>
       </div>
@@ -106,11 +106,11 @@ module.exports = class {
       <h2 class="big-title"><span>Projects</span></h2>
       <div class="projects-section">
           <div class="projects-section-image">
-          ${await this.image('jpg/project1.jpg')}
+          ${await this.image('index/jpg/project1.jpg')}
           <div class="logo-list"> ${await this.image(
-            'svg/mashable.svg',
-          )}  ${await this.image('svg/kickstarter.svg')}  ${await this.image(
-      'svg/huffpost.svg',
+            'index/svg/mashable.svg',
+          )}  ${await this.image('index/svg/kickstarter.svg')}  ${await this.image(
+      'index/svg/huffpost.svg',
     )}</div>
             
           </div>
@@ -119,7 +119,7 @@ module.exports = class {
               <p class="black-text">Reinvented bedding cutting price for 50%</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">  
-                <div class="portrait">${await this.image('png/face1.png')}</div>
+                <div class="portrait">${await this.image('index/png/face1.png')}</div>
                 <div><span class="black-text">Unwavering expertise!</span><br>
                     <span class="thin-grey-text">Marshall Haas, CEO</span>
                   </div>
@@ -133,7 +133,7 @@ module.exports = class {
               <p class="black-text">Game Analytics wins TechCrunch Disrupt & Raise $2.6M</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">
-                <div class="portrait">${await this.image('png/face2.png')}</div>
+                <div class="portrait">${await this.image('index/png/face2.png')}</div>
                 <div><span class="black-text">Pro and creative!</span><br>
                     <span class="thin-grey-text">Bogdan Suchyk, CEO</span>
                   </div>
@@ -142,10 +142,10 @@ module.exports = class {
 
             </div>
             <div class="projects-section-image-reverse">
-              ${await this.image('jpg/project2.jpg')}
+              ${await this.image('index/jpg/project2.jpg')}
               <div class="logo-list"> ${await this.image(
                 'svg/forbes.svg',
-              )}  ${await this.image('svg/techcrunch.svg')}  ${await this.image(
+              )}  ${await this.image('index/svg/techcrunch.svg')}  ${await this.image(
       'svg/vc.ru.svg',
     )} ${await this.image('svg/angellist.svg')}</div>
             
@@ -153,12 +153,12 @@ module.exports = class {
       </div>
       <div class="projects-section">
           <div class="projects-section-image">
-          ${await this.image('jpg/project3.jpg')}
+          ${await this.image('index/jpg/project3.jpg')}
           <div class="logo-list"> ${await this.image(
             'svg/forbes.svg',
-          )}  ${await this.image('svg/techcrunch.svg')}  ${await this.image(
+          )}  ${await this.image('index/svg/techcrunch.svg')}  ${await this.image(
       'svg/mashable.svg',
-    )} ${await this.image('svg/indiegogo.svg')}</div>
+    )} ${await this.image('index/svg/indiegogo.svg')}</div>
             
           </div>
             <div class="projects-section-text">
@@ -166,7 +166,7 @@ module.exports = class {
               <p class="black-text">Indiegogo superstar smart clock which ease your life</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">
-                <div class="portrait">${await this.image('png/face3.png')}</div>
+                <div class="portrait">${await this.image('index/png/face3.png')}</div>
                 <div><span class="black-text">They know what to do!</span><br>
                     <span class="thin-grey-text">Anton Glance, CEO</span>
                   </div>
@@ -177,13 +177,13 @@ module.exports = class {
             <p class="black-text">And others</p>
 
             <div class="and-others-section-item">${await this.image(
-              'svg/auth0.svg',
+              'index/svg/auth0.svg',
             )}</div>
             <div class="and-others-section-item">${await this.image(
-              'svg/udemy.svg',
+              'index/svg/udemy.svg',
             )}</div>
             <div class="and-others-section-item">${await this.image(
-              'svg/kkl-luzern.svg',
+              'index/svg/kkl-luzern.svg',
             )}</div>
             <div class="and-others-section-item"><a href="/portfolio/">view all cases</a></div>
       </div>
@@ -196,11 +196,11 @@ module.exports = class {
             </button>
           <div class="swiper-slider">
               <div class="slider-raiting"><p class="black-text">4.8</p>${await this.image(
-                'svg/stars-5.svg',
+                'index/svg/stars-5.svg',
               )} ${await this.image('svg/clutch-title.svg')}
              </div>
               <div class="slider-text">${await this.image(
-                'svg/quotes.svg',
+                'index/svg/quotes.svg',
               )}<h6>They perfectly met my expectations — 
                 working with them felt like an extension of my in-house team.</h6>
                 <p class="black-text">&#8212; Alexander Kozma Ingal, Room Six</p>
@@ -218,16 +218,15 @@ module.exports = class {
       </section>
       <h2 class="big-title"><span>Creative Atmosphere</span></h2>
       <section class="carousel">
-        <div class="carousel-item">${await this.image('png/carousel1.png')}</div>
-        <div class="carousel-item">${await this.image('png/carousel2.png')}</div>
-        <div class="carousel-item">${await this.image('png/carousel3.png')}</div>
-        <div class="carousel-item">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </div>
+        <div class="carousel-item">${await this.image('index/png/carousel1.png')}</div>
+        <div class="carousel-item">${await this.image('index/png/carousel2.png')}</div>
+        <div class="carousel-item">${await this.image('index/png/carousel3.png')}</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
 
       </section>
       <section class="blog-section">
         <div class="blog-section-container">
           <div class="blog-section-container-left-column">
-            <div class="blog-logo">${await this.image('svg/B.svg')}</div>
+            <div class="blog-logo">${await this.image('index/svg/B.svg')}</div>
           <p>Front-end & back-end expertise from development to delivery</p>
           <a class="mail-link" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a>
         
@@ -235,15 +234,15 @@ module.exports = class {
           
           <div class="blog-section-container-right-column">
               <div class="blog-section-container-right-column-block">
-              ${await this.image('png/check-site.png')}
+              ${await this.image('index/png/check-site.png')}
                 <p><span>#AGENCY</span><br>How to check the website before releasing it?</p>
                 </div>
               <div class="blog-section-container-right-column-block">
-              ${await this.image('png/red-planet.png')}
+              ${await this.image('index/png/red-planet.png')}
                 <p><span>#NEWS</span><br>Halo Lab Named Top Ukranian B2B Company</p>
               </div>
               <div class="blog-section-container-right-column-block">
-              ${await this.image('png/blue-planet.png')}
+              ${await this.image('index/png/blue-planet.png')}
                 <p><span>#AGENCY</span><br>Brand analysis: second step to the brand identity</p> 
               </div>
           </div>

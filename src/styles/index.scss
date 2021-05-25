@@ -203,6 +203,9 @@ main {
 
       object-fit: cover;
       object-position: center;
+      width: 100%;
+      position: relative;
+      left: 0px;
 
       @include breakpoint.from(small) {
         width: auto;
@@ -228,6 +231,7 @@ main {
   @include grid.dimension($property: height, $units: 5);
   @include grid.dimension($property: padding-right, $units: 4);
   @include grid.dimension($property: padding-left, $units: 4);
+  display: none;
   @include breakpoint.from(small) {
     display: none;
   }
@@ -680,6 +684,8 @@ main {
 .blog-section {
   @include grid.dimension($property: margin-top, $units: 5);
   @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @extend %center-block;
+
   &-container {
     @include breakpoint.from(small) {
       display: flex;
