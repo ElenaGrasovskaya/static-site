@@ -134,11 +134,22 @@ main {
   @include grid.dimension($property: width, $units: 40);
   @include grid.dimension($property: height, $units: 15);
   @include grid.dimension($property: gap, $units: 1);
-  grid: repeat(3, 1fr) / repeat(10, 1fr);
+  grid: grid.value($from: 1, $to: 5) grid.value($from: 6, $to: 10) grid.value(
+      $from: 10,
+      $to: 15
+    ) / repeat(10, 1fr);
 }
 .recent-works-item {
-  overflow: hidden;
-  object-fit: cover;
+  picture {
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
   &:nth-child(1) {
     grid-column-start: 1;
     grid-column-end: 7;
@@ -177,14 +188,35 @@ main {
     position: relative;
     @include grid.units($property: left, $count: -6);
     display: grid;
-    grid: auto / grid.value($from: 1, $to: 38) grid.value($from: 39, $to: 42) grid.value(
-        $from: 42,
-        $to: 64
-      );
+    grid: grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 38) grid.value(
+        $from: 39,
+        $to: 42
+      ) grid.value($from: 42, $to: 64);
   }
 }
 
 .projects-section-image {
+  picture {
+    img {
+      max-width: 100%;
+      max-height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      @include breakpoint.from(small) {
+        width: auto;
+        overflow: visible;
+        height: fit-content;
+      }
+      @include breakpoint.from(large) {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+      }
+    }
+  }
+
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -253,13 +285,16 @@ main {
 
 .portrait {
   display: inline-block;
-  @include grid.dimension($property: padding-top, $units: 0.3);
-  @include grid.dimension($property: top, $units: 0.5);
+  @extend %center-block;
   border-radius: 50%;
   background-color: lightgrey;
   @include grid.dimension($property: width, $units: 5);
   @include grid.dimension($property: height, $units: 5);
   overflow: hidden;
+  img {
+    @include grid.dimension($property: width, $units: 5);
+    @include grid.dimension($property: height, $units: 5);
+  }
 }
 
 .projects-section-reverse {
@@ -273,13 +308,33 @@ main {
   @include breakpoint.from(large) {
     position: relative;
     display: grid;
-    grid: auto / grid.value($from: 1, $to: 21) grid.value($from: 22, $to: 26) grid.value(
-        $from: 27,
-        $to: 64
-      );
+    grid: grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 21) grid.value(
+        $from: 22,
+        $to: 26
+      ) grid.value($from: 27, $to: 64);
   }
 }
 .projects-section-image-reverse {
+  picture {
+    img {
+      max-width: 100%;
+      max-height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      @include breakpoint.from(small) {
+        width: auto;
+        overflow: visible;
+        height: fit-content;
+      }
+      @include breakpoint.from(large) {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+      }
+    }
+  }
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -593,9 +648,9 @@ main {
 }
 
 .carousel {
-  @include grid.dimension($property: margin-top, $units: 5);
-  @include grid.dimension($property: width, $units: 120);
-  @include grid.dimension($property: height, $units: 30);
+  @include grid.dimension($property: margin-top, $units: 2);
+  @include grid.dimension($property: height, $units: 20);
+  @include grid.dimension($property: width, $units: 64);
   justify-self: center;
   display: inline-flex;
   flex-direction: row;
@@ -603,9 +658,23 @@ main {
   @include grid.dimension($property: gap, $units: 2);
 
   &-item {
-    max-width: 100%;
-    height: auto;
-    flex: 0 0 32%;
+    flex: min-content;
+
+    picture {
+      img {
+        @include grid.dimension($property: height, $units: 20);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+        @include breakpoint.from(small) {
+          width: auto;
+        }
+        @include breakpoint.from(large) {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
   }
 }
 .blog-section {
@@ -743,4 +812,3 @@ main {
     }
   }
 }
-
