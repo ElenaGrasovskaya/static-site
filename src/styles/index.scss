@@ -9,12 +9,14 @@
 main {
   margin-right: auto;
   margin-left: auto;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @include grid.dimension($property: max-width, $from: 1, $to: 65, $max: 100vw);
+  overflow-x: hidden;
 }
 
 .advantage-section {
   display: grid;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @include grid.dimension($property: max-width, $from: 5, $to: 54, $max: 90vw);
+  @extend %center-block;
   @include grid.dimension($property: margin-bottom, $units: 7);
 
   @include breakpoint.from(small) {
@@ -62,8 +64,9 @@ main {
 }
 
 .aim-section {
+  @include grid.dimension($property: max-width, $from: 5, $to: 54, $max: 90vw);
+  @extend %center-block;
   display: grid;
-  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
   @include grid.dimension($property: margin-bottom, $units: 7);
   @include grid.dimension($property: gap, $units: 4);
 
@@ -86,9 +89,10 @@ main {
 }
 
 .dribbble-link-animated {
+  overflow: visible;
   position: relative;
-  @include grid.dimension($property: left, $units: 45);
-  @include grid.dimension($property: top, $units: -12);
+  @include grid.dimension($property: left, $units: 48);
+  @include grid.dimension($property: top, $units: -15);
   display: none;
 
   @include breakpoint.from(small) {
@@ -122,22 +126,22 @@ main {
 }
 .recent-works-container {
   position: relative;
-  @include grid.dimension($property: left, $units: -20);
+  left: 0px;
   top: -2vw;
-  display: grid;
-  grid: auto / 1fr 1fr 1fr;
-  @include grid.dimension($property: gap, $units: 1);
+  @include grid.dimension($property: margin-bottom, $units: 12);
 }
 
 .recent-works-block {
   display: grid;
-  @include grid.dimension($property: width, $units: 40);
+
   @include grid.dimension($property: height, $units: 15);
   @include grid.dimension($property: gap, $units: 1);
-  grid: grid.value($from: 1, $to: 5) grid.value($from: 6, $to: 10) grid.value(
+  grid:
+    grid.value($from: 1, $to: 5) grid.value($from: 6, $to: 10) grid.value(
       $from: 10,
       $to: 15
-    ) / repeat(10, 1fr);
+    )
+    / repeat(16, 1fr);
 }
 .recent-works-item {
   picture {
@@ -146,7 +150,7 @@ main {
       max-height: 100%;
       overflow: hidden;
       object-fit: cover;
-      object-position: center;
+      object-position: center center;
     }
   }
 
@@ -174,56 +178,52 @@ main {
     grid-row-start: 3;
     grid-row-end: 4;
   }
+  &:nth-child(5) {
+    grid-column-start: 11;
+    grid-column-end: 17;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
 }
 .projects-section {
   @include grid.dimension($property: margin-top, $units: 10);
-
-  @include breakpoint.from(small) {
-    display: flex;
-    flex-direction: column;
-    @include grid.dimension($property: left, $units: 0);
-  }
+  @include grid.dimension($property: margin-bottom, $units: 10);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   @include breakpoint.from(large) {
     position: relative;
-    @include grid.units($property: left, $count: -6);
     display: grid;
-    grid: grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 38) grid.value(
+    grid:
+      grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 38) grid.value(
         $from: 39,
         $to: 42
-      ) grid.value($from: 42, $to: 64);
+      )
+      grid.value($from: 42, $to: 64);
   }
 }
 
 .projects-section-image {
-  picture {
-    img {
-      max-width: 100%;
-      max-height: 100%;
-
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      position: relative;
-      left: 0px;
-
-      @include breakpoint.from(small) {
-        width: auto;
-        overflow: visible;
-        height: fit-content;
-      }
-      @include breakpoint.from(large) {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-      }
-    }
-  }
-
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+
+  picture {
+    img {
+      @include grid.dimension($property: max-height, $units: 46);
+
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      overflow: visible;
+    }
+  }
 }
 .logo-list {
   flex-direction: row-reverse;
@@ -245,17 +245,20 @@ main {
   }
 }
 .projects-section-text {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  z-index: 10;
+  @include grid.dimension($property: padding, $units: 2);
   @include breakpoint.from(small) {
     margin: none;
     padding: none;
   }
   @include breakpoint.from(large) {
-    @include grid.dimension($property: margin-top, $units: 3);
-    @include grid.dimension($property: padding-top, $units: 3);
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    @include grid.dimension($property: margin-top, $units: 2);
+    @include grid.dimension($property: padding-top, $units: 2);
   }
   span {
     color: color.$white;
@@ -302,41 +305,37 @@ main {
 }
 
 .projects-section-reverse {
-  @include grid.dimension($property: margin-top, $units: 10);
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  right: 0px;
+  left: 0px;
+  position: relative;
 
-  @include breakpoint.from(small) {
-    display: flex;
-    flex-direction: column-reverse;
-    @include grid.dimension($property: left, $units: 0);
-  }
   @include breakpoint.from(large) {
     position: relative;
     display: grid;
-    grid: grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 21) grid.value(
+    grid:
+      grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 21) grid.value(
         $from: 22,
         $to: 26
-      ) grid.value($from: 27, $to: 64);
+      )
+      grid.value($from: 27, $to: 64);
   }
 }
 .projects-section-image-reverse {
   picture {
     img {
-      max-width: 100%;
-      max-height: 100%;
+      @include grid.dimension($property: max-height, $units: 46);
 
       object-fit: cover;
-      object-position: center;
-
-      @include breakpoint.from(small) {
-        width: auto;
-        overflow: visible;
-        height: fit-content;
-      }
-      @include breakpoint.from(large) {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-      }
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      overflow: visible;
     }
   }
   grid-column-start: 2;
@@ -347,6 +346,8 @@ main {
 .projects-section-text-reverse {
   z-index: 10;
   @include grid.dimension($property: padding-top, $units: 3);
+  @include grid.dimension($property: padding, $units: 2);
+
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -357,7 +358,6 @@ main {
   }
   @include breakpoint.from(large) {
     @include grid.dimension($property: margin-top, $units: 3);
-    @include grid.dimension($property: padding-top, $units: 3);
   }
   span {
     color: color.$white;
@@ -378,33 +378,40 @@ main {
 
 .and-others-section {
   @include grid.dimension($property: padding-top, $units: 5);
-  @include grid.dimension($property: width, $from: 5, $to: 53);
+  @include grid.dimension($property: max-width, $units: 30);
+  @extend %center-block;
   display: grid;
+  grid: auto/auto;
 
   p {
-    @include grid.dimension($property: font-size, $units: 1.5, $min: 12px);
+    @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    grid-area: 1/1/2/3;
+    text-align: center;
 
     @include breakpoint.from(small) {
-      grid-area: 1/1/2/3;
-      text-align: center;
-      @include grid.units($property: font-size, $count: 2);
+      @include grid.units($property: font-size, $count: 3);
     }
     @include breakpoint.from(large) {
       text-align: left;
-      width: 20%;
     }
   }
   @include breakpoint.from(small) {
-    @include grid.dimension($property: width, $from: 6, $to: 53);
-    grid: auto/grid.value($from: 6, $to: 28) grid.value($from: 28, $to: 53);
+    @include grid.dimension($property: max-width, $units: 44);
+
+    grid:
+      1fr grid.value($from: 1, $to: 22) grid.value($from: 1, $to: 22) / grid.value(
+        $from: 8,
+        $to: 29
+      )
+      grid.value($from: 30, $to: 51);
   }
   @include breakpoint.from(large) {
     grid:
-      1fr / grid.value($from: 5, $to: 27) 1fr grid.value($from: 27, $to: 36) grid.value(
-        $from: 36,
-        $to: 45
+      1fr / grid.value($from: 5, $to: 25) 1fr grid.value($from: 26, $to: 35) grid.value(
+        $from: 35,
+        $to: 44
       )
-      grid.value($from: 45, $to: 54) grid.value($from: 54, $to: 65);
+      grid.value($from: 44, $to: 53) grid.value($from: 53, $to: 64);
     @include grid.dimension($property: margin-left, $units: 3);
   }
 }
@@ -412,16 +419,31 @@ main {
 .and-others-section-item {
   padding: 25%;
   padding-top: 40%;
+  svg {
+    max-width: 80%;
+  }
+  @include grid.dimension($property: height, $units: 15);
+  @include grid.dimension($property: width, $units: 15);
+  box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+  &:nth-child(3) {
+    border-right: solid 0.25px color.$space-cadet;
+  }
+  &:nth-child(4) {
+    border-bottom: solid 0.25px color.$space-cadet;
+  }
 
   @include breakpoint.from(small) {
-    @include grid.dimension($property: height, $units: 23);
-    @include grid.dimension($property: width, $units: 23);
+    @include grid.dimension($property: height, $units: 22);
+    @include grid.dimension($property: width, $units: 22);
     box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
     &:nth-child(3) {
       border-right: solid 0.25px color.$space-cadet;
     }
     &:nth-child(4) {
       border-bottom: solid 0.25px color.$space-cadet;
+    }
+    svg {
+      max-width: 100%;
     }
   }
   @include breakpoint.from(large) {
@@ -463,17 +485,17 @@ main {
   }
 }
 .comments-swiper {
+  svg {
+    max-width: 70%;
+  }
   @include grid.dimension($property: padding-top, $units: 10);
-  @include grid.dimension($property: margin-left, $units: -7);
 }
 .comments-swiper-container {
   @extend %center-block;
   @include grid.dimension($property: width, $from: 1, $to: 64, $max: 100vw);
+  display: flex;
+  flex-direction: row;
 
-  @include breakpoint.from(small) {
-    display: flex;
-    flex-direction: row;
-  }
   @include breakpoint.from(large) {
     display: grid;
     grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 5, $to: 48) 1fr;
@@ -483,6 +505,10 @@ main {
   @include grid.dimension($property: padding-top, $units: 2);
   @include grid.dimension($property: padding-bottom, $units: 3);
   background: color.$slider-gradient;
+  display: flex;
+  flex-direction: column;
+  @include grid.dimension($property: margin, $units: 6);
+  @include grid.dimension($property: margin-bottom, $units: 1);
 
   @include breakpoint.from(small) {
     display: flex;
@@ -500,6 +526,15 @@ main {
   display: grid;
   align-items: end;
   border-right: solid 1px color.$space-cadet;
+  border: none;
+  grid:
+    grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
+      $from: 1,
+      $to: 4
+    )
+    / 1fr;
+  @include grid.dimension($property: padding, $units: 3);
+  @include grid.dimension($property: padding-top, $units: 0.5);
   @include breakpoint.from(small) {
     border: none;
     grid:
@@ -522,6 +557,7 @@ main {
     margin-bottom: 0px;
     margin-top: 0px;
     @extend %center-block;
+    @include grid.dimension($property: font-size, $units: 3.8);
     @include breakpoint.from(small) {
       @include grid.dimension($property: font-size, $units: 3.8);
     }
@@ -530,6 +566,8 @@ main {
     }
   }
   svg {
+    width: 20%;
+    margin: 0 auto;
     @include breakpoint.from(small) {
       width: 20%;
       margin: 0 auto;
@@ -547,6 +585,7 @@ main {
   @include grid.dimension($property: width, $units: 3);
   @include grid.dimension($property: height, $units: 3);
   margin: auto;
+  display: none;
 
   &:hover {
     background-color: color.$medium-blue;
@@ -589,6 +628,10 @@ main {
   @include grid.dimension($property: padding-left, $units: 0.5);
   @include grid.dimension($property: padding-right, $units: 3);
   svg {
+    @include grid.dimension($property: height, $units: 3);
+    @include grid.dimension($property: width, $units: 3);
+    @include grid.dimension($property: margin-left, $units: 2);
+
     @include breakpoint.from(small) {
       @include grid.dimension($property: height, $units: 3);
       @include grid.dimension($property: width, $units: 3);
@@ -604,6 +647,8 @@ main {
     font-family: Gramatika, sans-serif;
     font-weight: 700;
     line-height: 1.25;
+    @include grid.dimension($property: margin, $units: 2);
+    @include grid.dimension($property: font-size, $units: 2.5);
 
     @include breakpoint.from(small) {
       @include grid.dimension($property: margin, $units: 2);
@@ -617,10 +662,9 @@ main {
   }
   p {
     @include grid.dimension($property: margin-top, $units: 5);
-    @include grid.dimension($property: font-size, $units: 0.8);
+    @include grid.dimension($property: font-size, $units: 1.2);
     font-weight: 400;
     @include breakpoint.from(small) {
-      @include grid.dimension($property: font-size, $units: 1.2);
       @include grid.dimension($property: margin-left, $units: 2);
     }
     @include breakpoint.from(large) {
@@ -634,8 +678,7 @@ main {
   margin: grid.value($from: 1, $to: 2) auto;
   @extend %center-block;
   @include grid.dimension($property: gap, $units: 1);
-  align-self: center;
-  @include grid.dimension($property: width, $units: 1);
+  @include grid.dimension($property: width, $units: 10);
 
   &-bullet {
     width: 10px;
@@ -669,7 +712,7 @@ main {
         @include grid.dimension($property: height, $units: 20);
         overflow: hidden;
         object-fit: cover;
-        object-position: center;
+        object-position: center center;
         @include breakpoint.from(small) {
           width: auto;
         }
@@ -701,6 +744,7 @@ main {
     &-left-column {
       p {
         font-weight: 700;
+        @include grid.dimension($property: font-size, $units: 2);
         @include breakpoint.from(small) {
           padding: none;
           @include grid.dimension($property: font-size, $units: 2);
@@ -716,6 +760,7 @@ main {
         text-transform: uppercase;
         letter-spacing: 10px;
         @include grid.dimension($property: font-size, $units: 0.8);
+        display: none;
 
         @include breakpoint.from(small) {
           display: none;
@@ -738,8 +783,10 @@ main {
       }
 
       &-block {
-        display: grid;
-        grid: grid.value($from: 1, $to: 10) / 2fr 3fr;
+        display: flex;
+        flex-direction: column;
+        border-bottom: none;
+        gap: none;
 
         @include breakpoint.from(small) {
           display: flex;
@@ -749,6 +796,8 @@ main {
         }
         @include breakpoint.from(large) {
           display: grid;
+          grid: grid.value($from: 1, $to: 10) / 2fr 3fr;
+
           @include grid.dimension($property: gap, $units: 2);
           border-bottom: 1px solid color.$space-cadet;
         }
@@ -758,6 +807,8 @@ main {
       }
       img {
         border: 1px solid color.$space-cadet;
+        width: 100%;
+        height: auto;
 
         @include breakpoint.from(small) {
           margin: none;
@@ -810,8 +861,11 @@ main {
 
   span {
     color: color.$white;
+    display: inline-block;
+    @include grid.dimension($property: margin-top, $units: 8);
     @include breakpoint.from(small) {
       display: inline-block;
+      @include grid.dimension($property: margin-top, $units: 8);
     }
     @include breakpoint.from(large) {
       display: none;

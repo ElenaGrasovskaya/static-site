@@ -72,36 +72,13 @@ module.exports = class {
           <div class = "recent-works-item">${await this.image(
             'index/png/image 30.png',
           )}</div>
-        </div>
-        <div class="recent-works-block">
           <div class = "recent-works-item">${await this.image(
             'index/png/image 28.png',
           )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 27.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 29.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 30.png',
-          )}</div>
         </div>
-        <div class="recent-works-block">
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 28.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 27.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 29.png',
-          )}</div>
-          <div class = "recent-works-item">${await this.image(
-            'index/png/image 30.png',
-          )}</div>
-        </div>
+        
       </div>
+      
 
       <h2 class="big-title"><span>Projects</span></h2>
       <div class="projects-section">
@@ -119,7 +96,9 @@ module.exports = class {
               <p class="black-text">Reinvented bedding cutting price for 50%</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">  
-                <div class="portrait">${await this.image('index/png/face1.png')}</div>
+                <div class="portrait">${await this.image(
+                  'index/png/face1.png',
+                )}</div>
                 <div><span class="black-text">Unwavering expertise!</span><br>
                     <span class="thin-grey-text">Marshall Haas, CEO</span>
                   </div>
@@ -133,7 +112,9 @@ module.exports = class {
               <p class="black-text">Game Analytics wins TechCrunch Disrupt & Raise $2.6M</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">
-                <div class="portrait">${await this.image('index/png/face2.png')}</div>
+                <div class="portrait">${await this.image(
+                  'index/png/face2.png',
+                )}</div>
                 <div><span class="black-text">Pro and creative!</span><br>
                     <span class="thin-grey-text">Bogdan Suchyk, CEO</span>
                   </div>
@@ -145,9 +126,11 @@ module.exports = class {
               ${await this.image('index/jpg/project2.jpg')}
               <div class="logo-list"> ${await this.image(
                 'svg/forbes.svg',
-              )}  ${await this.image('index/svg/techcrunch.svg')}  ${await this.image(
-      'svg/vc.ru.svg',
-    )} ${await this.image('svg/angellist.svg')}</div>
+              )}  ${await this.image(
+      'index/svg/techcrunch.svg',
+    )}  ${await this.image('svg/vc.ru.svg')} ${await this.image(
+      'svg/angellist.svg',
+    )}</div>
             
             </div>
       </div>
@@ -166,7 +149,9 @@ module.exports = class {
               <p class="black-text">Indiegogo superstar smart clock which ease your life</p>
               <p><a class="mail-link" href="https://www.behance.net/gallery/65940547/Primary-Smart-Bedding-Website" rel="noopener noreferrer"><span>more info</span></a></p>
               <div class="portrait-container">
-                <div class="portrait">${await this.image('index/png/face3.png')}</div>
+                <div class="portrait">${await this.image(
+                  'index/png/face3.png',
+                )}</div>
                 <div><span class="black-text">They know what to do!</span><br>
                     <span class="thin-grey-text">Anton Glance, CEO</span>
                   </div>
@@ -218,17 +203,23 @@ module.exports = class {
       </section>
       <h2 class="big-title"><span>Creative Atmosphere</span></h2>
       <section class="carousel">
-        <div class="carousel-item">${await this.image('index/png/carousel1.png')}</div>
-        <div class="carousel-item">${await this.image('index/png/carousel2.png')}</div>
-        <div class="carousel-item">${await this.image('index/png/carousel3.png')}</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+        <div class="carousel-item">${await this.image(
+          'index/png/carousel1.png',
+        )}</div>
+        <div class="carousel-item">${await this.image(
+          'index/png/carousel2.png',
+        )}</div>
+        <div class="carousel-item">${await this.image(
+          'index/png/carousel3.png',
+        )}</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
 
       </section>
       <section class="blog-section">
         <div class="blog-section-container">
           <div class="blog-section-container-left-column">
             <div class="blog-logo">${await this.image('index/svg/B.svg')}</div>
-          <p>Front-end & back-end expertise from development to delivery</p>
-          <a class="mail-link" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a>
+              <p>Front-end & back-end expertise from development to delivery</p>
+              <a class="mail-link" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a>
         
         </div>
           
