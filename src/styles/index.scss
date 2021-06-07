@@ -643,7 +643,7 @@ main {
       margin: none;
     }
   }
-  h6 {
+  h3 {
     font-family: Gramatika, sans-serif;
     font-weight: 700;
     line-height: 1.25;
@@ -673,16 +673,17 @@ main {
   }
 }
 .swiper-pagination {
+
   display: flex;
   flex-direction: row;
   margin: grid.value($from: 1, $to: 2) auto;
   @extend %center-block;
   @include grid.dimension($property: gap, $units: 1);
-  @include grid.dimension($property: width, $units: 10);
+  @include grid.dimension($property: width, $units: 7);
 
   &-bullet {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: color.$white;
     border-radius: 50%;
     opacity: 0.2;
@@ -753,22 +754,7 @@ main {
           @include grid.units($property: font-size, $from: 1.8);
         }
       }
-      span {
-        color: color.$white;
-        font-weight: 600;
-        line-height: 1.4em;
-        text-transform: uppercase;
-        letter-spacing: 10px;
-        @include grid.dimension($property: font-size, $units: 0.8);
-        display: none;
-
-        @include breakpoint.from(small) {
-          display: none;
-        }
-        @include breakpoint.from(large) {
-          display: inline;
-        }
-      }
+      
     }
 
     &-right-column {
@@ -855,20 +841,37 @@ main {
     z-index: 10;
   }
 }
-#hide {
+#hide-big {
   position: relative;
   @include grid.dimension($property: top, $units: -8);
 
-  span {
-    color: color.$white;
+  color: color.$white;
+  display: inline-block;
+  @include grid.dimension($property: margin-top, $units: 8);
+  @include breakpoint.from(small) {
     display: inline-block;
     @include grid.dimension($property: margin-top, $units: 8);
-    @include breakpoint.from(small) {
-      display: inline-block;
-      @include grid.dimension($property: margin-top, $units: 8);
-    }
-    @include breakpoint.from(large) {
-      display: none;
-    }
+  }
+  @include breakpoint.from(large) {
+    display: none;
   }
 }
+  #hide-small {
+    display: none;
+    color: color.$white;
+    font-weight: 600;
+    line-height: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    @include grid.dimension($property: font-size, $units: 0.8);
+    
+
+    @include breakpoint.from(small) {
+     display: none;
+    }
+    @include breakpoint.from(large) {
+      display: inline-block;
+    }
+}
+  
+

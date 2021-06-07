@@ -186,8 +186,8 @@ module.exports = class {
              </div>
               <div class="slider-text">${await this.image(
                 'index/svg/quotes.svg',
-              )}<h6>They perfectly met my expectations — 
-                working with them felt like an extension of my in-house team.</h6>
+              )}<h3>They perfectly met my expectations — 
+                working with them felt like an extension of my in-house team.</h3>
                 <p class="black-text">&#8212; Alexander Kozma Ingal, Room Six</p>
               </div>
             </div>
@@ -195,11 +195,11 @@ module.exports = class {
                 <div class="next" aria-label="Next slide"></div>
               </button>
         </div>
-        <div class="swiper-pagination"><button class="swiper-pagination-bullet-active"></button>
-        <button class="swiper-pagination-bullet"></button>
-        <button class="swiper-pagination-bullet"></button>
-        <button class="swiper-pagination-bullet"></button>
-        <button class="swiper-pagination-bullet"></button></div>
+        <div class="swiper-pagination"><button class="swiper-pagination-bullet-active" aria-label="First slide"></button>
+        <button class="swiper-pagination-bullet" aria-label="Next slide"></button>
+        <button class="swiper-pagination-bullet" aria-label="Next slide"></button>
+        <button class="swiper-pagination-bullet" aria-label="Next slide"></button>
+        <button class="swiper-pagination-bullet" aria-label="Next slide"></button></div>
       </section>
       <h2 class="big-title"><span>Creative Atmosphere</span></h2>
       <section class="carousel">
@@ -219,7 +219,7 @@ module.exports = class {
           <div class="blog-section-container-left-column">
             <div class="blog-logo">${await this.image('index/svg/B.svg')}</div>
               <p>Front-end & back-end expertise from development to delivery</p>
-              <a class="mail-link" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a>
+              <span id="hide-small"><a class="mail-link" href="https://www.halo-lab.com/blog" >MORE BLOG POSTS</a></span>
         
         </div>
           
@@ -239,7 +239,7 @@ module.exports = class {
           </div>
           
         </div>
-        <a class="mail-link" id="hide" href="https://www.halo-lab.com/blog"><span>MORE BLOG POSTS</span></a> 
+        <span id="hide-big"><a  class="mail-link"  href="https://www.halo-lab.com/blog">MORE BLOG POSTS</a><span>
         
       </section>
       
