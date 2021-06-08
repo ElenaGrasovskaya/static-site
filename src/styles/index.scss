@@ -678,8 +678,8 @@ main {
   flex-direction: row;
   margin: grid.value($from: 1, $to: 2) auto;
   @extend %center-block;
-  @include grid.dimension($property: gap, $units: 1);
-  @include grid.dimension($property: width, $units: 7);
+  @include grid.dimension($property: gap, $units: 2);
+  @include grid.dimension($property: width, $units: 10);
 
   &-bullet {
     width: 12px;
