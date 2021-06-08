@@ -70,6 +70,12 @@ module.exports = (config) => {
     publicDirectory: 'styles',
     // Optimizes and rebases urls in styles.
     postcssPlugins: [url({ url: processUrl })],
+    purgeCSSOptions: {
+      safelist: {
+        // Safe all selectors with active word.
+        deep: [/active$/],
+      },
+    },
   });
   config.addPlugin(scripts, {
     publicDirectory: 'scripts',

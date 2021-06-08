@@ -1,0 +1,196 @@
+@use '../../partials/grid';
+@use '../../partials/mixin';
+@use '../../partials/color';
+@use '../../partials/breakpoint';
+@use '../../partials/placeholder';
+
+@use 'menu';
+
+@keyframes appear {
+  from {
+    opacity: 0;
+
+    @include grid.dimension($property: transform, $units: 2) using
+      ($value, $property) {
+      #{$property}: translateX(#{$value});
+    }
+  }
+
+  to {
+    opacity: 1;
+
+    @include grid.dimension($property: transform, $units: 0) using
+      ($value, $property) {
+      #{$property}: translateX(#{$value});
+    }
+  }
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* purgecss start ignore */
+.main-header.menu-opened {
+  height: 100vh;
+
+  .top-line .right-column .contact-button {
+    display: none;
+  }
+
+  @include breakpoint.from(small) {
+    .contact-mail {
+      display: block;
+    }
+  }
+
+  .menu-button {
+    span:nth-of-type(2n + 1) {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    span:nth-of-type(2) {
+      transform: rotate(45deg);
+
+      &::after {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+/* purgecss end ignore */
+
+.top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include grid.dimension($property: height, $units: 5);
+  @include grid.dimension($property: padding-top, $units: 2);
+  @include grid.dimension($property: padding-left, $units: 2);
+  @include grid.dimension($property: padding-right, $units: 2);
+
+  @include breakpoint.from(medium) {
+    @include grid.units($property: padding-left, $count: 4);
+    @include grid.units($property: padding-right, $count: 4);
+  }
+
+  .logo-button {
+    @include grid.dimension($property: width, $from: 5, $to: 12, $min: 144px);
+    @extend %hide-text;
+  }
+
+  .contact-mail {
+    display: none;
+    color: color.$white;
+    font-weight: 300;
+    animation: appear 0.5s forwards;
+    position: relative;
+
+    @include grid.dimension($property: margin-right, $units: 2);
+    @include grid.dimension($property: font-size, $units: 1);
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: color.$medium-blue;
+    }
+  }
+
+  .right-column {
+    display: flex;
+    align-items: center;
+
+    .contact-button {
+      display: none;
+      font: {
+        weight: 300;
+        size: inherit;
+      }
+      line-height: inherit;
+      letter-spacing: 0.5px;
+      color: color.$white;
+      border-radius: 100px;
+
+      @include mixin.outlined();
+      @include mixin.smooth();
+      @include grid.dimension($property: padding-right, $units: 3);
+      @include grid.dimension($property: padding-left, $units: 3);
+      @include grid.dimension($property: padding-top, $units: 0.8);
+      @include grid.dimension($property: padding-bottom, $units: 0.8);
+      @include grid.dimension($property: margin-right, $units: 1);
+
+      &:hover {
+        background: color.$medium-blue;
+        border-color: color.$medium-blue;
+      }
+
+      @include breakpoint.from(medium) {
+        display: block;
+      }
+    }
+
+    .menu-button {
+      border-radius: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @include mixin.outlined();
+      @include mixin.smooth();
+      @include grid.dimension($property: width, $units: 3, $min: 43px);
+      @include grid.dimension($property: height, $units: 3, $min: 43px);
+
+      &:hover {
+        background: color.$medium-blue;
+        border-color: color.$medium-blue;
+      }
+
+      & span {
+        height: 2px;
+        border-radius: 100px;
+        background: color.$white;
+        display: block;
+
+        @include mixin.smooth();
+        @include grid.dimension($property: width, $units: 0.7, $min: 8px);
+
+        &:nth-child(2) {
+          position: relative;
+
+          @include grid.dimension($property: width, $units: 1, $min: 15px);
+
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            transition: inherit;
+          }
+        }
+
+        &:not(:last-child) {
+          @include grid.dimension($property: margin-bottom, $units: 0.25, $min: 4px);
+        }
+      }
+    }
+  }
+}

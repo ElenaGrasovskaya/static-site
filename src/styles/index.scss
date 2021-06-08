@@ -1,2 +1,877 @@
 @use 'common';
 @use 'components';
+@use 'partials/grid';
+@use 'partials/color';
+@use 'partials/mixin';
+@use 'partials/breakpoint';
+@use 'partials/placeholder';
+
+main {
+  margin-right: auto;
+  margin-left: auto;
+  @include grid.dimension($property: max-width, $from: 1, $to: 65, $max: 100vw);
+  overflow-x: hidden;
+}
+
+.advantage-section {
+  display: grid;
+  @include grid.dimension($property: max-width, $from: 5, $to: 54, $max: 90vw);
+  @extend %center-block;
+  @include grid.dimension($property: margin-bottom, $units: 7);
+
+  @include breakpoint.from(small) {
+    grid: auto/ repeat(2, 1fr);
+  }
+
+  @include breakpoint.from(large) {
+    grid:
+      auto / grid.value($from: 5, $to: 21) grid.value($from: 22, $to: 38)
+      grid.value($from: 39, $to: 53);
+    gap: 0;
+  }
+
+  .advantage-section-item {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+    }
+
+    @include grid.dimension($property: margin-bottom, $units: 2);
+
+    @include breakpoint.from(small) {
+      &:last-of-type {
+        display: none;
+      }
+    }
+
+    @include breakpoint.from(large) {
+      &:last-of-type {
+        display: flex;
+      }
+
+      @include grid.dimension($property: width, $units: 14);
+    }
+    svg {
+      // Safari can't display SVG without declaring
+      // its size explicitly.
+      min-width: 100%;
+      @include grid.dimension($property: height, $units: 3);
+      opacity: 50%;
+    }
+  }
+}
+
+.aim-section {
+  @include grid.dimension($property: max-width, $from: 5, $to: 54, $max: 90vw);
+  @extend %center-block;
+  display: grid;
+  @include grid.dimension($property: margin-bottom, $units: 7);
+  @include grid.dimension($property: gap, $units: 4);
+
+  @include breakpoint.from(small) {
+    grid: auto;
+  }
+  @include breakpoint.from(large) {
+    grid: auto/grid.value($from: 5, $to: 21) auto;
+  }
+}
+
+.aim-section-item {
+  p {
+    margin: 0;
+  }
+  span {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.dribbble-link-animated {
+  overflow: visible;
+  position: relative;
+  @include grid.dimension($property: left, $units: 48);
+  @include grid.dimension($property: top, $units: -15);
+  display: none;
+
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: inline-block;
+  }
+}
+
+.dribbble-logo-animated-back {
+  position: relative;
+  @include grid.dimension($property: width, $units: 6);
+  @include grid.dimension($property: height, $units: 6);
+  background-image: url('svg/circled-text.svg');
+  background-position: center;
+  background-size: cover;
+}
+.dribbble-logo-animated-front {
+  position: absolute;
+  @include grid.dimension($property: top, $units: 2);
+  @include grid.dimension($property: left, $units: 2);
+  @include grid.dimension($property: width, $units: 2);
+  @include grid.dimension($property: height, $units: 2);
+  transition-duration: 0.8s;
+  transition-property: transform;
+  :hover {
+    transform: rotate(360deg);
+    filter: invert(52%) sepia(26%) saturate(5887%) hue-rotate(303deg) brightness(81%);
+  }
+}
+.recent-works-container {
+  position: relative;
+  left: 0px;
+  top: -2vw;
+  @include grid.dimension($property: margin-bottom, $units: 12);
+}
+
+.recent-works-block {
+  display: grid;
+
+  @include grid.dimension($property: height, $units: 15);
+  @include grid.dimension($property: gap, $units: 1);
+  grid:
+    grid.value($from: 1, $to: 5) grid.value($from: 6, $to: 10) grid.value(
+      $from: 10,
+      $to: 15
+    )
+    / repeat(16, 1fr);
+}
+.recent-works-item {
+  picture {
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  &:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  &:nth-child(2) {
+    grid-column-start: 7;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  &:nth-child(3) {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  &:nth-child(4) {
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  &:nth-child(5) {
+    grid-column-start: 11;
+    grid-column-end: 17;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+}
+.projects-section {
+  @include grid.dimension($property: margin-top, $units: 10);
+  @include grid.dimension($property: margin-bottom, $units: 10);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @include breakpoint.from(large) {
+    position: relative;
+    display: grid;
+    grid:
+      grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 38) grid.value(
+        $from: 39,
+        $to: 42
+      )
+      grid.value($from: 42, $to: 64);
+  }
+}
+
+.projects-section-image {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  picture {
+    img {
+      @include grid.dimension($property: max-height, $units: 46);
+
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      overflow: visible;
+    }
+  }
+}
+.logo-list {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  @include grid.dimension($property: height, $units: 5);
+  @include grid.dimension($property: padding-right, $units: 4);
+  @include grid.dimension($property: padding-left, $units: 4);
+  display: none;
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: flex;
+  }
+  svg {
+    @include grid.dimension($property: padding-right, $units: 2);
+    @include grid.dimension($property: padding-top, $units: 1);
+    @include grid.dimension($property: padding-bottom, $units: 1);
+  }
+}
+.projects-section-text {
+  z-index: 10;
+  @include grid.dimension($property: padding, $units: 2);
+  @include breakpoint.from(small) {
+    margin: none;
+    padding: none;
+  }
+  @include breakpoint.from(large) {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    @include grid.dimension($property: margin-top, $units: 2);
+    @include grid.dimension($property: padding-top, $units: 2);
+  }
+  span {
+    color: color.$white;
+  }
+  p {
+    &:nth-child(2) {
+      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    }
+
+    &:nth-of-type(3) {
+      text-transform: uppercase;
+      @include grid.dimension($property: letter-spacing, $units: 0.5);
+      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+      @include grid.dimension($property: margin-top, $units: 2);
+    }
+  }
+}
+.portrait-container {
+  display: grid;
+  @include grid.dimension($property: margin-top, $units: 4);
+  grid: auto/1fr 3fr;
+  @include grid.dimension($property: gap, $units: 1);
+}
+.thin-grey-text {
+  @include grid.dimension($property: font-size, $units: 1, $min: 14px);
+  font-weight: 300;
+  line-height: 1.6em;
+  letter-spacing: 0.5px;
+  color: #ccccd2;
+}
+
+.portrait {
+  display: inline-block;
+  @extend %center-block;
+  border-radius: 50%;
+  background-color: lightgrey;
+  @include grid.dimension($property: width, $units: 5);
+  @include grid.dimension($property: height, $units: 5);
+  overflow: hidden;
+  img {
+    @include grid.dimension($property: width, $units: 5);
+    @include grid.dimension($property: height, $units: 5);
+  }
+}
+
+.projects-section-reverse {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  right: 0px;
+  left: 0px;
+  position: relative;
+
+  @include breakpoint.from(large) {
+    position: relative;
+    display: grid;
+    grid:
+      grid.value($from: 1, $to: 36) / grid.value($from: 1, $to: 21) grid.value(
+        $from: 22,
+        $to: 26
+      )
+      grid.value($from: 27, $to: 64);
+  }
+}
+.projects-section-image-reverse {
+  picture {
+    img {
+      @include grid.dimension($property: max-height, $units: 46);
+
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      overflow: visible;
+    }
+  }
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.projects-section-text-reverse {
+  z-index: 10;
+  @include grid.dimension($property: padding-top, $units: 3);
+  @include grid.dimension($property: padding, $units: 2);
+
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  @include breakpoint.from(small) {
+    margin: none;
+    padding: none;
+  }
+  @include breakpoint.from(large) {
+    @include grid.dimension($property: margin-top, $units: 3);
+  }
+  span {
+    color: color.$white;
+  }
+  p {
+    &:nth-child(2) {
+      @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    }
+
+    &:nth-child(3) {
+      text-transform: uppercase;
+      @include grid.dimension($property: letter-spacing, $units: 0.5);
+      @include grid.dimension($property: font-size, $units: 0.8, $min: 12px);
+      @include grid.dimension($property: margin-top, $units: 2);
+    }
+  }
+}
+
+.and-others-section {
+  @include grid.dimension($property: padding-top, $units: 5);
+  @include grid.dimension($property: max-width, $units: 30);
+  @extend %center-block;
+  display: grid;
+  grid: auto/auto;
+
+  p {
+    @include grid.dimension($property: font-size, $units: 2, $min: 12px);
+    grid-area: 1/1/2/3;
+    text-align: center;
+
+    @include breakpoint.from(small) {
+      @include grid.units($property: font-size, $count: 3);
+    }
+    @include breakpoint.from(large) {
+      text-align: left;
+    }
+  }
+  @include breakpoint.from(small) {
+    @include grid.dimension($property: max-width, $units: 44);
+
+    grid:
+      1fr grid.value($from: 1, $to: 22) grid.value($from: 1, $to: 22) / grid.value(
+        $from: 8,
+        $to: 29
+      )
+      grid.value($from: 30, $to: 51);
+  }
+  @include breakpoint.from(large) {
+    grid:
+      1fr / grid.value($from: 5, $to: 25) 1fr grid.value($from: 26, $to: 35) grid.value(
+        $from: 35,
+        $to: 44
+      )
+      grid.value($from: 44, $to: 53) grid.value($from: 53, $to: 64);
+    @include grid.dimension($property: margin-left, $units: 3);
+  }
+}
+
+.and-others-section-item {
+  padding: 25%;
+  padding-top: 40%;
+  svg {
+    max-width: 80%;
+  }
+  @include grid.dimension($property: height, $units: 15);
+  @include grid.dimension($property: width, $units: 15);
+  box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+  &:nth-child(3) {
+    border-right: solid 0.25px color.$space-cadet;
+  }
+  &:nth-child(4) {
+    border-bottom: solid 0.25px color.$space-cadet;
+  }
+
+  @include breakpoint.from(small) {
+    @include grid.dimension($property: height, $units: 22);
+    @include grid.dimension($property: width, $units: 22);
+    box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+    &:nth-child(3) {
+      border-right: solid 0.25px color.$space-cadet;
+    }
+    &:nth-child(4) {
+      border-bottom: solid 0.25px color.$space-cadet;
+    }
+    svg {
+      max-width: 100%;
+    }
+  }
+  @include breakpoint.from(large) {
+    @include grid.units($property: height, $count: 10);
+    @include grid.units($property: width, $count: 10);
+    box-shadow: inset 1px 1px 0 0.25px color.$space-cadet;
+    border-bottom: solid 0.25px color.$space-cadet;
+    &:nth-child(3) {
+      border-right: inherit;
+    }
+    &:nth-child(4) {
+      border-bottom: solid 0.25px color.$space-cadet;
+    }
+  }
+  a {
+    text-transform: uppercase;
+    @include grid.dimension($property: letter-spacing, $units: 0.5);
+    color: color.$white;
+
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: font-size, $units: 1.8, $min: 12px);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: font-size, $count: 0.8);
+    }
+  }
+  &:last-child {
+    padding: 25%;
+    padding-top: 30%;
+    box-shadow: inset -1px -1px 0 0.25px color.$space-cadet;
+    background-color: color.$medium-blue;
+
+    @include breakpoint.from(small) {
+      border-top: none;
+    }
+    @include breakpoint.from(large) {
+      border-right: solid 0.25px color.$space-cadet;
+    }
+  }
+}
+.comments-swiper {
+  svg {
+    max-width: 70%;
+  }
+  @include grid.dimension($property: padding-top, $units: 10);
+}
+.comments-swiper-container {
+  @extend %center-block;
+  @include grid.dimension($property: width, $from: 1, $to: 64, $max: 100vw);
+  display: flex;
+  flex-direction: row;
+
+  @include breakpoint.from(large) {
+    display: grid;
+    grid: grid.value($from: 1, $to: 26) 1fr / 1fr grid.value($from: 5, $to: 48) 1fr;
+  }
+}
+.swiper-slider {
+  @include grid.dimension($property: padding-top, $units: 2);
+  @include grid.dimension($property: padding-bottom, $units: 3);
+  background: color.$slider-gradient;
+  display: flex;
+  flex-direction: column;
+  @include grid.dimension($property: margin, $units: 6);
+  @include grid.dimension($property: margin-bottom, $units: 1);
+
+  @include breakpoint.from(small) {
+    display: flex;
+    flex-direction: column;
+    @include grid.dimension($property: margin, $units: 6);
+    @include grid.dimension($property: margin-bottom, $units: 1);
+  }
+  @include breakpoint.from(large) {
+    display: grid;
+    grid: 1fr/1fr 4fr;
+    margin: 0;
+  }
+}
+.slider-raiting {
+  display: grid;
+  align-items: end;
+  border-right: solid 1px color.$space-cadet;
+  border: none;
+  grid:
+    grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
+      $from: 1,
+      $to: 4
+    )
+    / 1fr;
+  @include grid.dimension($property: padding, $units: 3);
+  @include grid.dimension($property: padding-top, $units: 0.5);
+  @include breakpoint.from(small) {
+    border: none;
+    grid:
+      grid.value($from: 1, $to: 4) grid.value($from: 1, $to: 3) grid.value(
+        $from: 1,
+        $to: 4
+      )
+      / 1fr;
+    @include grid.dimension($property: padding, $units: 3);
+    @include grid.dimension($property: padding-top, $units: 0.5);
+  }
+  @include breakpoint.from(large) {
+    border-right: solid 1px color.$space-cadet;
+    grid: 3fr 0.3fr 2fr/1fr;
+    @include grid.units($property: padding, $count: 3);
+    @include grid.units($property: padding-top, $count: 1);
+  }
+
+  p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    @extend %center-block;
+    @include grid.dimension($property: font-size, $units: 3.8);
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: font-size, $units: 3.8);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: font-size, $count: 3.3);
+    }
+  }
+  svg {
+    width: 20%;
+    margin: 0 auto;
+    @include breakpoint.from(small) {
+      width: 20%;
+      margin: 0 auto;
+    }
+    @include breakpoint.from(large) {
+      width: 100%;
+    }
+  }
+}
+.slider-button {
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px color.$space-cadet;
+  cursor: pointer;
+  @include grid.dimension($property: width, $units: 3);
+  @include grid.dimension($property: height, $units: 3);
+  margin: auto;
+  display: none;
+
+  &:hover {
+    background-color: color.$medium-blue;
+  }
+  @include breakpoint.from(small) {
+    display: none;
+  }
+  @include breakpoint.from(large) {
+    display: block;
+  }
+}
+.prev {
+  position: relative;
+  top: 10%;
+  right: 5%;
+  transform: rotate(45deg) translate(-10%, -80%);
+  border-color: hsla(0, 0%, 100%, 0) hsla(0, 0%, 100%, 0) #fff #fff;
+  display: block;
+  @extend %center-block;
+  @include grid.dimension($property: height, $units: 0.5);
+  @include grid.dimension($property: width, $units: 0.5);
+
+  border-width: 2px;
+  border-style: solid;
+}
+.next {
+  position: relative;
+  top: 10%;
+  @extend %center-block;
+  left: 5%;
+  transform: rotate(-45deg) translate(-10%, -80%);
+  border-color: hsla(0, 0%, 100%, 0) #fff #fff hsla(0, 0%, 100%, 0);
+  display: block;
+  @include grid.dimension($property: height, $units: 0.5);
+  @include grid.dimension($property: width, $units: 0.5);
+  border-width: 2px;
+  border-style: solid;
+}
+.slider-text {
+  @include grid.dimension($property: padding-left, $units: 0.5);
+  @include grid.dimension($property: padding-right, $units: 3);
+  svg {
+    @include grid.dimension($property: height, $units: 3);
+    @include grid.dimension($property: width, $units: 3);
+    @include grid.dimension($property: margin-left, $units: 2);
+
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: height, $units: 3);
+      @include grid.dimension($property: width, $units: 3);
+      @include grid.dimension($property: margin-left, $units: 2);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: height, $count: 2.5);
+      @include grid.units($property: width, $count: 2.5);
+      margin: none;
+    }
+  }
+  h3 {
+    font-family: Gramatika, sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    @include grid.dimension($property: margin, $units: 2);
+    @include grid.dimension($property: font-size, $units: 2.5);
+
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: margin, $units: 2);
+      @include grid.dimension($property: font-size, $units: 2.5);
+    }
+    @include breakpoint.from(large) {
+      @include grid.dimension($property: margin-top, $units: 1);
+      @include grid.dimension($property: margin-bottom, $units: 3);
+      @include grid.units($property: font-size, $count: 1.7);
+    }
+  }
+  p {
+    @include grid.dimension($property: margin-top, $units: 5);
+    @include grid.dimension($property: font-size, $units: 1.2);
+    font-weight: 400;
+    @include breakpoint.from(small) {
+      @include grid.dimension($property: margin-left, $units: 2);
+    }
+    @include breakpoint.from(large) {
+      @include grid.units($property: font-size, $count: 0.8);
+    }
+  }
+}
+.swiper-pagination {
+
+  display: flex;
+  flex-direction: row;
+  margin: grid.value($from: 1, $to: 2) auto;
+  @extend %center-block;
+  @include grid.dimension($property: gap, $units: 2);
+  @include grid.dimension($property: width, $units: 10);
+
+  &-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: color.$white;
+    border-radius: 50%;
+    opacity: 0.2;
+    &-active {
+      opacity: 1;
+      background-color: color.$white;
+      border-radius: 50%;
+    }
+  }
+}
+
+.carousel {
+  @include grid.dimension($property: margin-top, $units: 2);
+  @include grid.dimension($property: height, $units: 20);
+  @include grid.dimension($property: width, $units: 64);
+  justify-self: center;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  @include grid.dimension($property: gap, $units: 2);
+
+  &-item {
+    flex: min-content;
+
+    picture {
+      img {
+        @include grid.dimension($property: height, $units: 20);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center center;
+        @include breakpoint.from(small) {
+          width: auto;
+        }
+        @include breakpoint.from(large) {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+.blog-section {
+  @include grid.dimension($property: margin-top, $units: 5);
+  @include grid.dimension($property: max-width, $from: 5, $to: 53, $max: 90vw);
+  @extend %center-block;
+
+  &-container {
+    @include breakpoint.from(small) {
+      display: flex;
+      flex-direction: column;
+      gap: none;
+    }
+    @include breakpoint.from(large) {
+      display: grid;
+      grid: 1fr/2fr 3fr;
+      @include grid.dimension($property: gap, $units: 5);
+    }
+
+    &-left-column {
+      p {
+        font-weight: 700;
+        @include grid.dimension($property: font-size, $units: 2);
+        @include breakpoint.from(small) {
+          padding: none;
+          @include grid.dimension($property: font-size, $units: 2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 1.8);
+        }
+      }
+      
+    }
+
+    &-right-column {
+      display: grid;
+      grid: 1fr 1fr 1fr/1fr;
+
+      @include breakpoint.from(small) {
+        gap: none;
+      }
+      @include breakpoint.from(large) {
+        @include grid.dimension($property: gap, $units: 2);
+      }
+
+      &-block {
+        display: flex;
+        flex-direction: column;
+        border-bottom: none;
+        gap: none;
+
+        @include breakpoint.from(small) {
+          display: flex;
+          flex-direction: column;
+          border-bottom: none;
+          gap: none;
+        }
+        @include breakpoint.from(large) {
+          display: grid;
+          grid: grid.value($from: 1, $to: 10) / 2fr 3fr;
+
+          @include grid.dimension($property: gap, $units: 2);
+          border-bottom: 1px solid color.$space-cadet;
+        }
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+      img {
+        border: 1px solid color.$space-cadet;
+        width: 100%;
+        height: auto;
+
+        @include breakpoint.from(small) {
+          margin: none;
+        }
+        @include breakpoint.from(large) {
+          @include grid.dimension($property: margin-left, $units: 1);
+        }
+      }
+      span {
+        font-family: Gramatika, sans-serif;
+        font-weight: 700;
+        margin-bottom: 0.7em;
+        opacity: 0.5;
+        text-transform: uppercase;
+
+        @include breakpoint.from(small) {
+          @include grid.dimension($property: font-size, $units: 1.2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 0.8);
+        }
+      }
+      p {
+        margin-top: none;
+
+        @include breakpoint.from(small) {
+          @include grid.dimension($property: font-size, $units: 2);
+        }
+        @include breakpoint.from(large) {
+          @include grid.units($property: font-size, $from: 1.2);
+        }
+      }
+    }
+  }
+}
+.blog-logo {
+  background-color: color.$medium-blue;
+  border-radius: 50%;
+  @include grid.dimension($property: padding, $units: 1.2);
+  @include grid.dimension($property: width, $units: 4);
+  @include grid.dimension($property: height, $units: 4);
+
+  svg {
+    z-index: 10;
+  }
+}
+#hide-big {
+  position: relative;
+  @include grid.dimension($property: top, $units: -8);
+
+  color: color.$white;
+  display: inline-block;
+  @include grid.dimension($property: margin-top, $units: 8);
+  @include breakpoint.from(small) {
+    display: inline-block;
+    @include grid.dimension($property: margin-top, $units: 8);
+  }
+  @include breakpoint.from(large) {
+    display: none;
+  }
+}
+  #hide-small {
+    display: none;
+    color: color.$white;
+    font-weight: 600;
+    line-height: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    @include grid.dimension($property: font-size, $units: 0.8);
+    
+
+    @include breakpoint.from(small) {
+     display: none;
+    }
+    @include breakpoint.from(large) {
+      display: inline-block;
+    }
+}
+  
+

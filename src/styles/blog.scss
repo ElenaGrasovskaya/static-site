@@ -1,0 +1,9 @@
+@use 'common';
+@use 'components';
+@use 'partials/grid';
+@use 'partials/placeholder';
+
+main {
+  @extend %center-block;
+  @include grid.dimension($property: max-width, $from: 4, $to: 61, $max: 90vw);
+}

@@ -21,10 +21,15 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  background: color.$xiketic url('svg/background.svg');
+  background: url('svg/universe.svg') color.$xiketic;
   font-family: 'Sofia Pro', sans-serif;
 
   @include grid.dimension($property: font-size, $units: 0.9, $min: 16px);
+}
+
+/* purgecss ignore */
+body.no-scroll {
+  overflow: hidden;
 }
 
 img {
@@ -63,6 +68,12 @@ textarea {
   @extend %inherit-font;
 }
 
+svg {
+  // Safari can't display SVG without declaring
+  // its size explicitly.
+  width: 100%;
+}
+
 .site-body {
   min-height: 100vh;
   max-width: breakpoint.get(max);
@@ -79,7 +90,7 @@ textarea {
 .big-title {
   text-align: center;
   font: {
-    family: 'Gramatika';
+    family: 'Gramatika', sans-serif;
     weight: 900;
   }
   line-height: 1;
@@ -88,18 +99,30 @@ textarea {
   margin-left: auto;
 
   @extend .text-gradient;
-  @include grid.dimension($property: font-size, $units: 5);
+  @include grid.dimension($property: font-size, $units: 4.8);
   @include grid.dimension($property: margin-top, $units: 5);
   @include grid.dimension($property: margin-bottom, $units: 5);
+  span {
+    color: color.$white;
+  }
 }
 
 .black-text {
   font: {
-    family: 'Gramatika';
+    family: 'Gramatika', sans-serif;
     weight: 900;
   }
 
   @include grid.dimension($property: font-size, $units: 1.5, $min: 20px);
+}
+.grey-text {
+  font: {
+    family: 'Sofia Pro', sans-serif;
+    weight: 300;
+  }
+  opacity: 0.5;
+
+  @include grid.dimension($property: font-size, $units: 1.2, $min: 20px);
 }
 
 .control-button {
